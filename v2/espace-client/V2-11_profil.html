@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Profil — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar -->
+  <aside class="ep-sidebar">
+    <div class="ep-sidebar-header">
+      <a href="../public/V2-01_accueil.html" class="text-decoration-none">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="46" style="display:block;">
+        <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.2rem;">Espace Client</div>
+      </a>
+    </div>
+    <div class="ep-sidebar-user">
+      <div class="ep-sidebar-avatar">FK</div>
+      <div>
+        <div class="ep-sidebar-user-name">Fatoumata Koné</div>
+        <div class="ep-sidebar-user-email">+225 07 12 34 56</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <div class="ep-nav-section">Principal</div>
+      <a href="V2-06_dashboard.html"><i class="fas fa-th-large"></i> Tableau de bord</a>
+      <a href="V2-07_mes_commandes.html"><i class="fas fa-box"></i> Mes commandes</a>
+      <a href="V2-10_fidelite.html"><i class="fas fa-star"></i> Fidélité <span class="ms-auto ep-badge" style="background:rgba(201,160,32,.2);color:var(--ep-gold);font-size:.65rem;padding:.15rem .5rem;">430 pts</span></a>
+      <div class="ep-nav-section" style="margin-top:.5rem;">Compte</div>
+      <a href="V2-11_profil.html" class="active"><i class="fas fa-user"></i> Mon profil</a>
+      <a href="../public/V2-01_accueil.html"><i class="fas fa-globe"></i> Retour au site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <a href="../public/V2-04_connexion.html"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button id="ep-sidebar-toggle" class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <h1 class="ep-page-title">Mon Profil</h1>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="ep-badge" style="background:rgba(201,160,32,.1);color:var(--ep-gold);">
+          <i class="fas fa-star me-1"></i> 430 pts
+        </span>
+        <div class="ep-sidebar-avatar" style="width:36px;height:36px;font-size:.8rem;">FK</div>
+      </div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- En-tête profil -->
+      <div class="ep-profile-header mb-4">
+        <div class="ep-profile-avatar-lg">FK</div>
+        <div>
+          <h3 class="fw-bold mb-1">Fatoumata Koné</h3>
+          <div style="color:rgba(255,255,255,.75);font-size:.9rem;">
+            <i class="fas fa-phone me-1"></i> +225 07 12 34 56
+          </div>
+          <div style="color:rgba(255,255,255,.75);font-size:.9rem;margin-top:.25rem;">
+            <i class="fas fa-envelope me-1"></i> f.kone@mail.ci
+          </div>
+          <div class="mt-2">
+            <span class="ep-points-badge" style="font-size:.82rem;">
+              <i class="fas fa-star"></i> 430 points fidélité
+            </span>
+            <span class="ms-2" style="font-size:.82rem;color:rgba(255,255,255,.6);">
+              <i class="fas fa-calendar me-1"></i> Membre depuis janvier 2024
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Formulaire informations personnelles -->
+        <div class="col-lg-8">
+
+          <!-- Infos personnelles -->
+          <div class="ep-card p-4 mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-user me-2" style="color:var(--ep-gold);"></i>
+                Informations personnelles
+              </h5>
+              <button class="btn btn-sm btn-ep-outline-green" id="btn-edit-info" onclick="toggleEdit('info')">
+                <i class="fas fa-edit me-1"></i> Modifier
+              </button>
+            </div>
+            <form id="form-info">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Prénom</label>
+                  <input type="text" class="form-control ep-form-control" value="Fatoumata" disabled id="inp-prenom">
+                </div>
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Nom</label>
+                  <input type="text" class="form-control ep-form-control" value="Koné" disabled id="inp-nom">
+                </div>
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Téléphone</label>
+                  <input type="tel" class="form-control ep-form-control" value="+225 07 12 34 56" disabled id="inp-tel">
+                </div>
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Email</label>
+                  <input type="email" class="form-control ep-form-control" value="f.kone@mail.ci" disabled id="inp-email">
+                </div>
+                <div class="col-12">
+                  <label class="ep-form-label">Point de dépôt habituel</label>
+                  <select class="form-select ep-form-control" disabled id="inp-depot">
+                    <option selected>Dépôt Cocody — Riviera 2</option>
+                    <option>Dépôt Plateau — Centre</option>
+                    <option>Dépôt Yopougon — Carrefour Marché</option>
+                  </select>
+                </div>
+                <div class="col-12 d-none" id="btn-save-info">
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-ep-primary" onclick="saveInfo()">
+                      <i class="fas fa-save me-1"></i> Enregistrer les modifications
+                    </button>
+                    <button type="button" class="btn btn-ep-outline-green" onclick="toggleEdit('info')">
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Mot de passe -->
+          <div class="ep-card p-4 mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-lock me-2" style="color:var(--ep-gold);"></i>
+                Changer le mot de passe
+              </h5>
+              <button class="btn btn-sm btn-ep-outline-green" onclick="toggleEdit('pw')">
+                <i class="fas fa-edit me-1"></i> Modifier
+              </button>
+            </div>
+            <div id="pw-placeholder" class="text-muted" style="font-size:.88rem;">
+              <i class="fas fa-shield-alt me-2" style="color:var(--ep-gold);"></i>
+              Votre mot de passe est sécurisé. Cliquez sur "Modifier" pour le changer.
+            </div>
+            <form id="form-pw" class="d-none ep-needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="ep-form-label">Mot de passe actuel <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control ep-form-control" placeholder="Votre mot de passe actuel" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Nouveau mot de passe <span class="text-danger">*</span></label>
+                  <input type="password" id="ep-password" class="form-control ep-form-control" placeholder="Minimum 8 caractères" required minlength="8">
+                  <div class="mt-1">
+                    <div class="ep-progress" style="height:4px;">
+                      <div id="ep-pw-strength" class="ep-progress-bar" style="width:0%;transition:width .3s,background .3s;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="ep-form-label">Confirmer <span class="text-danger">*</span></label>
+                  <input type="password" id="ep-password-confirm" class="form-control ep-form-control" placeholder="Répétez le nouveau mot de passe" required>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-ep-primary">
+                      <i class="fas fa-save me-1"></i> Mettre à jour
+                    </button>
+                    <button type="button" class="btn btn-ep-outline-green" onclick="toggleEdit('pw')">
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Préférences notifications -->
+          <div class="ep-card p-4">
+            <h5 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-bell me-2" style="color:var(--ep-gold);"></i>
+              Préférences de notification
+            </h5>
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold" style="font-size:.9rem;">Commande prête à retirer</div>
+                  <div class="text-muted" style="font-size:.8rem;">Notification quand vos vêtements sont disponibles</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked style="width:2.5rem;height:1.25rem;">
+                </div>
+              </div>
+              <hr class="my-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold" style="font-size:.9rem;">Mise à jour du statut</div>
+                  <div class="text-muted" style="font-size:.8rem;">À chaque changement d'étape (lavage, repassage…)</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" style="width:2.5rem;height:1.25rem;">
+                </div>
+              </div>
+              <hr class="my-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold" style="font-size:.9rem;">Points fidélité crédités</div>
+                  <div class="text-muted" style="font-size:.8rem;">Confirmation quand des points sont ajoutés à votre compte</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked style="width:2.5rem;height:1.25rem;">
+                </div>
+              </div>
+              <hr class="my-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold" style="font-size:.9rem;">Promotions et offres spéciales</div>
+                  <div class="text-muted" style="font-size:.8rem;">Newsletters et offres du pressing</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked style="width:2.5rem;height:1.25rem;">
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-ep-primary btn-sm" onclick="window.epToast('Préférences enregistrées.','success')">
+                <i class="fas fa-save me-1"></i> Sauvegarder les préférences
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panneau latéral -->
+        <div class="col-lg-4">
+
+          <!-- Résumé compte -->
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-chart-pie me-2" style="color:var(--ep-gold);"></i>
+              Résumé de mon compte
+            </h6>
+            <div class="d-flex flex-column gap-2" style="font-size:.88rem;">
+              <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ep-border);">
+                <span class="text-muted">Commandes totales</span>
+                <span class="fw-bold">8</span>
+              </div>
+              <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ep-border);">
+                <span class="text-muted">Total dépensé</span>
+                <span class="fw-bold">16 300 FCFA</span>
+              </div>
+              <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ep-border);">
+                <span class="text-muted">Points actuels</span>
+                <span class="fw-bold text-ep-gold">430 pts</span>
+              </div>
+              <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ep-border);">
+                <span class="text-muted">Économies fidélité</span>
+                <span class="fw-bold" style="color:#198754;">750 FCFA</span>
+              </div>
+              <div class="d-flex justify-content-between py-1">
+                <span class="text-muted">Membre depuis</span>
+                <span class="fw-bold">Jan. 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dépôt habituel -->
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-2">
+              <i class="fas fa-map-marker-alt me-2" style="color:var(--ep-gold);"></i>
+              Mon point de dépôt
+            </h6>
+            <div class="fw-bold" style="font-size:.9rem;">Dépôt Cocody — Riviera 2</div>
+            <div class="text-muted" style="font-size:.82rem;">Rue des Jardins, face à la station Total</div>
+            <div class="text-muted" style="font-size:.78rem;margin-top:.25rem;">
+              <i class="fas fa-clock me-1"></i> Lun–Ven : 08h00–17h00
+            </div>
+            <div class="ep-badge ep-badge-pret mt-2" style="font-size:.72rem;">Ouvert aujourd'hui</div>
+          </div>
+
+          <!-- Danger zone -->
+          <div class="ep-card p-3" style="border:1px solid rgba(220,53,69,.2);">
+            <h6 class="fw-bold mb-3" style="color:#dc3545;">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              Zone sensible
+            </h6>
+            <p class="text-muted mb-3" style="font-size:.82rem;">
+              La suppression de votre compte est irréversible. Vos points fidélité et l'historique de vos commandes seront perdus.
+            </p>
+            <button class="btn btn-sm w-100 py-2" style="background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.3);color:#dc3545;font-size:.85rem;"
+              onclick="if(confirm('Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.')) window.epToast('Demande de suppression envoyée à l\'équipe.','info')">
+              <i class="fas fa-trash-alt me-2"></i> Supprimer mon compte
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="ep-sidebar-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+function toggleEdit(section) {
+  if (section === 'info') {
+    const inputs = document.querySelectorAll('#form-info input, #form-info select');
+    const disabled = inputs[0].disabled;
+    inputs.forEach(i => i.disabled = !disabled);
+    document.getElementById('btn-save-info').classList.toggle('d-none', disabled);
+  } else if (section === 'pw') {
+    const form = document.getElementById('form-pw');
+    const ph = document.getElementById('pw-placeholder');
+    form.classList.toggle('d-none');
+    ph.classList.toggle('d-none');
+  }
+}
+function saveInfo() {
+  window.epToast('Profil mis à jour avec succès.', 'success');
+  toggleEdit('info');
+}
+document.getElementById('form-pw')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  window.epToast('Mot de passe modifié avec succès.', 'success');
+  toggleEdit('pw');
+});
+</script>
+</body>
+</html>

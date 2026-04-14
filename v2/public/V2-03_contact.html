@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="ep-topbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="d-flex gap-4">
+      <span><i class="fas fa-phone me-1"></i> +225 01 4188 8989</span>
+      <span><i class="fas fa-envelope me-1"></i> contact@pressingelegance.com</span>
+    </div>
+    <span><i class="fas fa-clock me-1"></i> Lun–Ven 08h–17h</span>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="ep-navbar">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="V2-01_accueil.html" class="navbar-brand text-decoration-none">
+      <img src="../assets/img/logo.png" alt="Élégance Pressing" height="48" style="display:block;">
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1 align-items-center">
+        <li class="nav-item"><a class="nav-link" href="V2-01_accueil.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="V2-02_services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link active" href="V2-03_contact.html">Contact</a></li>
+        <li class="nav-item ms-2"><a href="V2-04_connexion.html" class="btn btn-ep-primary">Connexion</a></li>
+        <li class="nav-item"><a href="V2-05_inscription.html" class="btn btn-ep-outline-green">Inscription</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero compact -->
+<section style="background:linear-gradient(135deg,var(--ep-green-dark) 0%,var(--ep-green) 100%);padding:3.5rem 0;color:#fff;">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb" style="font-size:.82rem;">
+        <li class="breadcrumb-item"><a href="V2-01_accueil.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Accueil</a></li>
+        <li class="breadcrumb-item active" style="color:var(--ep-gold);">Contact</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-2">Contactez-<span style="color:var(--ep-gold);">nous</span></h1>
+    <p style="color:rgba(255,255,255,.75);max-width:500px;">Notre équipe est disponible du lundi au vendredi pour répondre à toutes vos questions.</p>
+  </div>
+</section>
+
+<!-- Contact principal -->
+<section class="ep-contact-section py-5">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Formulaire -->
+      <div class="col-lg-7">
+        <div class="ep-contact-card">
+          <h3 class="text-ep-green fw-bold mb-4">
+            <i class="fas fa-paper-plane me-2" style="color:var(--ep-gold);"></i>
+            Envoyer un message
+          </h3>
+          <form id="ep-contact-form" class="ep-needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="ep-form-label">Prénom <span class="text-danger">*</span></label>
+                <input type="text" class="form-control ep-form-control" placeholder="Votre prénom" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="ep-form-label">Nom <span class="text-danger">*</span></label>
+                <input type="text" class="form-control ep-form-control" placeholder="Votre nom" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="ep-form-label">Téléphone <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control ep-form-control" placeholder="+225 07 XX XX XX" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="ep-form-label">Email</label>
+                <input type="email" class="form-control ep-form-control" placeholder="votre@email.com">
+              </div>
+              <div class="col-12">
+                <label class="ep-form-label">Sujet <span class="text-danger">*</span></label>
+                <select class="form-select ep-form-control" required>
+                  <option value="">Sélectionnez un sujet</option>
+                  <option>Renseignements sur les tarifs</option>
+                  <option>Demande de devis retoucherie</option>
+                  <option>Service express</option>
+                  <option>Problème avec une commande</option>
+                  <option>Programme fidélité</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="ep-form-label">Message <span class="text-danger">*</span></label>
+                <textarea class="form-control ep-form-control" rows="5" placeholder="Décrivez votre demande…" required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-ep-primary w-100 py-2">
+                  <i class="fas fa-paper-plane me-2"></i> Envoyer le message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Infos de contact -->
+      <div class="col-lg-5">
+        <h3 class="text-ep-green fw-bold mb-4">Nos coordonnées</h3>
+
+        <!-- Téléphones -->
+        <div class="d-flex gap-3 mb-4">
+          <div style="background:var(--ep-cream);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-phone" style="color:var(--ep-green);"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-ep-green">Téléphone</div>
+            <div class="text-muted">+225 01 4188 8989</div>
+            <div class="text-muted">+225 01 0200 2200</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="d-flex gap-3 mb-4">
+          <div style="background:var(--ep-cream);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-envelope" style="color:var(--ep-green);"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-ep-green">Email</div>
+            <div class="text-muted">contact@pressingelegance.com</div>
+          </div>
+        </div>
+
+        <!-- Horaires -->
+        <div class="d-flex gap-3 mb-4">
+          <div style="background:var(--ep-cream);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-clock" style="color:var(--ep-green);"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-ep-green">Horaires d'ouverture</div>
+            <div class="text-muted">Lundi – Vendredi : 08h00 – 17h00</div>
+            <div class="text-muted" style="font-size:.82rem;">Samedi et dimanche : fermé</div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="d-flex gap-3 mb-4">
+          <div style="background:#e8fdf0;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fab fa-whatsapp" style="color:#25d366;font-size:1.2rem;"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-ep-green">WhatsApp</div>
+            <div class="text-muted" style="font-size:.88rem;">Réponse rapide via WhatsApp</div>
+            <a href="https://wa.me/2250141888989" class="btn btn-sm mt-1" style="background:#25d366;color:#fff;border-radius:6px;font-size:.82rem;">
+              <i class="fab fa-whatsapp me-1"></i> Écrire sur WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Points de dépôt -->
+        <div class="ep-card p-3 mt-4">
+          <h6 class="fw-bold text-ep-green mb-3">
+            <i class="fas fa-map-marker-alt me-2" style="color:var(--ep-gold);"></i>
+            Nos points de dépôt
+          </h6>
+          <div class="mb-3 pb-3" style="border-bottom:1px solid var(--ep-border);">
+            <div class="fw-bold" style="font-size:.88rem;">Dépôt Principal — Abidjan Centre</div>
+            <div class="text-muted" style="font-size:.82rem;">Boulevard du Général de Gaulle, Plateau</div>
+            <div class="ep-badge ep-badge-pret mt-1" style="font-size:.7rem;">Ouvert</div>
+          </div>
+          <div class="mb-3 pb-3" style="border-bottom:1px solid var(--ep-border);">
+            <div class="fw-bold" style="font-size:.88rem;">Dépôt Cocody</div>
+            <div class="text-muted" style="font-size:.82rem;">Rue des Jardins, Riviera 2</div>
+            <div class="ep-badge ep-badge-pret mt-1" style="font-size:.7rem;">Ouvert</div>
+          </div>
+          <div>
+            <div class="fw-bold" style="font-size:.88rem;">Dépôt Yopougon</div>
+            <div class="text-muted" style="font-size:.82rem;">Marché de Yopougon, Carrefour</div>
+            <div class="ep-badge ep-badge-pret mt-1" style="font-size:.7rem;">Ouvert</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="ep-section-header text-center mx-auto mb-4" style="max-width:600px;">
+      <span class="ep-label">Questions fréquentes</span>
+      <h2>FAQ</h2>
+      <div class="ep-divider mx-auto"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item border mb-2 rounded overflow-hidden">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                Quels sont les délais de traitement standard ?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Le délai standard est de <strong>J+3</strong> (3 jours ouvrés) à compter du dépôt.
+                Pour le service express, comptez 4 à 6 heures selon la charge du jour.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border mb-2 rounded overflow-hidden">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                Comment fonctionne le programme fidélité ?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Vous gagnez <strong>1 point pour chaque tranche de 100 FCFA</strong> dépensée.
+                Chaque point vaut 5 FCFA de remise sur votre prochaine commande.
+                Connectez-vous à votre espace client pour voir votre solde et utiliser vos points.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border mb-2 rounded overflow-hidden">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                Comment puis-je suivre ma commande ?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Créez votre <strong>espace client gratuit</strong> et suivez en temps réel l'état de vos vêtements :
+                Reçu → En lavage → Lavé → En repassage → Prêt. Vous recevrez aussi des notifications.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border rounded overflow-hidden">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                Quels modes de paiement acceptez-vous ?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Nous acceptons : <strong>espèces</strong>, <strong>MTN Mobile Money</strong>,
+                <strong>Orange Money</strong>, <strong>Wave</strong> et <strong>Moov Money</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ep-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+        <p style="font-size:.88rem;color:rgba(255,255,255,.65);margin-top:.75rem;">Textile Expert depuis plus de 15 ans en Côte d'Ivoire.</p>
+        <div class="ep-social mt-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-md-2"><h5>Navigation</h5><ul>
+        <li><a href="V2-01_accueil.html">Accueil</a></li>
+        <li><a href="V2-02_services.html">Services</a></li>
+        <li><a href="V2-03_contact.html">Contact</a></li>
+      </ul></div>
+      <div class="col-md-3"><h5>Espace Client</h5><ul>
+        <li><a href="V2-04_connexion.html">Se connecter</a></li>
+        <li><a href="V2-05_inscription.html">Créer un compte</a></li>
+      </ul></div>
+      <div class="col-md-3"><h5>Contact</h5><ul style="list-style:none;padding:0;">
+        <li class="mb-2"><i class="fas fa-phone me-2" style="color:var(--ep-gold);"></i> +225 01 4188 8989</li>
+        <li class="mb-2"><i class="fas fa-envelope me-2" style="color:var(--ep-gold);"></i> contact@pressingelegance.com</li>
+        <li><i class="fas fa-clock me-2" style="color:var(--ep-gold);"></i> Lun–Ven 08h–17h</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="ep-footer-bottom">&copy; 2026 Élégance Pressing — Côte d'Ivoire.</div>
+</footer>
+
+<a href="https://wa.me/2250141888989" class="ep-whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

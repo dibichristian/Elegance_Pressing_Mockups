@@ -1,0 +1,2098 @@
+/* ==========================================================================
+   ÉLÉGANCE PRESSING — Design System CSS
+   Application de gestion de pressing (Côte d'Ivoire)
+   Version : 1.0
+   Chargé par 14 pages HTML (Bootstrap 5.3 en base)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. IMPORT GOOGLE FONTS
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* --------------------------------------------------------------------------
+   2. VARIABLES CSS GLOBALES — Charte graphique Élégance Pressing
+   -------------------------------------------------------------------------- */
+:root {
+  /* Couleurs principales */
+  --color-primary:   #1C3D2A;   /* Vert forêt foncé — header, sidebar, boutons principaux */
+  --color-accent:    #C9A020;   /* Or doré — accents, labels, boutons secondaires */
+  --color-cream:     #F5F5DC;   /* Crème — fond sections alternées */
+  --color-light:     #FFFFFF;   /* Blanc — fond général */
+  --color-dark:      #1A1A1A;   /* Texte principal */
+  --color-muted:     #6C757D;   /* Texte secondaire */
+
+  /* Couleurs sémantiques */
+  --color-success:   #28A745;
+  --color-warning:   #FFC107;
+  --color-danger:    #DC3545;
+  --color-info:      #17A2B8;
+
+  /* Couleurs dérivées */
+  --color-primary-light:  rgba(28, 61, 42, 0.08);
+  --color-primary-hover:  #163221;
+  --color-accent-light:   rgba(201, 160, 32, 0.15);
+  --color-accent-hover:   #b08c1a;
+
+  /* Sidebar */
+  --sidebar-width:         250px;
+  --sidebar-bg:            #1C3D2A;
+  --sidebar-text:          rgba(255, 255, 255, 0.85);
+  --sidebar-text-muted:    rgba(255, 255, 255, 0.45);
+  --sidebar-hover-bg:      rgba(255, 255, 255, 0.08);
+  --sidebar-active-bg:     rgba(201, 160, 32, 0.18);
+  --sidebar-active-border: #C9A020;
+
+  /* Topbar */
+  --topbar-height:   64px;
+  --topbar-bg:       #FFFFFF;
+  --topbar-shadow:   0 1px 4px rgba(0, 0, 0, 0.08);
+
+  /* Typographie */
+  --font-family:     'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-base:  0.875rem;  /* 14px */
+  --line-height:     1.6;
+
+  /* Espacements */
+  --spacing-xs:   0.25rem;
+  --spacing-sm:   0.5rem;
+  --spacing-md:   1rem;
+  --spacing-lg:   1.5rem;
+  --spacing-xl:   2rem;
+  --spacing-2xl:  3rem;
+
+  /* Bordures & coins */
+  --border-radius-sm:  4px;
+  --border-radius:     8px;
+  --border-radius-lg:  12px;
+  --border-radius-xl:  16px;
+  --border-color:      #e2e8f0;
+
+  /* Ombres */
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow:      0 2px 8px rgba(0, 0, 0, 0.10);
+  --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.14);
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition:        0.2s ease;
+  --transition-slow:   0.35s ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. RESET & BASE — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-dark);
+  background-color: #f0f2f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: fadeInPage 0.3s ease forwards;
+}
+
+/* Fade-in général au chargement de page */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT PRINCIPAL — Sidebar + Main content
+   -------------------------------------------------------------------------- */
+
+/* Conteneur global de l'app */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. SIDEBAR
+   -------------------------------------------------------------------------- */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1040;
+  transition: transform var(--transition-slow);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollbar personnalisée dans la sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* --- Sidebar : Brand (logo) --- */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.sidebar-brand:hover {
+  text-decoration: none;
+}
+
+.sidebar-brand-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+/* "ÉLÉGANCE" en or */
+.sidebar-brand-top {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* "PRESSING" en blanc */
+.sidebar-brand-bottom {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* --- Sidebar : Navigation --- */
+.sidebar-nav {
+  flex: 1;
+  padding: 0.75rem 0;
+}
+
+/* Label de section (ex : "GESTION") en or */
+.sidebar-section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1rem 1.25rem 0.35rem;
+  opacity: 0.85;
+}
+
+/* Lien de navigation sidebar */
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.25rem;
+  color: var(--sidebar-text);
+  font-size: 0.85rem;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.sidebar .nav-link i,
+.sidebar .nav-link .nav-icon {
+  width: 18px;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0.75;
+  flex-shrink: 0;
+  transition: opacity var(--transition);
+}
+
+/* Hover : fond blanc léger */
+.sidebar .nav-link:hover {
+  background: var(--sidebar-hover-bg);
+  color: #ffffff;
+  border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar .nav-link:hover i,
+.sidebar .nav-link:hover .nav-icon {
+  opacity: 1;
+}
+
+/* Active : fond or léger + border or */
+.sidebar .nav-link.active {
+  background: var(--sidebar-active-bg);
+  color: #ffffff;
+  font-weight: 600;
+  border-left-color: var(--sidebar-active-border);
+}
+
+.sidebar .nav-link.active i,
+.sidebar .nav-link.active .nav-icon {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Badge compteur dans la sidebar */
+.sidebar .nav-badge {
+  margin-left: auto;
+  background: var(--color-accent);
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+/* Séparateur dans la sidebar */
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0.5rem 0;
+}
+
+/* --- Sidebar : Footer (utilisateur) --- */
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.875rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sidebar-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  font-size: 0.68rem;
+  color: var(--sidebar-text-muted);
+}
+
+.sidebar-user-action {
+  color: var(--sidebar-text-muted);
+  font-size: 0.85rem;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+
+.sidebar-user-action:hover {
+  color: var(--color-accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. MAIN CONTENT
+   -------------------------------------------------------------------------- */
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  transition: margin-left var(--transition-slow);
+}
+
+.page-body {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  flex: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. TOPBAR (barre du haut)
+   -------------------------------------------------------------------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--topbar-shadow);
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-xl);
+  gap: var(--spacing-md);
+}
+
+/* Bouton toggle menu (mobile) */
+.topbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color var(--transition);
+}
+
+.topbar-toggle:hover {
+  color: var(--color-primary);
+}
+
+/* Titre de la page courante */
+.topbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+  flex: 1;
+}
+
+/* Sous-titre/breadcrumb */
+.topbar-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+/* Actions côté droit de la topbar */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Icône notification dans la topbar */
+.topbar-icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  font-size: 0.9rem;
+}
+
+.topbar-icon-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.topbar-icon-btn .badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  font-size: 0.55rem;
+  padding: 0.18em 0.4em;
+}
+
+/* Avatar utilisateur dans la topbar */
+.topbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  transition: border-color var(--transition);
+}
+
+.topbar-avatar:hover {
+  border-color: var(--color-accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. KPI CARDS (Dashboard)
+   -------------------------------------------------------------------------- */
+
+.kpi-card {
+  background: #ffffff;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Bande décorative en haut */
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+/* Version accent (or) */
+.kpi-card.accent::before {
+  background: var(--color-accent);
+}
+
+.kpi-card.accent .kpi-value {
+  color: var(--color-accent);
+}
+
+/* Icône KPI — cercle coloré */
+.kpi-card .kpi-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  transition: background var(--transition);
+}
+
+.kpi-card:hover .kpi-icon {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.kpi-card.accent .kpi-icon {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.kpi-card.accent:hover .kpi-icon {
+  background: var(--color-accent);
+  color: #000;
+}
+
+/* Variantes de couleur pour l'icône */
+.kpi-icon.kpi-success { background: rgba(40, 167, 69, 0.12);  color: #28A745; }
+.kpi-icon.kpi-warning { background: rgba(255, 193, 7, 0.12);  color: #E0A800; }
+.kpi-icon.kpi-danger  { background: rgba(220, 53, 69, 0.12);  color: #DC3545; }
+.kpi-icon.kpi-info    { background: rgba(23, 162, 184, 0.12); color: #17A2B8; }
+
+/* Grand chiffre */
+.kpi-card .kpi-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* Label */
+.kpi-card .kpi-label {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Tendance (ex : +12% ce mois) */
+.kpi-card .kpi-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.kpi-trend.up   { color: var(--color-success); }
+.kpi-trend.down { color: var(--color-danger); }
+
+
+/* --------------------------------------------------------------------------
+   9. BADGES DE STATUT — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+/* Base commune pour tous les badges de statut */
+.badge-statut {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3em 0.65em;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+/* Statuts de commande */
+.badge-recu         { background: #17A2B8; color: #fff; }
+.badge-en-lavage    { background: #007BFF; color: #fff; }
+.badge-lave         { background: #0DCAF0; color: #000; }
+.badge-en-repassage { background: #FD7E14; color: #fff; }
+.badge-repasse      { background: #FFC107; color: #000; }
+.badge-pret         { background: #28A745; color: #fff; }
+.badge-retire       { background: #6C757D; color: #fff; }
+
+/* Statuts de paiement */
+.badge-non-paye     { background: #DC3545; color: #fff; }
+.badge-partiel      { background: #FD7E14; color: #fff; }
+.badge-paye         { background: #28A745; color: #fff; }
+
+/* Surcharge des badges Bootstrap pour cohérence */
+.badge.bg-primary { background-color: var(--color-primary) !important; }
+.badge.bg-warning { color: #000 !important; }
+
+
+/* --------------------------------------------------------------------------
+   10. BOUTONS CUSTOMISÉS
+   -------------------------------------------------------------------------- */
+
+/* --- Bouton principal vert foncé --- */
+.btn-primary-ep {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-family: var(--font-family);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-primary-ep:hover,
+.btn-primary-ep:focus {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(28, 61, 42, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary-ep:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- Bouton accent or doré --- */
+.btn-accent-ep {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #000000;
+  font-weight: 600;
+  font-family: var(--font-family);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-accent-ep:hover,
+.btn-accent-ep:focus {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(201, 160, 32, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-accent-ep:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- Bouton contour vert --- */
+.btn-outline-ep {
+  background-color: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-family: var(--font-family);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-outline-ep:hover,
+.btn-outline-ep:focus {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(28, 61, 42, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-outline-ep:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- Surcharges Bootstrap boutons --- */
+.btn {
+  font-family: var(--font-family);
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: all var(--transition);
+}
+
+.btn-sm {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+}
+
+.btn-lg {
+  font-size: 0.95rem;
+  padding: 0.65rem 1.75rem;
+}
+
+/* Groupe de boutons action */
+.btn-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. TABLES — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+/* Conteneur scrollable pour les tables sur mobile */
+.table-responsive-wrapper {
+  background: #ffffff;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Table de base */
+.table {
+  margin-bottom: 0;
+  font-size: 0.83rem;
+  color: var(--color-dark);
+}
+
+/* Header : fond vert foncé, texte blanc */
+.table thead th {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 0.85rem;
+  border: none;
+  white-space: nowrap;
+}
+
+.table thead th:first-child {
+  border-radius: 0;
+}
+
+/* Cellules de données */
+.table tbody td {
+  padding: 0.5rem 0.85rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+  border-top: none;
+}
+
+/* Lignes zebra avec crème */
+.table tbody tr:nth-child(even) td {
+  background-color: rgba(245, 245, 220, 0.35);
+}
+
+/* Hover léger sur les lignes */
+.table tbody tr:hover td {
+  background-color: var(--color-primary-light) !important;
+  cursor: pointer;
+}
+
+/* Pas de border sur la dernière ligne */
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Version condensée */
+.table-sm tbody td,
+.table-sm thead th {
+  padding: 0.35rem 0.65rem;
+}
+
+/* Footer de table */
+.table tfoot td {
+  background: var(--color-cream);
+  font-weight: 600;
+  color: var(--color-primary);
+  border-top: 2px solid var(--color-primary);
+  padding: 0.5rem 0.85rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. FORMULAIRES — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+/* Focus : bordure vert + ombre verte */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(28, 61, 42, 0.18);
+  outline: none;
+}
+
+.form-control,
+.form-select {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  border-color: #d1d5db;
+  border-radius: var(--border-radius);
+  color: var(--color-dark);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control::placeholder {
+  color: #adb5bd;
+  font-size: 0.82rem;
+}
+
+/* Labels en vert foncé */
+.form-label {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+/* Texte d'aide */
+.form-text {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+/* Section de formulaire avec titre et séparateur */
+.form-section {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-section-title i {
+  color: var(--color-accent);
+}
+
+/* Groupe de champs côte à côte */
+.form-row {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Input group avec icône */
+.input-group-text {
+  background: var(--color-primary-light);
+  border-color: #d1d5db;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
+
+/* Validation Bootstrap couleurs */
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: var(--color-success);
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: var(--color-danger);
+}
+
+.invalid-feedback {
+  font-size: 0.75rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. TIMELINE DES STATUTS (11_detail_commande.html)
+   -------------------------------------------------------------------------- */
+
+/* Conteneur horizontal */
+.status-timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  padding: var(--spacing-lg) 0;
+  overflow-x: auto;
+}
+
+/* Étape individuelle */
+.status-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 80px;
+  position: relative;
+}
+
+/* Connecteur entre étapes */
+.status-step::after {
+  content: '';
+  position: absolute;
+  top: 19px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 2px;
+  background: #dee2e6;
+  z-index: 0;
+  transition: background var(--transition-slow);
+}
+
+.status-step:last-child::after {
+  display: none;
+}
+
+/* Cercle de l'étape */
+.status-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  z-index: 1;
+  position: relative;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+/* Label sous le cercle */
+.status-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.4rem;
+  line-height: 1.3;
+  max-width: 80px;
+}
+
+/* --- Étape passée (done) : cercle vert rempli --- */
+.status-step.done .status-circle {
+  background: var(--color-success);
+  color: #ffffff;
+  border: 2px solid var(--color-success);
+}
+
+.status-step.done::after {
+  background: var(--color-success);
+}
+
+.status-step.done .status-label {
+  color: var(--color-success);
+}
+
+/* --- Étape active (active) : cercle or + animation pulse --- */
+.status-step.active .status-circle {
+  background: var(--color-accent);
+  color: #000;
+  border: 2px solid var(--color-accent);
+  animation: pulseStep 1.8s ease-in-out infinite;
+}
+
+.status-step.active .status-label {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* --- Étape future (pending) : cercle gris vide --- */
+.status-step.pending .status-circle {
+  background: #ffffff;
+  color: #adb5bd;
+  border: 2px solid #dee2e6;
+}
+
+.status-step.pending .status-label {
+  color: var(--color-muted);
+}
+
+/* Animation pulse pour l'étape active */
+@keyframes pulseStep {
+  0%   { box-shadow: 0 0 0 0 rgba(201, 160, 32, 0.55); }
+  50%  { box-shadow: 0 0 0 8px rgba(201, 160, 32, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 160, 32, 0); }
+}
+
+
+/* --------------------------------------------------------------------------
+   14. CARDS DE LOTS (Lavage / Repassage)
+   -------------------------------------------------------------------------- */
+
+.lot-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.lot-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateX(2px);
+}
+
+.lot-card.en-cours {
+  border-left-color: #007BFF;
+}
+
+.lot-card.termine {
+  border-left-color: #28A745;
+  opacity: 0.72;
+}
+
+.lot-card.termine:hover {
+  opacity: 1;
+}
+
+.lot-card.reporte {
+  border-left-color: #DC3545;
+}
+
+.lot-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.lot-card-title {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lot-card-meta {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.lot-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   15. PAGE DE LOGIN
+   -------------------------------------------------------------------------- */
+
+/* Masquer la sidebar et la topbar sur la page login */
+.page-login .sidebar,
+.page-login .topbar,
+.page-login .main-content {
+  display: none !important;
+}
+
+/* Wrapper full-height en deux colonnes */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-light);
+}
+
+/* Colonne gauche : visuel vert foncé avec overlay */
+.login-visual {
+  flex: 1;
+  background: var(--color-primary);
+  background-image: linear-gradient(
+    135deg,
+    rgba(28, 61, 42, 0.95) 0%,
+    rgba(20, 45, 30, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Motif décoratif dans la colonne visuelle */
+.login-visual::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 60px solid rgba(201, 160, 32, 0.08);
+}
+
+.login-visual::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 40px solid rgba(201, 160, 32, 0.06);
+}
+
+/* Texte visuel (tagline, description) */
+.login-visual-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.login-visual-tagline {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Colonne droite : formulaire centré */
+.login-form-col {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+}
+
+.login-form-inner {
+  width: 100%;
+}
+
+/* Logo texte de la page login */
+.login-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* "ÉLÉGANCE" en or */
+.login-logo-text .brand-top {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* "PRESSING" en vert foncé (ou en blanc si sur fond sombre) */
+.login-logo-text .brand-bottom {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Version inversée (sur fond vert de la sidebar/login-visual) */
+.login-visual .login-logo-text .brand-bottom {
+  color: #ffffff;
+}
+
+/* Titre du formulaire */
+.login-form-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.login-form-sub {
+  font-size: 0.83rem;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Card formulaire */
+.login-card {
+  background: #ffffff;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--border-color);
+}
+
+
+/* --------------------------------------------------------------------------
+   16. ALERTES ET NOTIFICATIONS PERSONNALISÉES
+   -------------------------------------------------------------------------- */
+
+/* Alerte retard : fond rouge clair */
+.alert-retard {
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  border-left: 4px solid var(--color-danger);
+  color: #842029;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Alerte prêt : fond vert clair */
+.alert-pret {
+  background: rgba(40, 167, 69, 0.08);
+  border: 1px solid rgba(40, 167, 69, 0.35);
+  border-left: 4px solid var(--color-success);
+  color: #0f5132;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Surcharge alertes Bootstrap */
+.alert {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+}
+
+/* Toast notification */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+}
+
+.toast {
+  font-family: var(--font-family);
+  font-size: 0.83rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+
+/* --------------------------------------------------------------------------
+   17. CARDS GÉNÉRALES — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-family);
+  transition: box-shadow var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-bottom: none;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0 !important;
+  padding: 0.875rem var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-header i {
+  color: var(--color-accent);
+}
+
+/* Header accent or */
+.card-header.accent {
+  background: var(--color-accent);
+  color: #000;
+}
+
+.card-header.light {
+  background: var(--color-cream);
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+.card-footer {
+  background: #f8f9fa;
+  border-top: 1px solid var(--border-color);
+  padding: 0.75rem var(--spacing-lg);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   18. PAGINATION — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+.pagination {
+  gap: 0.2rem;
+}
+
+.page-link {
+  font-family: var(--font-family);
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  border-color: var(--border-color);
+  border-radius: var(--border-radius) !important;
+  padding: 0.35rem 0.7rem;
+  transition: background var(--transition), color var(--transition);
+}
+
+.page-link:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.page-item.disabled .page-link {
+  color: #adb5bd;
+  border-color: var(--border-color);
+}
+
+
+/* --------------------------------------------------------------------------
+   19. BREADCRUMB — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+.breadcrumb {
+  font-size: 0.78rem;
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.breadcrumb-item a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-muted);
+  content: "›";
+}
+
+
+/* --------------------------------------------------------------------------
+   20. MODALS — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+.modal-content {
+  font-family: var(--font-family);
+  border-radius: var(--border-radius-xl);
+  border: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  padding: 1rem var(--spacing-lg);
+  border-bottom: none;
+}
+
+.modal-header .modal-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-header .modal-title i {
+  color: var(--color-accent);
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1;
+}
+
+.modal-body {
+  padding: var(--spacing-lg);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 0.75rem var(--spacing-lg);
+  gap: 0.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   21. DROPDOWN — Surcharge Bootstrap
+   -------------------------------------------------------------------------- */
+
+.dropdown-menu {
+  font-family: var(--font-family);
+  font-size: 0.83rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 0.4rem;
+}
+
+.dropdown-item {
+  border-radius: var(--border-radius);
+  padding: 0.45rem 0.75rem;
+  color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background var(--transition), color var(--transition);
+}
+
+.dropdown-item i {
+  width: 16px;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.dropdown-item:hover i {
+  color: var(--color-primary);
+}
+
+.dropdown-item.text-danger:hover {
+  background: rgba(220, 53, 69, 0.08);
+  color: var(--color-danger);
+}
+
+.dropdown-divider {
+  border-color: var(--border-color);
+  margin: 0.3rem 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   22. STATISTIQUES & PROGRESS BARS
+   -------------------------------------------------------------------------- */
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #e9ecef;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: var(--color-primary);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progress-bar.accent { background: var(--color-accent); }
+.progress-bar.success { background: var(--color-success); }
+.progress-bar.warning { background: var(--color-warning); }
+.progress-bar.danger  { background: var(--color-danger); }
+
+/* Stat summary dans les cartes */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.83rem;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.stat-label {
+  color: var(--color-muted);
+}
+
+.stat-value {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   23. SEARCH BAR
+   -------------------------------------------------------------------------- */
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.search-bar .form-control {
+  padding-left: 2.25rem;
+  border-radius: 999px;
+  border-color: var(--border-color);
+  background: #f8f9fa;
+  font-size: 0.83rem;
+}
+
+.search-bar .form-control:focus {
+  background: #ffffff;
+  border-color: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   24. FILTRES ET TOOLBAR
+   -------------------------------------------------------------------------- */
+
+.page-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.filter-bar {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-bar .form-select,
+.filter-bar .form-control {
+  font-size: 0.82rem;
+  min-width: 0;
+}
+
+/* Chips de filtre actif */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid rgba(28, 61, 42, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.filter-chip:hover {
+  background: rgba(28, 61, 42, 0.15);
+}
+
+.filter-chip .chip-remove {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.filter-chip .chip-remove:hover {
+  opacity: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   25. EMPTY STATE (aucun résultat)
+   -------------------------------------------------------------------------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.4;
+  color: var(--color-primary);
+}
+
+.empty-state-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-text {
+  font-size: 0.83rem;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+
+/* --------------------------------------------------------------------------
+   26. IMPRESSION / REÇU
+   -------------------------------------------------------------------------- */
+
+.receipt-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow);
+}
+
+.receipt-header {
+  text-align: center;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px dashed var(--border-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.receipt-logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+}
+
+.receipt-logo span {
+  color: var(--color-accent);
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: var(--spacing-md) 0;
+}
+
+.receipt-total {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   27. RESPONSIVE — Sidebar toggle mobile
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(calc(-1 * var(--sidebar-width)));
+    transition: transform var(--transition-slow);
+    z-index: 1050;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+
+  .topbar-toggle {
+    display: flex;
+  }
+
+  /* Overlay sombre derrière la sidebar ouverte */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1045;
+    animation: fadeInOverlay 0.2s ease;
+  }
+
+  .sidebar-overlay.show {
+    display: block;
+  }
+
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+@media (max-width: 768px) {
+  .page-body {
+    padding: var(--spacing-md);
+  }
+
+  .topbar {
+    padding: 0 var(--spacing-md);
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.5rem;
+  }
+
+  .status-timeline {
+    padding: var(--spacing-md) 0;
+  }
+
+  .status-step {
+    min-width: 60px;
+  }
+
+  .status-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  .status-step::after {
+    top: 15px;
+  }
+
+  .login-visual {
+    display: none;
+  }
+
+  .login-form-col {
+    max-width: 100%;
+    padding: var(--spacing-lg);
+  }
+
+  .page-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-label {
+    font-size: 0.6rem;
+  }
+
+  .table {
+    font-size: 0.78rem;
+  }
+
+  .kpi-card {
+    padding: var(--spacing-md);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   28. ANIMATIONS ET TRANSITIONS SUPPLÉMENTAIRES
+   -------------------------------------------------------------------------- */
+
+/* Animation pour les cards au survol */
+@keyframes cardLift {
+  from { transform: translateY(0);    box-shadow: var(--shadow-sm); }
+  to   { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+}
+
+/* Spinner de chargement */
+.spinner-ep {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(28, 61, 42, 0.15);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spinEp 0.7s linear infinite;
+}
+
+@keyframes spinEp {
+  to { transform: rotate(360deg); }
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, #e9ecef 25%, #f4f4f4 50%, #e9ecef 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.4s infinite;
+  border-radius: var(--border-radius);
+  display: block;
+}
+
+@keyframes skeletonShimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* Transition hover sur tous les éléments cliquables */
+.clickable {
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.clickable:hover {
+  opacity: 0.82;
+}
+
+
+/* --------------------------------------------------------------------------
+   29. UTILITAIRES SPÉCIFIQUES ÉLÉGANCE PRESSING
+   -------------------------------------------------------------------------- */
+
+/* Couleurs texte */
+.text-primary-ep  { color: var(--color-primary) !important; }
+.text-accent-ep   { color: var(--color-accent)  !important; }
+.text-cream       { color: var(--color-cream)   !important; }
+
+/* Couleurs fond */
+.bg-primary-ep    { background-color: var(--color-primary) !important; }
+.bg-accent-ep     { background-color: var(--color-accent)  !important; }
+.bg-cream         { background-color: var(--color-cream)   !important; }
+.bg-surface       { background-color: #f8f9fa              !important; }
+
+/* Bordures */
+.border-primary-ep { border-color: var(--color-primary) !important; }
+.border-accent-ep  { border-color: var(--color-accent)  !important; }
+.border-cream      { border-color: var(--color-cream)   !important; }
+
+/* Font weights étendus */
+.fw-800 { font-weight: 800 !important; }
+.fw-900 { font-weight: 900 !important; }
+.fw-300 { font-weight: 300 !important; }
+
+/* Tailles de texte */
+.fs-xs  { font-size: 0.7rem  !important; }
+.fs-sm  { font-size: 0.8rem  !important; }
+.fs-md  { font-size: 0.9rem  !important; }
+.fs-lg  { font-size: 1.1rem  !important; }
+.fs-xl  { font-size: 1.35rem !important; }
+.fs-2xl { font-size: 1.75rem !important; }
+
+/* Espacement lettre */
+.ls-wide  { letter-spacing: 0.08em !important; }
+.ls-wider { letter-spacing: 0.14em !important; }
+
+/* Icône dans un cercle */
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.icon-circle-sm {
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+.icon-circle-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.25rem;
+}
+
+/* Séparateur décoratif doré */
+.divider-gold {
+  border: none;
+  border-top: 2px solid var(--color-accent);
+  opacity: 0.4;
+  margin: var(--spacing-lg) 0;
+}
+
+/* Ligne de titre avec accentuation */
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.section-title i,
+.section-title .title-icon {
+  color: var(--color-accent);
+}
+
+/* Lien d'action discret */
+.link-action {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--transition), gap var(--transition);
+}
+
+.link-action:hover {
+  color: var(--color-accent);
+  gap: 0.5rem;
+}
+
+/* Highlight de valeur monétaire */
+.money {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-primary);
+}
+
+.money.large {
+  font-size: 1.35rem;
+}
+
+/* Indicateur de couleur */
+.color-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   30. PRINT STYLES
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .sidebar,
+  .topbar,
+  .btn,
+  .filter-bar,
+  .page-toolbar .btn-actions,
+  .no-print {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+
+  .page-body {
+    padding: 0 !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    font-size: 11pt;
+    color: #000000;
+  }
+
+  .card,
+  .receipt-card,
+  .form-section {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  .table thead th {
+    background: #1C3D2A !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouvelle commande — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link py-2 px-3 rounded" href="03_nouvelle_commande.html" style="background:rgba(201,160,32,0.15);color:#C9A020;font-weight:600;"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div class="d-flex align-items-center gap-3">
+        <a href="04_liste_commandes.html" class="btn btn-sm btn-outline-secondary" style="border-radius:6px;">
+          <i class="fas fa-arrow-left me-1"></i>Retour
+        </a>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;">
+          <i class="fas fa-plus-circle me-2" style="color:#C9A020;"></i>Nouvelle commande
+        </h5>
+      </div>
+      <small style="color:#888;">Lundi 14 avril 2026</small>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="p-4">
+      <div class="row g-4">
+
+        <!-- COLONNE PRINCIPALE -->
+        <div class="col-lg-8">
+
+          <!-- BLOC CLIENT -->
+          <div class="card border-0 shadow-sm mb-4" style="border-radius:12px;">
+            <div class="card-header" style="background:#fff;border-bottom:1px solid #f0f0f0;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <h6 style="margin:0;font-weight:700;color:#1C3D2A;">
+                <i class="fas fa-user me-2" style="color:#C9A020;"></i>Informations client
+              </h6>
+            </div>
+            <div class="card-body p-4">
+
+              <!-- Recherche client -->
+              <div class="mb-3">
+                <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Rechercher un client existant</label>
+                <div class="input-group">
+                  <span class="input-group-text" style="background:#f8f9fa;border-right:0;"><i class="fas fa-search" style="color:#888;"></i></span>
+                  <input type="text" class="form-control" id="searchClient" list="clientsList"
+                         placeholder="Nom, prénom ou téléphone..."
+                         style="border-left:0;border-radius:0 6px 6px 0;"
+                         oninput="fillClientData(this.value)">
+                  <datalist id="clientsList">
+                    <option value="Aminata Koné — +225 07 12 34 56">
+                    <option value="Ibrahim Diallo — +225 05 67 89 01">
+                    <option value="Fatoumata Traoré — +225 01 23 45 67">
+                    <option value="Moussa Ouattara — +225 07 98 76 54">
+                    <option value="Seydou Bamba — +225 05 11 22 33">
+                    <option value="Nadia Coulibaly — +225 07 55 44 33">
+                    <option value="Koffi Assoumou — +225 01 87 65 43">
+                    <option value="Mariam Sanogo — +225 05 34 56 78">
+                  </datalist>
+                </div>
+                <small class="text-muted">Ou remplissez les champs ci-dessous pour créer un nouveau client</small>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Prénom <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="clientPrenom" placeholder="Ex: Aminata" value="Aminata">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Nom <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="clientNom" placeholder="Ex: Koné" value="Koné">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Téléphone <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background:#f8f9fa;font-size:0.85rem;">+225</span>
+                    <input type="tel" class="form-control" id="clientTel" placeholder="07 12 34 56" value="07 12 34 56">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Email</label>
+                  <input type="email" class="form-control" id="clientEmail" placeholder="email@exemple.ci" value="aminata.kone@gmail.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Dépôt <span class="text-danger">*</span></label>
+                  <select class="form-select">
+                    <option value="cocody" selected>Cocody</option>
+                    <option value="plateau">Plateau</option>
+                    <option value="yopougon">Yopougon</option>
+                    <option value="marcory">Marcory</option>
+                    <option value="abobo">Abobo</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Pièce d'identité</label>
+                  <input type="text" class="form-control" placeholder="N° CNI (optionnel)">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- BLOC VETEMENTS -->
+          <div class="card border-0 shadow-sm mb-4" style="border-radius:12px;">
+            <div class="card-header d-flex align-items-center justify-content-between"
+                 style="background:#fff;border-bottom:1px solid #f0f0f0;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <h6 style="margin:0;font-weight:700;color:#1C3D2A;">
+                <i class="fas fa-tshirt me-2" style="color:#C9A020;"></i>Vêtements déposés
+              </h6>
+              <span id="nbPiecesLabel" style="font-size:0.82rem;color:#888;">3 pièces</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table mb-0" style="font-size:0.875rem;" id="tableVetements">
+                  <thead style="background:#f8f9fa;">
+                    <tr>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Type de vêtement</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Quantité</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Prix unitaire (FCFA)</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Sous-total</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbodyVetements">
+
+                    <!-- Ligne 1 pré-remplie : 1 Chemise -->
+                    <tr>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <select class="form-select form-select-sm" style="min-width:150px;" onchange="updateSubtotal(this)">
+                          <option value="Chemise" selected data-prix="500">Chemise</option>
+                          <option value="Pantalon" data-prix="700">Pantalon</option>
+                          <option value="Robe" data-prix="1200">Robe</option>
+                          <option value="Veste" data-prix="1000">Veste</option>
+                          <option value="Costume" data-prix="2000">Costume</option>
+                          <option value="Linge de maison" data-prix="800">Linge de maison</option>
+                          <option value="Manteau" data-prix="1500">Manteau</option>
+                          <option value="Jupe" data-prix="600">Jupe</option>
+                        </select>
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" class="form-control form-control-sm" value="1" min="1" style="width:70px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" class="form-control form-control-sm" value="500" min="0" style="width:100px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <span class="subtotal fw-bold" style="color:#1C3D2A;">500</span> FCFA
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="supprimerLigne(this)" title="Supprimer">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    <!-- Ligne 2 pré-remplie : 2 Pantalons -->
+                    <tr>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <select class="form-select form-select-sm" style="min-width:150px;" onchange="updateSubtotal(this)">
+                          <option value="Chemise" data-prix="500">Chemise</option>
+                          <option value="Pantalon" selected data-prix="700">Pantalon</option>
+                          <option value="Robe" data-prix="1200">Robe</option>
+                          <option value="Veste" data-prix="1000">Veste</option>
+                          <option value="Costume" data-prix="2000">Costume</option>
+                          <option value="Linge de maison" data-prix="800">Linge de maison</option>
+                          <option value="Manteau" data-prix="1500">Manteau</option>
+                          <option value="Jupe" data-prix="600">Jupe</option>
+                        </select>
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" class="form-control form-control-sm" value="2" min="1" style="width:70px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" class="form-control form-control-sm" value="700" min="0" style="width:100px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <span class="subtotal fw-bold" style="color:#1C3D2A;">1 400</span> FCFA
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="supprimerLigne(this)" title="Supprimer">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                  <!-- Ligne d'ajout -->
+                  <tfoot>
+                    <tr id="ligneAjout" style="background:#fafff8;">
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <select class="form-select form-select-sm" id="newType" style="min-width:150px;">
+                          <option value="Chemise" data-prix="500">Chemise</option>
+                          <option value="Pantalon" data-prix="700">Pantalon</option>
+                          <option value="Robe" data-prix="1200">Robe</option>
+                          <option value="Veste" data-prix="1000">Veste</option>
+                          <option value="Costume" data-prix="2000">Costume</option>
+                          <option value="Linge de maison" data-prix="800">Linge de maison</option>
+                          <option value="Manteau" data-prix="1500">Manteau</option>
+                          <option value="Jupe" data-prix="600">Jupe</option>
+                        </select>
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" id="newQte" class="form-control form-control-sm" value="1" min="1" style="width:70px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="number" id="newPrix" class="form-control form-control-sm" value="500" min="0" style="width:100px;">
+                      </td>
+                      <td colspan="2" style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <button type="button" class="btn btn-sm" style="background:#C9A020;color:#fff;font-weight:600;border-radius:6px;" onclick="ajouterLigne()">
+                          <i class="fas fa-plus me-1"></i>Ajouter
+                        </button>
+                      </td>
+                    </tr>
+                  </tfoot>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOC DATES ET NOTES -->
+          <div class="card border-0 shadow-sm mb-4" style="border-radius:12px;">
+            <div class="card-header" style="background:#fff;border-bottom:1px solid #f0f0f0;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <h6 style="margin:0;font-weight:700;color:#1C3D2A;">
+                <i class="fas fa-calendar-alt me-2" style="color:#C9A020;"></i>Planification &amp; Notes
+              </h6>
+            </div>
+            <div class="card-body p-4">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">
+                    <i class="fas fa-arrow-down me-1" style="color:#17A2B8;"></i>Date de dépôt
+                  </label>
+                  <input type="date" class="form-control" value="2026-04-14" readonly style="background:#f8f9fa;">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">
+                    <i class="fas fa-tint me-1" style="color:#007BFF;"></i>Date lavage prévue
+                  </label>
+                  <input type="date" class="form-control" value="2026-04-15">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">
+                    <i class="fas fa-arrow-up me-1" style="color:#28a745;"></i>Date sortie prévue
+                  </label>
+                  <input type="date" class="form-control" value="2026-04-17">
+                </div>
+                <div class="col-12">
+                  <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Notes / Observations</label>
+                  <textarea class="form-control" rows="3" placeholder="Taches particulières, instructions de traitement, remarques client...">Attention : tache sur la manche gauche de la chemise. Traitement délicat requis.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLONNE RECAP -->
+        <div class="col-lg-4">
+
+          <!-- RÉCAPITULATIF -->
+          <div class="card border-0 shadow-sm" style="border-radius:12px;position:sticky;top:80px;">
+            <div class="card-header" style="background:#1C3D2A;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <h6 style="margin:0;font-weight:700;color:#fff;">
+                <i class="fas fa-receipt me-2" style="color:#C9A020;"></i>Récapitulatif commande
+              </h6>
+            </div>
+            <div class="card-body p-4">
+
+              <!-- Détail lignes -->
+              <div id="recapLignes">
+                <div class="d-flex justify-content-between mb-2" style="font-size:0.88rem;">
+                  <span style="color:#555;">1× Chemise</span>
+                  <span style="font-weight:600;">500 FCFA</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2" style="font-size:0.88rem;">
+                  <span style="color:#555;">2× Pantalon</span>
+                  <span style="font-weight:600;">1 400 FCFA</span>
+                </div>
+              </div>
+
+              <hr style="border-color:#f0f0f0;">
+
+              <!-- Totaux -->
+              <div class="d-flex justify-content-between mb-1" style="font-size:0.9rem;">
+                <span style="color:#555;">Nombre de pièces</span>
+                <span id="recapNbPieces" style="font-weight:600;">3</span>
+              </div>
+              <div class="d-flex justify-content-between mb-3" style="font-size:0.9rem;">
+                <span style="color:#555;">Sous-total</span>
+                <span id="recapSousTotal" style="font-weight:600;">1 900 FCFA</span>
+              </div>
+
+              <!-- Total -->
+              <div style="background:#F5F5DC;border-radius:8px;padding:1rem;text-align:center;margin-bottom:1rem;">
+                <div style="font-size:0.82rem;color:#888;margin-bottom:0.3rem;">TOTAL À PAYER</div>
+                <div id="recapTotal" style="font-size:1.8rem;font-weight:900;color:#1C3D2A;">1 900 FCFA</div>
+              </div>
+
+              <!-- Paiement à la réception -->
+              <div class="mb-3">
+                <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Avance reçue (FCFA)</label>
+                <input type="number" class="form-control" placeholder="0" min="0" value="0">
+              </div>
+
+              <!-- Boutons action -->
+              <button type="button" class="btn w-100 mb-2" onclick="window.location='04_liste_commandes.html'"
+                      style="background:#1C3D2A;color:#fff;font-weight:700;padding:0.75rem;border-radius:8px;border:none;">
+                <i class="fas fa-check me-2"></i>Valider la commande
+              </button>
+              <a href="04_liste_commandes.html" class="btn btn-outline-secondary w-100"
+                 style="border-radius:8px;padding:0.75rem;font-weight:600;">
+                <i class="fas fa-times me-2"></i>Annuler
+              </a>
+
+              <!-- Info ticket -->
+              <div style="margin-top:1rem;padding:0.75rem;background:#f0f8f0;border-radius:8px;font-size:0.78rem;color:#555;text-align:center;">
+                <i class="fas fa-print me-1" style="color:#1C3D2A;"></i>
+                Un ticket de dépôt sera généré et imprimable après validation.
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /p-4 -->
+  </div><!-- /margin-left -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Met à jour le prix unitaire en fonction du type sélectionné
+    document.getElementById('newType').addEventListener('change', function() {
+      const selected = this.options[this.selectedIndex];
+      const prix = selected.getAttribute('data-prix') || 500;
+      document.getElementById('newPrix').value = prix;
+    });
+
+    // Ajoute une ligne vêtement
+    function ajouterLigne() {
+      const type = document.getElementById('newType').value;
+      const qte = parseInt(document.getElementById('newQte').value) || 1;
+      const prix = parseInt(document.getElementById('newPrix').value) || 0;
+      const subtotal = qte * prix;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="padding:0.65rem 1rem;vertical-align:middle;">
+          <select class="form-select form-select-sm" style="min-width:150px;" onchange="updateSubtotal(this)">
+            <option value="Chemise" data-prix="500" ${type==='Chemise'?'selected':''}>Chemise</option>
+            <option value="Pantalon" data-prix="700" ${type==='Pantalon'?'selected':''}>Pantalon</option>
+            <option value="Robe" data-prix="1200" ${type==='Robe'?'selected':''}>Robe</option>
+            <option value="Veste" data-prix="1000" ${type==='Veste'?'selected':''}>Veste</option>
+            <option value="Costume" data-prix="2000" ${type==='Costume'?'selected':''}>Costume</option>
+            <option value="Linge de maison" data-prix="800" ${type==='Linge de maison'?'selected':''}>Linge de maison</option>
+            <option value="Manteau" data-prix="1500" ${type==='Manteau'?'selected':''}>Manteau</option>
+            <option value="Jupe" data-prix="600" ${type==='Jupe'?'selected':''}>Jupe</option>
+          </select>
+        </td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="number" class="form-control form-control-sm" value="${qte}" min="1" style="width:70px;" onchange="updateSubtotal(this)"></td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="number" class="form-control form-control-sm" value="${prix}" min="0" style="width:100px;" onchange="updateSubtotal(this)"></td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><span class="subtotal fw-bold" style="color:#1C3D2A;">${subtotal.toLocaleString('fr-FR')}</span> FCFA</td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><button type="button" class="btn btn-sm btn-outline-danger" onclick="supprimerLigne(this)"><i class="fas fa-trash-alt"></i></button></td>
+      `;
+      document.getElementById('tbodyVetements').appendChild(tr);
+      recalcTotal();
+      document.getElementById('newQte').value = 1;
+    }
+
+    // Supprime une ligne
+    function supprimerLigne(btn) {
+      btn.closest('tr').remove();
+      recalcTotal();
+    }
+
+    // Recalcule le sous-total d'une ligne
+    function updateSubtotal(el) {
+      const row = el.closest('tr');
+      const qte = parseInt(row.querySelector('input[type=number]').value) || 0;
+      const prix = parseInt(row.querySelectorAll('input[type=number]')[1].value) || 0;
+      const sub = qte * prix;
+      row.querySelector('.subtotal').textContent = sub.toLocaleString('fr-FR');
+      recalcTotal();
+    }
+
+    // Recalcule le total général
+    function recalcTotal() {
+      let total = 0;
+      let pieces = 0;
+      document.querySelectorAll('#tbodyVetements tr').forEach(tr => {
+        const sub = parseInt(tr.querySelector('.subtotal').textContent.replace(/\s/g,'')) || 0;
+        const qte = parseInt(tr.querySelector('input[type=number]').value) || 0;
+        total += sub;
+        pieces += qte;
+      });
+      document.getElementById('recapTotal').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+      document.getElementById('recapSousTotal').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+      document.getElementById('recapNbPieces').textContent = pieces;
+      document.getElementById('nbPiecesLabel').textContent = pieces + ' pièce' + (pieces>1?'s':'');
+    }
+
+    // Remplit les données client depuis la recherche
+    function fillClientData(value) {
+      const clients = {
+        'Aminata Koné': {prenom:'Aminata', nom:'Koné', tel:'07 12 34 56', email:'aminata.kone@gmail.com'},
+        'Ibrahim Diallo': {prenom:'Ibrahim', nom:'Diallo', tel:'05 67 89 01', email:'i.diallo@outlook.com'},
+        'Fatoumata Traoré': {prenom:'Fatoumata', nom:'Traoré', tel:'01 23 45 67', email:'f.traore@gmail.com'},
+      };
+      const key = Object.keys(clients).find(k => value.includes(k));
+      if (key) {
+        document.getElementById('clientPrenom').value = clients[key].prenom;
+        document.getElementById('clientNom').value = clients[key].nom;
+        document.getElementById('clientTel').value = clients[key].tel;
+        document.getElementById('clientEmail').value = clients[key].email;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traitement Repassage — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link py-2 px-3 rounded" href="07_traitement_repassage.html" style="background:rgba(201,160,32,0.15);color:#C9A020;font-weight:600;"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <h5 style="margin:0;color:#1C3D2A;font-weight:700;">
+        <i class="fas fa-fire me-2" style="color:#FD7E14;"></i>Traitement Repassage
+      </h5>
+      <div class="d-flex align-items-center gap-2">
+        <div class="input-group input-group-sm" style="width:auto;">
+          <span class="input-group-text" style="background:#f8f9fa;border-color:#dee2e6;"><i class="fas fa-calendar" style="color:#888;"></i></span>
+          <input type="date" class="form-control" value="2026-04-16" style="border-color:#dee2e6;">
+          <button class="btn btn-sm" style="background:#1C3D2A;color:#fff;border-color:#1C3D2A;">
+            <i class="fas fa-search me-1"></i>Charger
+          </button>
+        </div>
+        <a href="06_traitement_lavage.html" class="btn btn-sm btn-outline-secondary" style="border-radius:6px;">
+          <i class="fas fa-tint me-1"></i>Lavage
+        </a>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="p-4">
+
+      <!-- Bandeau résumé du jour -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <div style="background:#fff;border-radius:10px;padding:0.9rem 1.1rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:40px;height:40px;background:rgba(253,126,20,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-layer-group" style="color:#FD7E14;"></i>
+            </div>
+            <div>
+              <div style="font-size:1.4rem;font-weight:800;color:#FD7E14;line-height:1;">3</div>
+              <div style="font-size:0.78rem;color:#888;">Lots du jour</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div style="background:#fff;border-radius:10px;padding:0.9rem 1.1rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:40px;height:40px;background:rgba(13,202,240,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-check" style="color:#0DCAF0;"></i>
+            </div>
+            <div>
+              <div style="font-size:1.4rem;font-weight:800;color:#0DCAF0;line-height:1;">21</div>
+              <div style="font-size:0.78rem;color:#888;">Articles lavés dispo</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div style="background:#fff;border-radius:10px;padding:0.9rem 1.1rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:40px;height:40px;background:rgba(253,126,20,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-fire" style="color:#FD7E14;"></i>
+            </div>
+            <div>
+              <div style="font-size:1.4rem;font-weight:800;color:#FD7E14;line-height:1;">1</div>
+              <div style="font-size:0.78rem;color:#888;">En cours</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div style="background:#fff;border-radius:10px;padding:0.9rem 1.1rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:40px;height:40px;background:rgba(255,193,7,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-star" style="color:#d4a000;"></i>
+            </div>
+            <div>
+              <div style="font-size:1.4rem;font-weight:800;color:#d4a000;line-height:1;">1</div>
+              <div style="font-size:0.78rem;color:#888;">Repassé (prêt)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TITRE SECTION -->
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <i class="fas fa-calendar-day" style="color:#FD7E14;"></i>
+        <span style="font-weight:700;color:#555;font-size:0.9rem;">Lots de repassage — Jeudi 16 avril 2026</span>
+        <span style="font-size:0.82rem;color:#888;margin-left:0.5rem;">Articles issus du lavage du 15/04/2026 — statut <span class="badge" style="background:#0DCAF0;color:#000;font-size:0.72rem;">Lavé</span></span>
+      </div>
+
+      <!-- CARTES DE LOTS -->
+      <div class="row g-4">
+
+        <!-- LOT #001 — EN COURS repassage (bouton Valider actif) -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-radius:12px;border-top:4px solid #FD7E14 !important;">
+            <div class="card-header d-flex align-items-center justify-content-between"
+                 style="background:#fff8f0;border:none;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <div>
+                <div style="font-weight:800;color:#1C3D2A;font-size:1rem;">LOT #001</div>
+                <div style="font-size:0.82rem;color:#888;">Chemises — <span class="badge" style="background:#0DCAF0;color:#000;font-size:0.72rem;">Lavé</span></div>
+              </div>
+              <span class="badge" style="background:#FD7E14;font-size:0.78rem;padding:0.45em 0.8em;">
+                <i class="fas fa-fire me-1"></i>EN REPASSAGE
+              </span>
+            </div>
+            <div class="card-body p-3">
+              <div class="d-flex gap-3 mb-3" style="font-size:0.82rem;color:#888;">
+                <span><i class="fas fa-calendar me-1" style="color:#FD7E14;"></i>16/04/2026</span>
+                <span><i class="fas fa-tshirt me-1" style="color:#1C3D2A;"></i>8 pièces</span>
+                <span><i class="fas fa-clock me-1" style="color:#FD7E14;"></i>Démarré 09:00</span>
+              </div>
+
+              <!-- Barre de progression -->
+              <div style="margin-bottom:0.75rem;">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem;color:#888;">
+                  <span>Progression</span><span style="color:#FD7E14;font-weight:600;">75%</span>
+                </div>
+                <div class="progress" style="height:6px;border-radius:3px;">
+                  <div class="progress-bar" style="width:75%;background:#FD7E14;border-radius:3px;"></div>
+                </div>
+              </div>
+
+              <!-- Liste vêtements avec statut Lavé -->
+              <div style="background:#f8f9fa;border-radius:8px;padding:0.75rem;margin-bottom:0.75rem;font-size:0.82rem;">
+                <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles en repassage</div>
+                <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
+                  <div>
+                    <span style="color:#555;">Aminata Koné</span>
+                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">3 Chemises</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
+                  <div>
+                    <span style="color:#555;">Ibrahim Diallo</span>
+                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">2 Chemises</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-1">
+                  <div>
+                    <span style="color:#555;">Moussa Ouattara</span>
+                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">3 Chemises</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer" style="background:#fff;border-top:1px solid #f0f0f0;padding:0.75rem 1rem;border-radius:0 0 12px 12px;">
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm flex-fill" style="background:#28a745;color:#fff;border-radius:6px;font-weight:600;border:none;"
+                        data-bs-toggle="modal" data-bs-target="#modalValiderRepassage">
+                  <i class="fas fa-check me-1"></i>Valider repassage
+                </button>
+                <button class="btn btn-sm btn-outline-warning" style="border-radius:6px;font-size:0.82rem;"
+                        data-bs-toggle="modal" data-bs-target="#modalReporterRepassage">
+                  <i class="fas fa-clock me-1"></i>Reporter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOT #002 — PLANIFIÉ repassage (bouton Démarrer) -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-radius:12px;border-top:4px solid #FFC107 !important;">
+            <div class="card-header d-flex align-items-center justify-content-between"
+                 style="background:#fffdf0;border:none;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <div>
+                <div style="font-weight:800;color:#1C3D2A;font-size:1rem;">LOT #002</div>
+                <div style="font-size:0.82rem;color:#888;">Pantalons — <span class="badge" style="background:#0DCAF0;color:#000;font-size:0.72rem;">Lavé</span></div>
+              </div>
+              <span class="badge" style="background:#FFC107;color:#000;font-size:0.78rem;padding:0.45em 0.8em;">
+                <i class="fas fa-clock me-1"></i>PLANIFIÉ
+              </span>
+            </div>
+            <div class="card-body p-3">
+              <div class="d-flex gap-3 mb-3" style="font-size:0.82rem;color:#888;">
+                <span><i class="fas fa-calendar me-1" style="color:#FFC107;"></i>16/04/2026</span>
+                <span><i class="fas fa-tshirt me-1" style="color:#1C3D2A;"></i>6 pièces</span>
+                <span><i class="fas fa-hourglass-start me-1" style="color:#aaa;"></i>En attente</span>
+              </div>
+
+              <!-- Barre de progression -->
+              <div style="margin-bottom:0.75rem;">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem;color:#888;">
+                  <span>Progression</span><span style="color:#aaa;font-weight:600;">0%</span>
+                </div>
+                <div class="progress" style="height:6px;border-radius:3px;">
+                  <div class="progress-bar" style="width:0%;background:#FFC107;border-radius:3px;"></div>
+                </div>
+              </div>
+
+              <!-- Liste vêtements avec statut Lavé -->
+              <div style="background:#f8f9fa;border-radius:8px;padding:0.75rem;margin-bottom:0.75rem;font-size:0.82rem;">
+                <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles à repasser</div>
+                <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
+                  <div>
+                    <span style="color:#555;">Fatoumata Traoré</span>
+                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">4 Pantalons</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-1">
+                  <div>
+                    <span style="color:#555;">Seydou Bamba</span>
+                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">2 Pantalons</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer" style="background:#fff;border-top:1px solid #f0f0f0;padding:0.75rem 1rem;border-radius:0 0 12px 12px;">
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm flex-fill" style="background:#FD7E14;color:#fff;border-radius:6px;font-weight:600;border:none;">
+                  <i class="fas fa-play me-1"></i>Démarrer repassage
+                </button>
+                <button class="btn btn-sm btn-outline-warning" style="border-radius:6px;font-size:0.82rem;"
+                        data-bs-toggle="modal" data-bs-target="#modalReporterRepassage">
+                  <i class="fas fa-clock me-1"></i>Reporter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOT #003 — TERMINÉ (grisé) -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100" style="border-radius:12px;border-top:4px solid #28a745 !important;opacity:0.75;">
+            <div class="card-header d-flex align-items-center justify-content-between"
+                 style="background:#f0fff4;border:none;border-radius:12px 12px 0 0;padding:1rem 1.25rem;">
+              <div>
+                <div style="font-weight:800;color:#1C3D2A;font-size:1rem;">LOT #000</div>
+                <div style="font-size:0.82rem;color:#888;">Robes + Vestes — J-1</div>
+              </div>
+              <span class="badge" style="background:#FFC107;color:#000;font-size:0.78rem;padding:0.45em 0.8em;">
+                <i class="fas fa-star me-1"></i>REPASSÉ
+              </span>
+            </div>
+            <div class="card-body p-3">
+              <div class="d-flex gap-3 mb-3" style="font-size:0.82rem;color:#888;">
+                <span><i class="fas fa-calendar me-1" style="color:#28a745;"></i>15/04/2026</span>
+                <span><i class="fas fa-tshirt me-1" style="color:#1C3D2A;"></i>7 pièces</span>
+                <span><i class="fas fa-check me-1" style="color:#28a745;"></i>Validé 17:30</span>
+              </div>
+
+              <!-- Barre de progression -->
+              <div style="margin-bottom:0.75rem;">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem;color:#888;">
+                  <span>Progression</span><span style="color:#28a745;font-weight:600;">100%</span>
+                </div>
+                <div class="progress" style="height:6px;border-radius:3px;">
+                  <div class="progress-bar bg-success" style="width:100%;border-radius:3px;"></div>
+                </div>
+              </div>
+
+              <!-- Liste vêtements -->
+              <div style="background:#f8f9fa;border-radius:8px;padding:0.75rem;margin-bottom:0.75rem;font-size:0.82rem;">
+                <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles repassés</div>
+                <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
+                  <div>
+                    <span style="color:#555;">Nadia Coulibaly</span>
+                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">2 Robes</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
+                  <div>
+                    <span style="color:#555;">Mariam Sanogo</span>
+                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">2 Robes</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-1">
+                  <div>
+                    <span style="color:#555;">Koffi Assoumou</span>
+                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                  </div>
+                  <span style="font-weight:600;color:#1C3D2A;">3 Vestes</span>
+                </div>
+              </div>
+
+              <!-- Note : prêt pour regroupement -->
+              <div style="background:#f0fff4;border:1px solid #c3e6cb;border-radius:6px;padding:0.6rem;font-size:0.78rem;color:#28a745;text-align:center;">
+                <i class="fas fa-check-circle me-1"></i>Prêt pour regroupement client
+              </div>
+
+            </div>
+            <div class="card-footer" style="background:#f0fff4;border-top:1px solid #f0f0f0;padding:0.75rem 1rem;border-radius:0 0 12px 12px;">
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm flex-fill btn-outline-secondary" disabled style="border-radius:6px;cursor:not-allowed;">
+                  <i class="fas fa-lock me-1"></i>Repassage validé
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" style="border-radius:6px;font-size:0.82rem;" title="Voir détail">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /p-4 -->
+  </div><!-- /margin-left -->
+
+  <!-- MODAL : Valider repassage -->
+  <div class="modal fade" id="modalValiderRepassage" tabindex="-1" aria-labelledby="modalValiderRepassageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:12px;border:none;">
+        <div class="modal-header" style="background:#28a745;border-radius:12px 12px 0 0;border:none;">
+          <h5 class="modal-title" id="modalValiderRepassageLabel" style="color:#fff;font-weight:700;">
+            <i class="fas fa-check-circle me-2"></i>Valider le repassage — LOT #001
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div style="background:#f0fff4;border-radius:8px;padding:1rem;margin-bottom:1rem;font-size:0.88rem;color:#555;">
+            <i class="fas fa-info-circle me-2" style="color:#28a745;"></i>
+            En validant, les <strong>8 vêtements</strong> du LOT #001 passeront au statut
+            <span class="badge" style="background:#FFC107;color:#000;">Repassé</span> et seront disponibles pour le regroupement client.
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Qualité du repassage</label>
+            <div class="d-flex gap-2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qualite" id="q1" checked>
+                <label class="form-check-label" for="q1" style="font-size:0.85rem;">Excellente</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qualite" id="q2">
+                <label class="form-check-label" for="q2" style="font-size:0.85rem;">Bonne</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qualite" id="q3">
+                <label class="form-check-label" for="q3" style="font-size:0.85rem;">Acceptable</label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Observations (optionnel)</label>
+            <textarea class="form-control" rows="3" placeholder="Commentaire sur le repassage : qualité, incidents..."></textarea>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="confirmValiderRep" checked>
+            <label class="form-check-label" for="confirmValiderRep" style="font-size:0.88rem;color:#555;">
+              Je confirme que tous les articles ont été repassés et emballés.
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer" style="border:none;">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn" style="background:#28a745;color:#fff;font-weight:600;" data-bs-dismiss="modal">
+            <i class="fas fa-check me-1"></i>Confirmer la validation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Reporter repassage -->
+  <div class="modal fade" id="modalReporterRepassage" tabindex="-1" aria-labelledby="modalReporterRepassageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:12px;border:none;">
+        <div class="modal-header" style="background:#FD7E14;border-radius:12px 12px 0 0;border:none;">
+          <h5 class="modal-title" id="modalReporterRepassageLabel" style="color:#fff;font-weight:700;">
+            <i class="fas fa-clock me-2"></i>Reporter le lot de repassage
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Nouvelle date de repassage <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" value="2026-04-17">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-weight:600;color:#555;font-size:0.88rem;">Motif du report <span class="text-danger">*</span></label>
+            <textarea class="form-control" rows="4" placeholder="Expliquez la raison du report : fer en panne, personnel absent, surcharge...">Fer à repasser professionnel en panne. Technicien contacté, réparation prévue demain matin.</textarea>
+          </div>
+          <div style="background:#fff3cd;border-radius:8px;padding:0.75rem;font-size:0.82rem;color:#856404;">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Le report impactera la date de sortie prévue pour les clients. Une notification sera générée.
+          </div>
+        </div>
+        <div class="modal-footer" style="border:none;">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn" style="background:#FD7E14;color:#fff;font-weight:600;" data-bs-dismiss="modal">
+            <i class="fas fa-calendar-plus me-1"></i>Confirmer le report
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

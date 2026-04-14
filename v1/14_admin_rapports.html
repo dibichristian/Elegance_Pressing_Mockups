@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rapports & Statistiques — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .kpi-card { transition: transform 0.2s, box-shadow 0.2s; border-top: 4px solid transparent; }
+    .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important; }
+    .kpi-card.green { border-top-color: #1C3D2A; }
+    .kpi-card.gold { border-top-color: #C9A020; }
+    .kpi-card.blue { border-top-color: #2196f3; }
+    .kpi-card.orange { border-top-color: #fd7e14; }
+    .chart-container { position: relative; height: 280px; }
+    .trend-up { color: #28a745; font-size: 0.8rem; }
+    .trend-down { color: #dc3545; font-size: 0.8rem; }
+  </style>
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded active" href="14_admin_rapports.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;"><i class="fas fa-chart-bar me-2" style="color:#C9A020;"></i>Rapports & Statistiques</h5>
+        <small class="text-muted">Vue d'ensemble de l'activité d'Élégance Pressing</small>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <select class="form-select form-select-sm" id="select-periode" style="border-color:#1C3D2A;min-width:160px;" onchange="changerPeriode()">
+          <option value="mois" selected>Ce mois (avr. 2026)</option>
+          <option value="dernier">Dernier mois (mars 2026)</option>
+          <option value="annee">Cette année (2026)</option>
+        </select>
+        <button class="btn btn-sm btn-outline-secondary" onclick="window.print()"><i class="fas fa-print me-1"></i>Imprimer</button>
+        <button class="btn btn-sm" style="background:#C9A020;color:#fff;"><i class="fas fa-download me-1"></i>Exporter CSV</button>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- KPIs -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 kpi-card green p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div style="font-size:0.75rem;text-transform:uppercase;color:#888;font-weight:600;">Total commandes</div>
+              <div style="width:38px;height:38px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-receipt" style="color:#1C3D2A;"></i>
+              </div>
+            </div>
+            <div style="font-size:2.2rem;font-weight:700;color:#1C3D2A;line-height:1;">148</div>
+            <div class="trend-up mt-1"><i class="fas fa-arrow-up me-1"></i>+12% vs mois dernier</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 kpi-card gold p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div style="font-size:0.75rem;text-transform:uppercase;color:#888;font-weight:600;">Total encaissé</div>
+              <div style="width:38px;height:38px;background:#fff8e1;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-wallet" style="color:#C9A020;"></i>
+              </div>
+            </div>
+            <div style="font-size:1.7rem;font-weight:700;color:#C9A020;line-height:1;">312 400</div>
+            <div style="font-size:0.75rem;color:#888;margin-top:3px;">FCFA</div>
+            <div class="trend-up mt-1"><i class="fas fa-arrow-up me-1"></i>+8.4% vs mois dernier</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 kpi-card orange p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div style="font-size:0.75rem;text-transform:uppercase;color:#888;font-weight:600;">En attente</div>
+              <div style="width:38px;height:38px;background:#fff3e0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-clock" style="color:#fd7e14;"></i>
+              </div>
+            </div>
+            <div style="font-size:2.2rem;font-weight:700;color:#fd7e14;line-height:1;">12</div>
+            <div class="trend-down mt-1"><i class="fas fa-arrow-down me-1"></i>-3 vs hier</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 kpi-card blue p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div style="font-size:0.75rem;text-transform:uppercase;color:#888;font-weight:600;">Taux complétion</div>
+              <div style="width:38px;height:38px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-check-circle" style="color:#2196f3;"></i>
+              </div>
+            </div>
+            <div style="font-size:2.2rem;font-weight:700;color:#2196f3;line-height:1;">89<span style="font-size:1.2rem;">%</span></div>
+            <div>
+              <div class="progress mt-2" style="height:5px;">
+                <div class="progress-bar" style="width:89%;background:#2196f3;" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="trend-up mt-1"><i class="fas fa-arrow-up me-1"></i>+2% vs mois dernier</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphiques -->
+      <div class="row g-4 mb-4">
+
+        <!-- Graphique barres : commandes par semaine -->
+        <div class="col-md-7">
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-header d-flex align-items-center justify-content-between" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-chart-bar me-2" style="color:#C9A020;"></i>Commandes par semaine (7 dernières)</h6>
+              <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-light active" style="font-size:0.75rem;">Barres</button>
+                <button class="btn btn-sm btn-outline-light" style="font-size:0.75rem;">Ligne</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="chartCommandes"></canvas>
+              </div>
+              <div class="d-flex gap-4 justify-content-center mt-2" style="font-size:0.75rem;">
+                <span><span style="display:inline-block;width:12px;height:12px;background:#1C3D2A;border-radius:2px;margin-right:4px;"></span>Commandes reçues</span>
+                <span><span style="display:inline-block;width:12px;height:12px;background:#C9A020;border-radius:2px;margin-right:4px;"></span>Commandes clôturées</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graphique camembert : répartition vêtements -->
+        <div class="col-md-5">
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-header" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-chart-pie me-2" style="color:#C9A020;"></i>Répartition par type de vêtement</h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height:220px;">
+                <canvas id="chartVetements"></canvas>
+              </div>
+              <div class="mt-2">
+                <div class="row g-1" style="font-size:0.75rem;">
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#1C3D2A;border-radius:50%;display:inline-block;"></span>Chemise (28%)</div>
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#C9A020;border-radius:50%;display:inline-block;"></span>Pantalon (19%)</div>
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#2196f3;border-radius:50%;display:inline-block;"></span>Robe (17%)</div>
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#fd7e14;border-radius:50%;display:inline-block;"></span>Veste (12%)</div>
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#dc3545;border-radius:50%;display:inline-block;"></span>Linge (15%)</div>
+                  <div class="col-6 d-flex align-items-center gap-1"><span style="width:10px;height:10px;background:#6c757d;border-radius:50%;display:inline-block;"></span>Costume (9%)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tableaux -->
+      <div class="row g-4">
+
+        <!-- Top clients -->
+        <div class="col-md-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-header d-flex align-items-center justify-content-between" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-trophy me-2" style="color:#C9A020;"></i>Top 5 clients</h6>
+              <a href="13_admin_clients.html" class="btn btn-sm btn-outline-light" style="font-size:0.75rem;">Voir tous</a>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-hover mb-0" style="font-size:0.85rem;">
+                <thead style="background:#f8f9fa;">
+                  <tr>
+                    <th class="ps-3" style="padding:0.7rem;">#</th>
+                    <th style="padding:0.7rem;">Client</th>
+                    <th class="text-center" style="padding:0.7rem;">Commandes</th>
+                    <th class="text-end pe-3" style="padding:0.7rem;">Montant total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="ps-3 align-middle">
+                      <div style="width:24px;height:24px;background:#C9A020;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.75rem;">1</div>
+                    </td>
+                    <td class="align-middle">
+                      <div style="font-weight:700;">Traoré Ibrahim</div>
+                      <div style="font-size:0.72rem;color:#888;">+225 05 67 89 12</div>
+                    </td>
+                    <td class="text-center align-middle"><span class="badge" style="background:#1C3D2A;">41</span></td>
+                    <td class="text-end pe-3 align-middle" style="font-weight:700;color:#1C3D2A;">38 700 FCFA</td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle">
+                      <div style="width:24px;height:24px;background:#6c757d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.75rem;">2</div>
+                    </td>
+                    <td class="align-middle">
+                      <div style="font-weight:700;">Yao Kouassi</div>
+                      <div style="font-size:0.72rem;color:#888;">+225 01 98 76 54</div>
+                    </td>
+                    <td class="text-center align-middle"><span class="badge" style="background:#1C3D2A;">32</span></td>
+                    <td class="text-end pe-3 align-middle" style="font-weight:700;color:#1C3D2A;">29 400 FCFA</td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle">
+                      <div style="width:24px;height:24px;background:#adb5bd;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.75rem;">3</div>
+                    </td>
+                    <td class="align-middle">
+                      <div style="font-weight:700;">Koné Amadou</div>
+                      <div style="font-size:0.72rem;color:#888;">+225 07 23 45 67</div>
+                    </td>
+                    <td class="text-center align-middle"><span class="badge" style="background:#1C3D2A;">24</span></td>
+                    <td class="text-end pe-3 align-middle" style="font-weight:700;color:#1C3D2A;">18 200 FCFA</td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle">
+                      <div style="width:24px;height:24px;background:#dee2e6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#555;font-weight:700;font-size:0.75rem;">4</div>
+                    </td>
+                    <td class="align-middle">
+                      <div style="font-weight:700;">Diallo Fatoumata</div>
+                      <div style="font-size:0.72rem;color:#888;">+225 05 34 12 78</div>
+                    </td>
+                    <td class="text-center align-middle"><span class="badge" style="background:#1C3D2A;">18</span></td>
+                    <td class="text-end pe-3 align-middle" style="font-weight:700;color:#1C3D2A;">14 900 FCFA</td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle">
+                      <div style="width:24px;height:24px;background:#dee2e6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#555;font-weight:700;font-size:0.75rem;">5</div>
+                    </td>
+                    <td class="align-middle">
+                      <div style="font-weight:700;">Ouédraogo Modeste</div>
+                      <div style="font-size:0.72rem;color:#888;">+225 07 45 23 11</div>
+                    </td>
+                    <td class="text-center align-middle"><span class="badge" style="background:#1C3D2A;">15</span></td>
+                    <td class="text-end pe-3 align-middle" style="font-weight:700;color:#1C3D2A;">12 750 FCFA</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance lots -->
+        <div class="col-md-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-header d-flex align-items-center justify-content-between" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-layer-group me-2" style="color:#C9A020;"></i>Performance des lots</h6>
+              <a href="05_planification_lots.html" class="btn btn-sm btn-outline-light" style="font-size:0.75rem;">Gérer lots</a>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-hover mb-0" style="font-size:0.83rem;">
+                <thead style="background:#f8f9fa;">
+                  <tr>
+                    <th class="ps-3" style="padding:0.7rem;">Date</th>
+                    <th class="text-center" style="padding:0.7rem;">Nb lots</th>
+                    <th class="text-center" style="padding:0.7rem;">Pièces traitées</th>
+                    <th class="text-center" style="padding:0.7rem;">Délai moyen</th>
+                    <th class="text-center" style="padding:0.7rem;">Retards</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="ps-3 align-middle" style="font-weight:600;">14 avr. 2026</td>
+                    <td class="text-center align-middle">3</td>
+                    <td class="text-center align-middle"><span class="badge bg-secondary">28 pièces</span></td>
+                    <td class="text-center align-middle" style="color:#1C3D2A;font-weight:600;">18h</td>
+                    <td class="text-center align-middle"><span class="badge bg-success">0</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle" style="font-weight:600;">13 avr. 2026</td>
+                    <td class="text-center align-middle">4</td>
+                    <td class="text-center align-middle"><span class="badge bg-secondary">35 pièces</span></td>
+                    <td class="text-center align-middle" style="color:#1C3D2A;font-weight:600;">22h</td>
+                    <td class="text-center align-middle"><span class="badge bg-danger">1</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle" style="font-weight:600;">12 avr. 2026</td>
+                    <td class="text-center align-middle">3</td>
+                    <td class="text-center align-middle"><span class="badge bg-secondary">24 pièces</span></td>
+                    <td class="text-center align-middle" style="color:#1C3D2A;font-weight:600;">20h</td>
+                    <td class="text-center align-middle"><span class="badge bg-success">0</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle" style="font-weight:600;">11 avr. 2026</td>
+                    <td class="text-center align-middle">5</td>
+                    <td class="text-center align-middle"><span class="badge bg-secondary">42 pièces</span></td>
+                    <td class="text-center align-middle" style="color:#C9A020;font-weight:600;">28h</td>
+                    <td class="text-center align-middle"><span class="badge bg-warning text-dark">2</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-3 align-middle" style="font-weight:600;">10 avr. 2026</td>
+                    <td class="text-center align-middle">2</td>
+                    <td class="text-center align-middle"><span class="badge bg-secondary">16 pièces</span></td>
+                    <td class="text-center align-middle" style="color:#1C3D2A;font-weight:600;">16h</td>
+                    <td class="text-center align-middle"><span class="badge bg-success">0</span></td>
+                  </tr>
+                </tbody>
+                <tfoot style="background:#f8f9fa;">
+                  <tr>
+                    <td class="ps-3" style="font-weight:700;">Total (5 jours)</td>
+                    <td class="text-center" style="font-weight:700;">17</td>
+                    <td class="text-center" style="font-weight:700;">145 pièces</td>
+                    <td class="text-center" style="font-weight:700;color:#1C3D2A;">20.8h moy.</td>
+                    <td class="text-center"><span class="badge bg-warning text-dark">3</span></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- Résumé encaissements par mode -->
+          <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-credit-card me-2" style="color:#C9A020;"></i>Encaissements par mode de paiement</h6>
+            </div>
+            <div class="card-body">
+              <div class="mb-2">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.82rem;">
+                  <span><i class="fas fa-money-bill me-2 text-muted"></i>Espèces</span>
+                  <span style="font-weight:700;">148 200 FCFA (47%)</span>
+                </div>
+                <div class="progress" style="height:8px;"><div class="progress-bar" style="width:47%;background:#1C3D2A;" role="progressbar"></div></div>
+              </div>
+              <div class="mb-2">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.82rem;">
+                  <span><i class="fas fa-mobile-alt me-2 text-muted"></i>Wave</span>
+                  <span style="font-weight:700;">87 400 FCFA (28%)</span>
+                </div>
+                <div class="progress" style="height:8px;"><div class="progress-bar" style="width:28%;background:#C9A020;" role="progressbar"></div></div>
+              </div>
+              <div class="mb-2">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.82rem;">
+                  <span><i class="fas fa-mobile-alt me-2 text-muted"></i>Orange Money</span>
+                  <span style="font-weight:700;">46 800 FCFA (15%)</span>
+                </div>
+                <div class="progress" style="height:8px;"><div class="progress-bar" style="width:15%;background:#FF7900;" role="progressbar"></div></div>
+              </div>
+              <div class="mb-2">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.82rem;">
+                  <span><i class="fas fa-mobile-alt me-2 text-muted"></i>MTN Money</span>
+                  <span style="font-weight:700;">30 000 FCFA (10%)</span>
+                </div>
+                <div class="progress" style="height:8px;"><div class="progress-bar" style="width:10%;background:#FFC107;" role="progressbar"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Graphique barres : commandes par semaine
+    var ctxBarres = document.getElementById('chartCommandes').getContext('2d');
+    new Chart(ctxBarres, {
+      type: 'bar',
+      data: {
+        labels: ['25-31 fév', '1-7 mars', '8-14 mars', '15-21 mars', '22-28 mars', '29-4 avr', '5-14 avr'],
+        datasets: [
+          {
+            label: 'Commandes reçues',
+            data: [18, 24, 21, 29, 26, 31, 38],
+            backgroundColor: 'rgba(28, 61, 42, 0.85)',
+            borderRadius: 4,
+            borderSkipped: false,
+          },
+          {
+            label: 'Commandes clôturées',
+            data: [17, 22, 20, 27, 25, 28, 35],
+            backgroundColor: 'rgba(201, 160, 32, 0.85)',
+            borderRadius: 4,
+            borderSkipped: false,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) { return ctx.dataset.label + ' : ' + ctx.parsed.y + ' cmdes'; }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(0,0,0,0.05)' },
+            ticks: { stepSize: 5, font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    // Graphique camembert : répartition vêtements
+    var ctxPie = document.getElementById('chartVetements').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'doughnut',
+      data: {
+        labels: ['Chemise', 'Pantalon', 'Robe', 'Veste', 'Linge maison', 'Costume'],
+        datasets: [{
+          data: [28, 19, 17, 12, 15, 9],
+          backgroundColor: [
+            '#1C3D2A',
+            '#C9A020',
+            '#2196f3',
+            '#fd7e14',
+            '#6c757d',
+            '#dc3545'
+          ],
+          borderWidth: 2,
+          borderColor: '#fff',
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) { return ctx.label + ' : ' + ctx.parsed + '%'; }
+            }
+          }
+        }
+      }
+    });
+
+    function changerPeriode() {
+      // Simulation du changement de période
+      var periode = document.getElementById('select-periode').value;
+      console.log('Période sélectionnée :', periode);
+    }
+  </script>
+</body>
+</html>

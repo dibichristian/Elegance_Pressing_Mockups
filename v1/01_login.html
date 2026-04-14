@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;margin:0;padding:0;">
+
+  <div class="d-flex" style="min-height:100vh;">
+
+    <!-- COLONNE GAUCHE 60% — Visuel pressing -->
+    <div class="d-flex flex-column align-items-center justify-content-center"
+         style="width:60%;background:#1C3D2A;position:relative;overflow:hidden;padding:3rem;">
+
+      <!-- Motif décoratif de fond -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.08;background-image:repeating-linear-gradient(45deg,#C9A020 0,#C9A020 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
+
+      <!-- Contenu centré -->
+      <div style="position:relative;z-index:1;text-align:center;color:#fff;max-width:480px;">
+
+        <!-- Logo / icône -->
+        <div style="margin-bottom:2rem;">
+          <div style="width:90px;height:90px;background:#C9A020;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(201,160,32,0.35);">
+            <i class="fas fa-tshirt" style="font-size:2.5rem;color:#fff;"></i>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <img src="assets/img/logo.png" alt="Élégance Pressing" height="80" style="display:block;margin:0 auto 1.5rem;">
+        <div style="width:60px;height:3px;background:#C9A020;margin:0 auto 1.5rem;border-radius:2px;"></div>
+
+        <!-- Slogan -->
+        <p style="font-size:1.15rem;color:rgba(255,255,255,0.85);font-style:italic;margin-bottom:2.5rem;">
+          "Votre linge, notre passion.<br>La perfection à chaque pli."
+        </p>
+
+        <!-- Points de service -->
+        <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <i class="fas fa-star" style="color:#C9A020;font-size:1.3rem;"></i>
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;">Qualité premium</div>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-clock" style="color:#C9A020;font-size:1.3rem;"></i>
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;">Livraison rapide</div>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-shield-alt" style="color:#C9A020;font-size:1.3rem;"></i>
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;">Soins garantis</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bas de page gauche -->
+      <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center;">
+        <small style="color:rgba(255,255,255,0.4);font-size:0.72rem;">Abidjan, Côte d'Ivoire &nbsp;|&nbsp; © 2026 Élégance Pressing</small>
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE 40% — Formulaire -->
+    <div class="d-flex flex-column align-items-center justify-content-center"
+         style="width:40%;background:#fff;padding:3rem 2.5rem;">
+
+      <div style="width:100%;max-width:360px;">
+
+        <!-- En-tête formulaire -->
+        <div style="text-align:center;margin-bottom:2rem;">
+          <h4 style="color:#1C3D2A;font-weight:800;margin-bottom:0.3rem;">Connexion</h4>
+          <p style="color:#888;font-size:0.88rem;margin:0;">Accédez à votre espace de gestion</p>
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <form action="02_dashboard.html" method="get">
+
+          <!-- Champ Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label" style="font-weight:600;color:#1C3D2A;font-size:0.88rem;">
+              <i class="fas fa-envelope me-1" style="color:#C9A020;"></i> Adresse e-mail
+            </label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="jean.kone@elegance.ci"
+              value="jean.kone@elegance.ci"
+              style="border:1.5px solid #dee2e6;border-radius:8px;padding:0.65rem 1rem;font-size:0.9rem;"
+            >
+          </div>
+
+          <!-- Champ Mot de passe -->
+          <div class="mb-3">
+            <label for="password" class="form-label" style="font-weight:600;color:#1C3D2A;font-size:0.88rem;">
+              <i class="fas fa-lock me-1" style="color:#C9A020;"></i> Mot de passe
+            </label>
+            <div style="position:relative;">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                value="password"
+                style="border:1.5px solid #dee2e6;border-radius:8px;padding:0.65rem 1rem;font-size:0.9rem;padding-right:3rem;"
+              >
+              <button type="button" onclick="togglePassword()"
+                      style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#aaa;cursor:pointer;">
+                <i class="fas fa-eye" id="toggleIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Se souvenir de moi -->
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMe" checked
+                     style="border-color:#1C3D2A;">
+              <label class="form-check-label" for="rememberMe" style="font-size:0.85rem;color:#555;">
+                Se souvenir de moi
+              </label>
+            </div>
+            <a href="#" style="font-size:0.85rem;color:#C9A020;text-decoration:none;font-weight:600;">
+              Mot de passe oublié ?
+            </a>
+          </div>
+
+          <!-- Bouton connexion -->
+          <button type="submit" class="btn w-100 mb-3"
+                  style="background:#1C3D2A;color:#fff;font-weight:700;padding:0.75rem;border-radius:8px;font-size:0.95rem;border:none;transition:background 0.2s;">
+            <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+          </button>
+
+          <!-- Séparateur -->
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+            <div style="flex:1;height:1px;background:#dee2e6;"></div>
+            <span style="font-size:0.78rem;color:#aaa;">ou</span>
+            <div style="flex:1;height:1px;background:#dee2e6;"></div>
+          </div>
+
+          <!-- Info démo -->
+          <div style="background:#F5F5DC;border:1px solid #e0dba8;border-radius:8px;padding:0.9rem 1rem;font-size:0.82rem;color:#555;">
+            <div style="font-weight:700;color:#1C3D2A;margin-bottom:0.3rem;">
+              <i class="fas fa-info-circle me-1" style="color:#C9A020;"></i> Comptes de démonstration
+            </div>
+            <div><strong>Gérant :</strong> gerant@elegance.ci / <code>admin123</code></div>
+            <div><strong>Employé :</strong> employe@elegance.ci / <code>employ123</code></div>
+          </div>
+
+        </form>
+
+        <!-- Pied de formulaire -->
+        <div style="text-align:center;margin-top:2rem;">
+          <small style="color:#bbb;font-size:0.75rem;">Version 2.0.0 &nbsp;|&nbsp; Support : support@elegance.ci</small>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function togglePassword() {
+      const pwd = document.getElementById('password');
+      const icon = document.getElementById('toggleIcon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+  </script>
+</body>
+</html>

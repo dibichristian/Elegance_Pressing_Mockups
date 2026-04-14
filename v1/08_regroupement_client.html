@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regroupement par client — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded active" href="08_regroupement_client.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;"><i class="fas fa-users me-2" style="color:#C9A020;"></i>Regroupement par client</h5>
+        <small class="text-muted">Vérifier et regrouper les vêtements repassés avant remise</small>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge" style="background:#FFC107;color:#000;font-size:0.85rem;padding:0.5rem 1rem;">
+          <i class="fas fa-tshirt me-1"></i>14 pièces en attente
+        </span>
+        <span class="badge bg-success" style="font-size:0.85rem;padding:0.5rem 1rem;">
+          <i class="fas fa-users me-1"></i>4 clients
+        </span>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- Alerte info -->
+      <div class="alert alert-info d-flex align-items-center mb-4" style="border-left:4px solid #0dcaf0;">
+        <i class="fas fa-info-circle me-3 fs-5"></i>
+        <div>
+          <strong>Étape 5/7 — Regroupement :</strong> Sélectionnez un client pour vérifier que toutes ses pièces repassées sont bien présentes avant de valider le statut <strong>PRÊT</strong>.
+        </div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- COLONNE GAUCHE : liste clients -->
+        <div class="col-md-5">
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-header" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-list-ul me-2" style="color:#C9A020;"></i>Clients avec vêtements repassés</h6>
+            </div>
+            <div class="card-body p-2">
+
+              <!-- Client 1 — sélectionné -->
+              <div class="p-3 mb-2 rounded" id="client-1" style="background:rgba(28,61,42,0.08);border:2px solid #1C3D2A;cursor:pointer;" onclick="selectClient(1)">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:42px;height:42px;background:#1C3D2A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C9A020;font-weight:700;font-size:1rem;">KA</div>
+                    <div>
+                      <div style="font-weight:700;color:#1C3D2A;font-size:0.9rem;">Koné Amadou</div>
+                      <div style="font-size:0.78rem;color:#555;">Commande EP-20260414-003</div>
+                      <div class="mt-1">
+                        <span class="badge" style="background:#FFC107;color:#000;font-size:0.72rem;">Repassé</span>
+                        <span class="badge bg-secondary ms-1" style="font-size:0.72rem;">3 pièces</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <div style="font-size:0.78rem;color:#888;">2800 FCFA</div>
+                    <button class="btn btn-sm mt-1" style="background:#1C3D2A;color:#fff;font-size:0.75rem;padding:3px 10px;" onclick="selectClient(1)">
+                      <i class="fas fa-check-circle me-1"></i>Sélectionné
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client 2 -->
+              <div class="p-3 mb-2 rounded" id="client-2" style="background:#fff;border:1px solid #dee2e6;cursor:pointer;" onclick="selectClient(2)">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:42px;height:42px;background:#6c757d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;">DF</div>
+                    <div>
+                      <div style="font-weight:700;color:#333;font-size:0.9rem;">Diallo Fatoumata</div>
+                      <div style="font-size:0.78rem;color:#555;">Commande EP-20260413-001</div>
+                      <div class="mt-1">
+                        <span class="badge" style="background:#FFC107;color:#000;font-size:0.72rem;">Repassé</span>
+                        <span class="badge bg-secondary ms-1" style="font-size:0.72rem;">5 pièces</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <div style="font-size:0.78rem;color:#888;">4500 FCFA</div>
+                    <button class="btn btn-sm mt-1 btn-outline-secondary" style="font-size:0.75rem;padding:3px 10px;">
+                      <i class="fas fa-mouse-pointer me-1"></i>Sélectionner
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client 3 -->
+              <div class="p-3 mb-2 rounded" id="client-3" style="background:#fff;border:1px solid #dee2e6;cursor:pointer;" onclick="selectClient(3)">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:42px;height:42px;background:#6c757d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;">TI</div>
+                    <div>
+                      <div style="font-weight:700;color:#333;font-size:0.9rem;">Traoré Ibrahim</div>
+                      <div style="font-size:0.78rem;color:#555;">Commande EP-20260412-005</div>
+                      <div class="mt-1">
+                        <span class="badge" style="background:#FFC107;color:#000;font-size:0.72rem;">Repassé</span>
+                        <span class="badge bg-secondary ms-1" style="font-size:0.72rem;">2 pièces</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <div style="font-size:0.78rem;color:#888;">1400 FCFA</div>
+                    <button class="btn btn-sm mt-1 btn-outline-secondary" style="font-size:0.75rem;padding:3px 10px;">
+                      <i class="fas fa-mouse-pointer me-1"></i>Sélectionner
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client 4 -->
+              <div class="p-3 mb-2 rounded" id="client-4" style="background:#fff;border:1px solid #dee2e6;cursor:pointer;" onclick="selectClient(4)">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:42px;height:42px;background:#6c757d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;">OA</div>
+                    <div>
+                      <div style="font-weight:700;color:#333;font-size:0.9rem;">Ouattara Awa</div>
+                      <div style="font-size:0.78rem;color:#555;">Commande EP-20260414-007</div>
+                      <div class="mt-1">
+                        <span class="badge" style="background:#FFC107;color:#000;font-size:0.72rem;">Repassé</span>
+                        <span class="badge bg-secondary ms-1" style="font-size:0.72rem;">4 pièces</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <div style="font-size:0.78rem;color:#888;">3600 FCFA</div>
+                    <button class="btn btn-sm mt-1 btn-outline-secondary" style="font-size:0.75rem;padding:3px 10px;">
+                      <i class="fas fa-mouse-pointer me-1"></i>Sélectionner
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- COLONNE DROITE : panel vérification -->
+        <div class="col-md-7">
+          <div class="card shadow-sm border-0">
+            <div class="card-header d-flex align-items-center justify-content-between" style="background:#C9A020;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-clipboard-check me-2"></i>Vérification — Koné Amadou</h6>
+              <span class="badge bg-white" style="color:#C9A020;font-size:0.8rem;">EP-20260414-003</span>
+            </div>
+            <div class="card-body">
+
+              <!-- Infos client -->
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <div style="background:#f8f9fa;border-radius:8px;padding:0.75rem;">
+                    <div style="font-size:0.72rem;color:#888;text-transform:uppercase;font-weight:600;">Client</div>
+                    <div style="font-weight:700;color:#1C3D2A;">Koné Amadou</div>
+                    <div style="font-size:0.8rem;color:#555;"><i class="fas fa-phone me-1"></i>+225 07 23 45 67</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div style="background:#f8f9fa;border-radius:8px;padding:0.75rem;">
+                    <div style="font-size:0.72rem;color:#888;text-transform:uppercase;font-weight:600;">Dépôt</div>
+                    <div style="font-weight:700;color:#1C3D2A;">14 avril 2026</div>
+                    <div style="font-size:0.8rem;color:#555;"><i class="fas fa-user me-1"></i>Jean Koné</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Alerte quantités incohérentes (visible) -->
+              <div class="alert alert-warning d-flex align-items-start mb-3" id="alert-qty" style="display:none!important;border-left:4px solid #FFC107;">
+                <i class="fas fa-exclamation-triangle me-2 mt-1"></i>
+                <div>
+                  <strong>Quantités incorrectes !</strong> Vérifiez que toutes les pièces sont physiquement présentes avant de valider. La quantité présente doit correspondre à la quantité commandée.
+                </div>
+              </div>
+
+              <!-- Tableau checklist -->
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered align-middle" style="font-size:0.88rem;">
+                  <thead style="background:#1C3D2A;color:#fff;">
+                    <tr>
+                      <th style="width:35%;">Type vêtement</th>
+                      <th class="text-center" style="width:20%;">Qté commandée</th>
+                      <th class="text-center" style="width:25%;">Qté présente</th>
+                      <th class="text-center" style="width:20%;">Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="fas fa-tshirt text-secondary"></i>
+                          <div>
+                            <div style="font-weight:600;">Chemise</div>
+                            <div style="font-size:0.75rem;color:#888;">500 FCFA / pièce</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <span class="badge bg-secondary fs-6" style="font-size:1rem!important;padding:0.4rem 0.8rem;">2</span>
+                      </td>
+                      <td class="text-center">
+                        <input type="number" class="form-control form-control-sm text-center qty-input" id="qty-1" value="2" min="0" max="5" style="width:70px;margin:auto;border-color:#1C3D2A;" onchange="checkQty(1, 2)">
+                      </td>
+                      <td class="text-center" id="status-1">
+                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="fas fa-male text-secondary"></i>
+                          <div>
+                            <div style="font-weight:600;">Pantalon</div>
+                            <div style="font-size:0.75rem;color:#888;">700 FCFA / pièce</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <span class="badge bg-secondary" style="font-size:1rem!important;padding:0.4rem 0.8rem;">1</span>
+                      </td>
+                      <td class="text-center">
+                        <input type="number" class="form-control form-control-sm text-center qty-input" id="qty-2" value="1" min="0" max="5" style="width:70px;margin:auto;border-color:#1C3D2A;" onchange="checkQty(2, 1)">
+                      </td>
+                      <td class="text-center" id="status-2">
+                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot style="background:#f8f9fa;">
+                    <tr>
+                      <td><strong>Total</strong></td>
+                      <td class="text-center"><strong>3 pièces</strong></td>
+                      <td class="text-center" id="total-present"><strong>3 pièces</strong></td>
+                      <td class="text-center" id="total-status">
+                        <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Complet</span>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <!-- Récap financier -->
+              <div class="row g-2 mb-4">
+                <div class="col-4">
+                  <div class="text-center p-2 rounded" style="background:#e8f5e9;border:1px solid #4caf50;">
+                    <div style="font-size:0.72rem;color:#388e3c;font-weight:600;text-transform:uppercase;">Total</div>
+                    <div style="font-size:1.1rem;font-weight:700;color:#1b5e20;">2 800 FCFA</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="text-center p-2 rounded" style="background:#fff3e0;border:1px solid #ff9800;">
+                    <div style="font-size:0.72rem;color:#e65100;font-weight:600;text-transform:uppercase;">Versé</div>
+                    <div style="font-size:1.1rem;font-weight:700;color:#bf360c;">1 000 FCFA</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="text-center p-2 rounded" style="background:#fce4ec;border:1px solid #e91e63;">
+                    <div style="font-size:0.72rem;color:#c2185b;font-weight:600;text-transform:uppercase;">Reste</div>
+                    <div style="font-size:1.1rem;font-weight:700;color:#880e4f;">1 800 FCFA</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note -->
+              <div class="mb-3">
+                <label class="form-label" style="font-size:0.83rem;font-weight:600;color:#555;">Note de vérification (optionnel)</label>
+                <textarea class="form-control" rows="2" placeholder="Ex : Toutes les pièces vérifiées et regroupées dans un sac..." style="font-size:0.85rem;"></textarea>
+              </div>
+
+              <!-- Bouton valider -->
+              <div class="d-flex gap-2 justify-content-end">
+                <button class="btn btn-outline-secondary">
+                  <i class="fas fa-times me-1"></i>Annuler
+                </button>
+                <button class="btn btn-success btn-lg" id="btn-valider" style="background:#1C3D2A;border:none;padding:0.6rem 1.5rem;" onclick="validerRegroupement()">
+                  <i class="fas fa-check-circle me-2"></i>Valider — Marquer comme <strong>PRÊT</strong>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Message de confirmation (caché par défaut) -->
+          <div class="alert alert-success mt-3 d-flex align-items-center" id="confirm-msg" style="display:none!important;">
+            <i class="fas fa-check-circle me-3 fs-4"></i>
+            <div>
+              <strong>Koné Amadou — Commande validée !</strong><br>
+              <span style="font-size:0.88rem;">Le statut est passé à <strong>PRÊT</strong>. La commande est maintenant disponible pour la remise.</span>
+              <div class="mt-2">
+                <a href="10_remise.html" class="btn btn-sm btn-success me-2"><i class="fas fa-box-open me-1"></i>Aller aux remises</a>
+                <a href="09_paiement.html" class="btn btn-sm btn-outline-success"><i class="fas fa-credit-card me-1"></i>Enregistrer paiement</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Vérification des quantités
+    function checkQty(line, expected) {
+      var val = parseInt(document.getElementById('qty-' + line).value);
+      var statusEl = document.getElementById('status-' + line);
+      if (val === expected) {
+        statusEl.innerHTML = '<span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>';
+      } else {
+        statusEl.innerHTML = '<span class="badge bg-danger"><i class="fas fa-times me-1"></i>Manque</span>';
+        document.getElementById('alert-qty').style.display = 'flex';
+      }
+      updateTotal();
+    }
+
+    function updateTotal() {
+      var q1 = parseInt(document.getElementById('qty-1').value) || 0;
+      var q2 = parseInt(document.getElementById('qty-2').value) || 0;
+      var total = q1 + q2;
+      document.getElementById('total-present').innerHTML = '<strong>' + total + ' pièces</strong>';
+      if (total === 3) {
+        document.getElementById('total-status').innerHTML = '<span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Complet</span>';
+        document.getElementById('alert-qty').style.display = 'none';
+      } else {
+        document.getElementById('total-status').innerHTML = '<span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i>Incomplet</span>';
+        document.getElementById('alert-qty').style.display = 'flex';
+      }
+    }
+
+    function validerRegroupement() {
+      document.getElementById('confirm-msg').style.display = 'flex';
+      document.getElementById('btn-valider').disabled = true;
+      document.getElementById('btn-valider').innerHTML = '<i class="fas fa-check me-2"></i>Validé !';
+    }
+
+    function selectClient(id) {
+      for (var i = 1; i <= 4; i++) {
+        var el = document.getElementById('client-' + i);
+        if (i === id) {
+          el.style.background = 'rgba(28,61,42,0.08)';
+          el.style.border = '2px solid #1C3D2A';
+        } else {
+          el.style.background = '#fff';
+          el.style.border = '1px solid #dee2e6';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

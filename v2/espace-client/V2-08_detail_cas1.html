@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail Commande (Cas 1) — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar -->
+  <aside class="ep-sidebar">
+    <div class="ep-sidebar-header">
+      <a href="../public/V2-01_accueil.html" class="text-decoration-none">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="46" style="display:block;">
+        <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.2rem;">Espace Client</div>
+      </a>
+    </div>
+    <div class="ep-sidebar-user">
+      <div class="ep-sidebar-avatar">FK</div>
+      <div>
+        <div class="ep-sidebar-user-name">Fatoumata Koné</div>
+        <div class="ep-sidebar-user-email">+225 07 12 34 56</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <div class="ep-nav-section">Principal</div>
+      <a href="V2-06_dashboard.html"><i class="fas fa-th-large"></i> Tableau de bord</a>
+      <a href="V2-07_mes_commandes.html" class="active"><i class="fas fa-box"></i> Mes commandes</a>
+      <a href="V2-10_fidelite.html"><i class="fas fa-star"></i> Fidélité</a>
+      <div class="ep-nav-section" style="margin-top:.5rem;">Compte</div>
+      <a href="V2-11_profil.html"><i class="fas fa-user"></i> Mon profil</a>
+      <a href="../public/V2-01_accueil.html"><i class="fas fa-globe"></i> Retour au site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <a href="../public/V2-04_connexion.html"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button id="ep-sidebar-toggle" class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <a href="V2-07_mes_commandes.html" class="text-muted text-decoration-none" style="font-size:.85rem;">
+          <i class="fas fa-arrow-left me-1"></i> Mes commandes
+        </a>
+        <h1 class="ep-page-title">Commande EP-20260414-003</h1>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="ep-badge ep-badge-pret" style="font-size:.82rem;">Prête à retirer</span>
+        <div class="ep-sidebar-avatar" style="width:36px;height:36px;font-size:.8rem;">FK</div>
+      </div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- Note Cas 1 -->
+      <div class="ep-alert ep-alert-info mb-4">
+        <i class="fas fa-info-circle" style="flex-shrink:0;"></i>
+        <div>
+          <strong>Cas 1 — Intégration avec la base V1 :</strong>
+          Les données de commande proviennent directement du système de gestion interne.
+          Le statut est mis à jour en temps réel par les employés du pressing.
+          <a href="V2-09_detail_cas2.html" class="fw-bold ms-2" style="color:inherit;">Voir Cas 2 →</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Détail principal -->
+        <div class="col-lg-8">
+
+          <!-- En-tête commande -->
+          <div class="ep-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+              <div>
+                <h4 class="fw-bold text-ep-green mb-1">EP-20260414-003</h4>
+                <div class="text-muted" style="font-size:.85rem;">
+                  Déposée le <strong>14 avril 2026</strong> au Dépôt Cocody
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="ep-badge ep-badge-pret" style="font-size:.88rem;">Prête à retirer</span>
+                <div class="text-muted mt-1" style="font-size:.78rem;">Depuis le 17/04/2026</div>
+              </div>
+            </div>
+
+            <!-- Timeline horizontale -->
+            <div class="mt-4 pt-3 border-top">
+              <div style="display:flex;align-items:center;position:relative;">
+                <!-- Étapes -->
+                <div style="flex:1;text-align:center;position:relative;z-index:2;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--ep-gold);display:flex;align-items:center;justify-content:center;margin:0 auto;border:3px solid #fff;box-shadow:0 0 0 3px var(--ep-gold);">
+                    <i class="fas fa-check text-white" style="font-size:.7rem;"></i>
+                  </div>
+                  <div style="font-size:.72rem;margin-top:.4rem;font-weight:600;color:var(--ep-gold);">Reçue</div>
+                  <div style="font-size:.65rem;color:var(--ep-text-muted);">14/04</div>
+                </div>
+                <div style="flex:1;height:3px;background:var(--ep-gold);margin:0 -8px;margin-bottom:2.5rem;"></div>
+                <div style="flex:1;text-align:center;position:relative;z-index:2;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--ep-gold);display:flex;align-items:center;justify-content:center;margin:0 auto;border:3px solid #fff;box-shadow:0 0 0 3px var(--ep-gold);">
+                    <i class="fas fa-check text-white" style="font-size:.7rem;"></i>
+                  </div>
+                  <div style="font-size:.72rem;margin-top:.4rem;font-weight:600;color:var(--ep-gold);">Lavée</div>
+                  <div style="font-size:.65rem;color:var(--ep-text-muted);">15/04</div>
+                </div>
+                <div style="flex:1;height:3px;background:var(--ep-gold);margin:0 -8px;margin-bottom:2.5rem;"></div>
+                <div style="flex:1;text-align:center;position:relative;z-index:2;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--ep-gold);display:flex;align-items:center;justify-content:center;margin:0 auto;border:3px solid #fff;box-shadow:0 0 0 3px var(--ep-gold);">
+                    <i class="fas fa-check text-white" style="font-size:.7rem;"></i>
+                  </div>
+                  <div style="font-size:.72rem;margin-top:.4rem;font-weight:600;color:var(--ep-gold);">Repassée</div>
+                  <div style="font-size:.65rem;color:var(--ep-text-muted);">16/04</div>
+                </div>
+                <div style="flex:1;height:3px;background:var(--ep-green);margin:0 -8px;margin-bottom:2.5rem;"></div>
+                <div style="flex:1;text-align:center;position:relative;z-index:2;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--ep-green);display:flex;align-items:center;justify-content:center;margin:0 auto;border:3px solid #fff;box-shadow:0 0 0 3px var(--ep-green);">
+                    <i class="fas fa-check text-white" style="font-size:.7rem;"></i>
+                  </div>
+                  <div style="font-size:.72rem;margin-top:.4rem;font-weight:600;color:var(--ep-green);">Prête ✓</div>
+                  <div style="font-size:.65rem;color:var(--ep-text-muted);">17/04</div>
+                </div>
+                <div style="flex:1;height:3px;background:var(--ep-border);margin:0 -8px;margin-bottom:2.5rem;"></div>
+                <div style="flex:1;text-align:center;position:relative;z-index:2;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--ep-border);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                    <i class="fas fa-user text-muted" style="font-size:.7rem;"></i>
+                  </div>
+                  <div style="font-size:.72rem;margin-top:.4rem;font-weight:600;color:var(--ep-text-muted);">Retiré</div>
+                  <div style="font-size:.65rem;color:var(--ep-text-muted);">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail vêtements -->
+          <div class="ep-table-wrapper mb-4">
+            <div class="p-3 border-bottom">
+              <h6 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-tshirt me-2" style="color:var(--ep-gold);"></i>
+                Détail des vêtements (3 pièces)
+              </h6>
+            </div>
+            <table class="ep-table">
+              <thead>
+                <tr>
+                  <th>Type de vêtement</th>
+                  <th>Qté</th>
+                  <th>Prix unitaire</th>
+                  <th>Sous-total</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <i class="fas fa-vest me-2" style="color:var(--ep-gold);"></i>
+                    Chemise
+                  </td>
+                  <td>2</td>
+                  <td class="text-muted">400 FCFA</td>
+                  <td class="fw-bold">800 FCFA</td>
+                  <td><span class="ep-badge ep-badge-pret" style="font-size:.72rem;">Prête</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <i class="fas fa-vest me-2" style="color:var(--ep-gold);"></i>
+                    Pantalon
+                  </td>
+                  <td>1</td>
+                  <td class="text-muted">500 FCFA</td>
+                  <td class="fw-bold">500 FCFA</td>
+                  <td><span class="ep-badge ep-badge-pret" style="font-size:.72rem;">Prête</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="background:rgba(28,61,42,.03);">
+                  <td colspan="3" class="fw-bold text-ep-green text-end">Total</td>
+                  <td class="fw-bold text-ep-green" style="font-size:1rem;">1 300 FCFA</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Journal des statuts -->
+          <div class="ep-card p-4">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-history me-2" style="color:var(--ep-gold);"></i>
+              Journal des événements
+            </h6>
+            <div class="ep-timeline">
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Commande reçue</strong> au Dépôt Cocody</div>
+                <div class="ep-timeline-date">14/04/2026 à 09h15 — par Marie (employée)</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Lot de lavage créé</strong> — Lot L-20260415-002</div>
+                <div class="ep-timeline-date">14/04/2026 à 17h00</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Lavage terminé</strong> — Lot validé</div>
+                <div class="ep-timeline-date">15/04/2026 à 14h30</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Repassage terminé</strong></div>
+                <div class="ep-timeline-date">16/04/2026 à 11h00</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot active"></div>
+                <div class="ep-timeline-text text-ep-green"><strong>Commande prête à retirer ✓</strong></div>
+                <div class="ep-timeline-date">17/04/2026 à 09h00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panneau latéral -->
+        <div class="col-lg-4">
+          <!-- Récapitulatif financier -->
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-receipt me-2" style="color:var(--ep-gold);"></i>
+              Récapitulatif paiement
+            </h6>
+            <div class="d-flex justify-content-between mb-2" style="font-size:.88rem;">
+              <span class="text-muted">Montant total</span>
+              <span class="fw-bold">2 100 FCFA</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2" style="font-size:.88rem;">
+              <span class="text-muted">Points utilisés (remise)</span>
+              <span class="fw-bold text-ep-gold">– 1 000 FCFA</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2" style="font-size:.88rem;">
+              <span class="text-muted">Déjà payé (Wave)</span>
+              <span class="fw-bold" style="color:#198754;">– 600 FCFA</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <span class="fw-bold text-ep-green">Reste à payer</span>
+              <span class="fw-bold text-danger" style="font-size:1.1rem;">500 FCFA</span>
+            </div>
+            <div class="mt-2">
+              <span class="ep-badge ep-badge-partiel">Paiement partiel</span>
+            </div>
+
+            <!-- Modes de paiement -->
+            <div class="mt-3 p-2" style="background:var(--ep-cream);border-radius:var(--ep-radius);font-size:.8rem;">
+              <div class="text-muted mb-1">Modes acceptés au retrait</div>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="ep-badge" style="background:#fff;border:1px solid var(--ep-border);color:var(--ep-text-dark);">Espèces</span>
+                <span class="ep-badge" style="background:#fff036;color:#000;">Wave</span>
+                <span class="ep-badge" style="background:#ff6600;color:#fff;">Orange Money</span>
+                <span class="ep-badge" style="background:#ffcc00;color:#000;">MTN MoMo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Points gagnés -->
+          <div class="ep-card p-3 mb-4" style="border:1px solid rgba(201,160,32,.3);">
+            <h6 class="fw-bold text-ep-green mb-2">
+              <i class="fas fa-star me-2" style="color:var(--ep-gold);"></i>
+              Points fidélité gagnés
+            </h6>
+            <div class="d-flex align-items-center gap-2">
+              <div class="ep-stat-number" style="font-size:2rem;color:var(--ep-gold);">+21</div>
+              <div>
+                <div class="fw-bold" style="font-size:.88rem;">points gagnés</div>
+                <div class="text-muted" style="font-size:.78rem;">sur 2 100 FCFA dépensés</div>
+              </div>
+            </div>
+            <div class="ep-alert ep-alert-info mt-2" style="padding:.6rem .75rem;font-size:.78rem;">
+              <i class="fas fa-info-circle"></i>
+              <span>Les points sont crédités après paiement complet.</span>
+            </div>
+          </div>
+
+          <!-- Point de dépôt -->
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-2">
+              <i class="fas fa-map-marker-alt me-2" style="color:var(--ep-gold);"></i>
+              Point de retrait
+            </h6>
+            <div class="fw-bold" style="font-size:.9rem;">Dépôt Cocody — Riviera 2</div>
+            <div class="text-muted" style="font-size:.82rem;">Rue des Jardins, face à la station</div>
+            <div class="text-muted" style="font-size:.78rem;">Lun–Ven : 08h–17h</div>
+            <div class="d-flex gap-2 mt-2">
+              <a href="../public/V2-03_contact.html" class="btn btn-sm btn-ep-outline-green flex-grow-1 py-1" style="font-size:.78rem;">
+                <i class="fas fa-phone me-1"></i> Appeler
+              </a>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="ep-card p-3">
+            <h6 class="fw-bold text-ep-green mb-2">Actions</h6>
+            <div class="d-flex flex-column gap-2">
+              <button class="btn btn-ep-outline-green btn-sm text-start py-2" onclick="window.print()">
+                <i class="fas fa-print me-2"></i> Imprimer le reçu
+              </button>
+              <a href="../public/V2-03_contact.html" class="btn btn-ep-outline-green btn-sm text-start py-2">
+                <i class="fas fa-comment me-2"></i> Signaler un problème
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="ep-sidebar-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Élégance Pressing — Présentation des maquettes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --green:      #1C3D2A;
+      --green-dark: #122a1c;
+      --green-mid:  #2a5a3e;
+      --gold:       #C9A020;
+      --gold-light: #e0b72a;
+      --cream:      #F5F5DC;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(28,61,42,.6) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,160,32,.12) 0%, transparent 50%),
+        #0d1a12;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A020' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      height: 90px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 4px 24px rgba(201,160,32,.3));
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(201,160,32,.12);
+      border: 1px solid rgba(201,160,32,.3);
+      color: var(--gold);
+      padding: .35rem 1rem;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: .75rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      color: rgba(255,255,255,.6);
+      font-size: clamp(.9rem, 2vw, 1.05rem);
+      max-width: 540px;
+      margin: 0 auto 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Cards V1 / V2 ── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .app-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all .35s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .35s ease;
+      border-radius: 20px;
+    }
+    .app-card.v1::before { background: linear-gradient(135deg, rgba(28,61,42,.5), transparent); }
+    .app-card.v2::before { background: linear-gradient(135deg, rgba(201,160,32,.1), transparent); }
+    .app-card:hover {
+      border-color: rgba(201,160,32,.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+    .app-card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .v1 .card-icon { background: rgba(28,61,42,.6); color: #6fcf97; }
+    .v2 .card-icon { background: rgba(201,160,32,.15); color: var(--gold); }
+
+    .card-version {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .v1 .card-version { color: #6fcf97; }
+    .v2 .card-version { color: var(--gold); }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-desc {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-pages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .page-pill {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50px;
+      padding: .2rem .65rem;
+      font-size: .72rem;
+      color: rgba(255,255,255,.65);
+      white-space: nowrap;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .88rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+      transition: gap .25s ease;
+    }
+    .v1 .card-cta { color: #6fcf97; }
+    .v2 .card-cta { color: var(--gold); }
+    .app-card:hover .card-cta { gap: .75rem; }
+
+    /* ── Stats ── */
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .stat { text-align: center; }
+    .stat-number { font-size: 1.6rem; font-weight: 800; color: var(--gold); }
+    .stat-label  { font-size: .75rem; color: rgba(255,255,255,.45); margin-top: .2rem; }
+    .stat-sep    { width: 1px; background: rgba(255,255,255,.1); }
+
+    /* ── Section pages détail ── */
+    .pages-section {
+      background: #111;
+      padding: 5rem 2rem;
+    }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+    .section-divider {
+      width: 40px; height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1rem 0 2.5rem;
+    }
+
+    .page-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all .25s ease;
+    }
+    .page-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(201,160,32,.3);
+      transform: translateX(4px);
+      color: #fff;
+    }
+    .page-num {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .v1-num { background: rgba(28,61,42,.5); color: #6fcf97; }
+    .v2-num { background: rgba(201,160,32,.15); color: var(--gold); }
+    .page-info-title { font-size: .9rem; font-weight: 600; color: #fff; }
+    .page-info-url   { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: .15rem; font-family: monospace; }
+    .page-arrow { margin-left: auto; color: rgba(255,255,255,.25); font-size: .8rem; flex-shrink: 0; }
+    .page-card:hover .page-arrow { color: var(--gold); }
+
+    .v2-sub-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin: 1.5rem 0 .75rem;
+    }
+
+    /* ── Footer ── */
+    .footer-bar {
+      background: #0a0a0a;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255,255,255,.25);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-bar span { color: var(--gold); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .cards-row { grid-template-columns: 1fr; }
+      .stats-row { gap: 1.5rem; }
+      .stat-number { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="v2/assets/img/logo.png" alt="Élégance Pressing" class="hero-logo">
+
+  <div class="hero-badge">
+    <i class="fas fa-drafting-compass"></i>
+    Maquettes interactives — v1.0
+  </div>
+
+  <h1>Présentation des <span>interfaces</span><br>Élégance Pressing</h1>
+  <p>Explorez les deux espaces de l'application — la gestion interne pour les équipes et la plateforme client publique.</p>
+
+  <!-- Cartes de choix -->
+  <div class="cards-row">
+
+    <!-- V1 -->
+    <a href="v1/02_dashboard.html" class="app-card v1">
+      <div class="card-icon"><i class="fas fa-cogs"></i></div>
+      <div class="card-version">Version 1</div>
+      <div class="card-title">Gestion interne</div>
+      <div class="card-desc">
+        Interface employés et administrateurs — traitement des commandes, gestion des lots de lavage et repassage, paiements, rapports.
+      </div>
+      <div class="card-pages">
+        <span class="page-pill">Dashboard</span>
+        <span class="page-pill">Commandes</span>
+        <span class="page-pill">Lots lavage</span>
+        <span class="page-pill">Repassage</span>
+        <span class="page-pill">Paiements</span>
+        <span class="page-pill">+ 9 pages</span>
+      </div>
+      <div class="card-cta">
+        Voir la V1 <i class="fas fa-arrow-right"></i>
+      </div>
+    </a>
+
+    <!-- V2 -->
+    <a href="v2/public/V2-01_accueil.html" class="app-card v2">
+      <div class="card-icon"><i class="fas fa-globe"></i></div>
+      <div class="card-version">Version 2</div>
+      <div class="card-title">Plateforme client</div>
+      <div class="card-desc">
+        Site vitrine public et espace client — suivi des commandes en temps réel, programme fidélité, gestion du profil.
+      </div>
+      <div class="card-pages">
+        <span class="page-pill">Accueil</span>
+        <span class="page-pill">Services & tarifs</span>
+        <span class="page-pill">Espace client</span>
+        <span class="page-pill">Fidélité</span>
+        <span class="page-pill">+ 7 pages</span>
+      </div>
+      <div class="card-cta">
+        Voir la V2 <i class="fas fa-arrow-right"></i>
+      </div>
+    </a>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-number">25</div>
+      <div class="stat-label">Pages maquettées</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-number">2</div>
+      <div class="stat-label">Interfaces distinctes</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Types d'acteurs</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-number">CI</div>
+      <div class="stat-label">Côte d'Ivoire</div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉTAIL V1 -->
+<section class="pages-section" id="v1-pages">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-label"><i class="fas fa-cogs me-2"></i>Version 1</div>
+    <div class="section-title">Application de gestion interne</div>
+    <div class="section-divider"></div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <a href="v1/01_login.html" class="page-card">
+          <div class="page-num v1-num">01</div>
+          <div>
+            <div class="page-info-title">Connexion</div>
+            <div class="page-info-url">v1/01_login.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/02_dashboard.html" class="page-card">
+          <div class="page-num v1-num">02</div>
+          <div>
+            <div class="page-info-title">Tableau de bord</div>
+            <div class="page-info-url">v1/02_dashboard.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/03_nouvelle_commande.html" class="page-card">
+          <div class="page-num v1-num">03</div>
+          <div>
+            <div class="page-info-title">Nouvelle commande</div>
+            <div class="page-info-url">v1/03_nouvelle_commande.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/04_liste_commandes.html" class="page-card">
+          <div class="page-num v1-num">04</div>
+          <div>
+            <div class="page-info-title">Liste des commandes</div>
+            <div class="page-info-url">v1/04_liste_commandes.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/05_planification_lots.html" class="page-card">
+          <div class="page-num v1-num">05</div>
+          <div>
+            <div class="page-info-title">Planification des lots</div>
+            <div class="page-info-url">v1/05_planification_lots.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/06_traitement_lavage.html" class="page-card">
+          <div class="page-num v1-num">06</div>
+          <div>
+            <div class="page-info-title">Traitement lavage</div>
+            <div class="page-info-url">v1/06_traitement_lavage.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/07_traitement_repassage.html" class="page-card">
+          <div class="page-num v1-num">07</div>
+          <div>
+            <div class="page-info-title">Traitement repassage</div>
+            <div class="page-info-url">v1/07_traitement_repassage.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/08_regroupement_client.html" class="page-card">
+          <div class="page-num v1-num">08</div>
+          <div>
+            <div class="page-info-title">Regroupement client</div>
+            <div class="page-info-url">v1/08_regroupement_client.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/09_paiement.html" class="page-card">
+          <div class="page-num v1-num">09</div>
+          <div>
+            <div class="page-info-title">Enregistrer un paiement</div>
+            <div class="page-info-url">v1/09_paiement.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/10_remise.html" class="page-card">
+          <div class="page-num v1-num">10</div>
+          <div>
+            <div class="page-info-title">Remise des vêtements</div>
+            <div class="page-info-url">v1/10_remise.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/11_detail_commande.html" class="page-card">
+          <div class="page-num v1-num">11</div>
+          <div>
+            <div class="page-info-title">Détail commande</div>
+            <div class="page-info-url">v1/11_detail_commande.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/12_admin_vetements.html" class="page-card">
+          <div class="page-num v1-num">12</div>
+          <div>
+            <div class="page-info-title">Admin — Types & tarifs</div>
+            <div class="page-info-url">v1/12_admin_vetements.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/13_admin_clients.html" class="page-card">
+          <div class="page-num v1-num">13</div>
+          <div>
+            <div class="page-info-title">Admin — Clients</div>
+            <div class="page-info-url">v1/13_admin_clients.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v1/14_admin_rapports.html" class="page-card">
+          <div class="page-num v1-num">14</div>
+          <div>
+            <div class="page-info-title">Admin — Rapports</div>
+            <div class="page-info-url">v1/14_admin_rapports.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉTAIL V2 -->
+<section class="pages-section" id="v2-pages" style="background:#0d0d0d;border-top:1px solid rgba(255,255,255,.06);">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-label"><i class="fas fa-globe me-2"></i>Version 2</div>
+    <div class="section-title">Plateforme client publique</div>
+    <div class="section-divider"></div>
+
+    <!-- V2 Public -->
+    <div class="v2-sub-label"><i class="fas fa-store me-2"></i>Site vitrine</div>
+    <div class="row g-3 mb-2">
+      <div class="col-md-6">
+        <a href="v2/public/V2-01_accueil.html" class="page-card">
+          <div class="page-num v2-num">01</div>
+          <div>
+            <div class="page-info-title">Accueil</div>
+            <div class="page-info-url">v2/public/V2-01_accueil.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/public/V2-02_services.html" class="page-card">
+          <div class="page-num v2-num">02</div>
+          <div>
+            <div class="page-info-title">Services & tarifs</div>
+            <div class="page-info-url">v2/public/V2-02_services.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/public/V2-03_contact.html" class="page-card">
+          <div class="page-num v2-num">03</div>
+          <div>
+            <div class="page-info-title">Contact</div>
+            <div class="page-info-url">v2/public/V2-03_contact.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/public/V2-04_connexion.html" class="page-card">
+          <div class="page-num v2-num">04</div>
+          <div>
+            <div class="page-info-title">Connexion client</div>
+            <div class="page-info-url">v2/public/V2-04_connexion.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/public/V2-05_inscription.html" class="page-card">
+          <div class="page-num v2-num">05</div>
+          <div>
+            <div class="page-info-title">Inscription</div>
+            <div class="page-info-url">v2/public/V2-05_inscription.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- V2 Espace client -->
+    <div class="v2-sub-label" style="margin-top:2rem;"><i class="fas fa-user-circle me-2"></i>Espace client (zone authentifiée)</div>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-06_dashboard.html" class="page-card">
+          <div class="page-num v2-num">06</div>
+          <div>
+            <div class="page-info-title">Tableau de bord client</div>
+            <div class="page-info-url">v2/espace-client/V2-06_dashboard.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-07_mes_commandes.html" class="page-card">
+          <div class="page-num v2-num">07</div>
+          <div>
+            <div class="page-info-title">Mes commandes</div>
+            <div class="page-info-url">v2/espace-client/V2-07_mes_commandes.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-08_detail_cas1.html" class="page-card">
+          <div class="page-num v2-num">08</div>
+          <div>
+            <div class="page-info-title">Détail commande — Cas 1</div>
+            <div class="page-info-url">v2/espace-client/V2-08_detail_cas1.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-09_detail_cas2.html" class="page-card">
+          <div class="page-num v2-num">09</div>
+          <div>
+            <div class="page-info-title">Détail commande — Cas 2</div>
+            <div class="page-info-url">v2/espace-client/V2-09_detail_cas2.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-10_fidelite.html" class="page-card">
+          <div class="page-num v2-num">10</div>
+          <div>
+            <div class="page-info-title">Programme fidélité</div>
+            <div class="page-info-url">v2/espace-client/V2-10_fidelite.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="v2/espace-client/V2-11_profil.html" class="page-card">
+          <div class="page-num v2-num">11</div>
+          <div>
+            <div class="page-info-title">Mon profil</div>
+            <div class="page-info-url">v2/espace-client/V2-11_profil.html</div>
+          </div>
+          <i class="fas fa-chevron-right page-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-bar">
+  <span>Élégance Pressing</span> — Abidjan, Côte d'Ivoire &nbsp;·&nbsp;
+  Maquettes interactives &nbsp;·&nbsp;
+  <span>Bootstrap 5.3</span> + <span>Font Awesome 6</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

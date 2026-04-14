@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail Commande (Cas 2) — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar -->
+  <aside class="ep-sidebar">
+    <div class="ep-sidebar-header">
+      <a href="../public/V2-01_accueil.html" class="text-decoration-none">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="46" style="display:block;">
+        <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.2rem;">Espace Client</div>
+      </a>
+    </div>
+    <div class="ep-sidebar-user">
+      <div class="ep-sidebar-avatar">FK</div>
+      <div>
+        <div class="ep-sidebar-user-name">Fatoumata Koné</div>
+        <div class="ep-sidebar-user-email">+225 07 12 34 56</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <div class="ep-nav-section">Principal</div>
+      <a href="V2-06_dashboard.html"><i class="fas fa-th-large"></i> Tableau de bord</a>
+      <a href="V2-07_mes_commandes.html" class="active"><i class="fas fa-box"></i> Mes commandes</a>
+      <a href="V2-10_fidelite.html"><i class="fas fa-star"></i> Fidélité</a>
+      <div class="ep-nav-section" style="margin-top:.5rem;">Compte</div>
+      <a href="V2-11_profil.html"><i class="fas fa-user"></i> Mon profil</a>
+      <a href="../public/V2-01_accueil.html"><i class="fas fa-globe"></i> Retour au site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <a href="../public/V2-04_connexion.html"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button id="ep-sidebar-toggle" class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <a href="V2-07_mes_commandes.html" class="text-muted text-decoration-none" style="font-size:.85rem;">
+          <i class="fas fa-arrow-left me-1"></i> Mes commandes
+        </a>
+        <h1 class="ep-page-title">Commande EP-20260412-007</h1>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="ep-badge ep-badge-repassage" style="font-size:.82rem;">En repassage</span>
+        <div class="ep-sidebar-avatar" style="width:36px;height:36px;font-size:.8rem;">FK</div>
+      </div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- Note Cas 2 -->
+      <div class="ep-alert ep-alert-warning mb-4">
+        <i class="fas fa-exclamation-triangle" style="flex-shrink:0;"></i>
+        <div>
+          <strong>Cas 2 — Base de données indépendante :</strong>
+          Dans ce scénario, V2 dispose de sa propre base de données. Le statut est mis à jour
+          de façon simplifiée — uniquement les jalons visibles au client, sans le détail des lots de traitement.
+          <a href="V2-08_detail_cas1.html" class="fw-bold ms-2" style="color:inherit;">Voir Cas 1 →</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+
+          <!-- En-tête -->
+          <div class="ep-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+              <div>
+                <h4 class="fw-bold text-ep-green mb-1">EP-20260412-007</h4>
+                <div class="text-muted" style="font-size:.85rem;">
+                  Déposée le <strong>12 avril 2026</strong> — Dépôt Plateau, Abidjan
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="ep-badge ep-badge-repassage" style="font-size:.88rem;">En repassage</span>
+                <div class="text-muted mt-1" style="font-size:.78rem;">Depuis le 14/04/2026</div>
+              </div>
+            </div>
+
+            <!-- Progression Cas 2 — vue simplifiée client -->
+            <div class="mt-4 pt-3 border-top">
+              <div class="d-flex align-items-center mb-1 justify-content-between" style="font-size:.78rem;color:var(--ep-text-muted);">
+                <span>Reçue</span>
+                <span>En traitement</span>
+                <span>Prête</span>
+                <span>Retirée</span>
+              </div>
+              <div class="ep-progress" style="height:12px;border-radius:6px;">
+                <div class="ep-progress-bar" style="width:65%;"></div>
+              </div>
+              <div class="text-center text-muted mt-1" style="font-size:.78rem;">
+                <i class="fas fa-spinner fa-spin me-1"></i> Traitement en cours — estimation : 15/04/2026
+              </div>
+            </div>
+          </div>
+
+          <!-- Différence Cas 2 expliquée -->
+          <div class="ep-card p-4 mb-4" style="border:2px dashed var(--ep-border);">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-info-circle me-2" style="color:var(--ep-gold);"></i>
+              Différence entre Cas 1 et Cas 2 (note technique)
+            </h6>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div style="background:rgba(25,135,84,.05);border:1px solid rgba(25,135,84,.2);border-radius:var(--ep-radius);padding:1rem;">
+                  <div class="fw-bold text-ep-green mb-2" style="font-size:.88rem;">
+                    <i class="fas fa-plug me-2"></i>Cas 1 — Base partagée
+                  </div>
+                  <ul style="font-size:.82rem;color:var(--ep-text-muted);padding-left:1.2rem;margin:0;">
+                    <li>V2 lit directement la BDD V1</li>
+                    <li>Statut granulaire (7 étapes)</li>
+                    <li>Détail des lots de lavage visible</li>
+                    <li>Historique complet des événements</li>
+                    <li>Synchronisation immédiate</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background:rgba(255,193,7,.05);border:1px solid rgba(255,193,7,.3);border-radius:var(--ep-radius);padding:1rem;">
+                  <div class="fw-bold mb-2" style="font-size:.88rem;color:#b08500;">
+                    <i class="fas fa-database me-2"></i>Cas 2 — Base indépendante
+                  </div>
+                  <ul style="font-size:.82rem;color:var(--ep-text-muted);padding-left:1.2rem;margin:0;">
+                    <li>BDD V2 autonome</li>
+                    <li>Statut simplifié (4 jalons)</li>
+                    <li>Pas d'accès aux lots internes</li>
+                    <li>Mise à jour manuelle par employé</li>
+                    <li>Synchronisation à définir (API, etc.)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détail vêtements (simplifié Cas 2) -->
+          <div class="ep-table-wrapper mb-4">
+            <div class="p-3 border-bottom">
+              <h6 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-tshirt me-2" style="color:var(--ep-gold);"></i>
+                Vêtements (5 pièces) — vue simplifiée
+              </h6>
+            </div>
+            <table class="ep-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Qté</th>
+                  <th>Montant</th>
+                  <th>État global</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="fas fa-vest me-2" style="color:var(--ep-gold);"></i>Chemise</td>
+                  <td>3</td>
+                  <td class="fw-bold">1 200 FCFA</td>
+                  <td><span class="ep-badge ep-badge-repassage" style="font-size:.72rem;">En repassage</span></td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-vest me-2" style="color:var(--ep-gold);"></i>Pantalon</td>
+                  <td>2</td>
+                  <td class="fw-bold">1 000 FCFA</td>
+                  <td><span class="ep-badge ep-badge-repassage" style="font-size:.72rem;">En repassage</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="background:rgba(28,61,42,.03);">
+                  <td colspan="2" class="fw-bold text-ep-green text-end">Total</td>
+                  <td class="fw-bold text-ep-green" style="font-size:1rem;">4 500 FCFA</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Journal simplifié Cas 2 -->
+          <div class="ep-card p-4">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-history me-2" style="color:var(--ep-gold);"></i>
+              Suivi de commande (jalons clients)
+            </h6>
+            <div class="ep-timeline">
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Commande reçue</strong> au Dépôt Plateau</div>
+                <div class="ep-timeline-date">12/04/2026 à 10h00</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot done"></div>
+                <div class="ep-timeline-text"><strong>Traitement démarré</strong> (lavage)</div>
+                <div class="ep-timeline-date">13/04/2026 à 08h00</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot active"></div>
+                <div class="ep-timeline-text text-ep-green"><strong>En cours de repassage</strong></div>
+                <div class="ep-timeline-date">14/04/2026 à 09h00 — En cours</div>
+              </div>
+              <div class="ep-timeline-item">
+                <div class="ep-timeline-dot"></div>
+                <div class="ep-timeline-text text-muted">Prête à retirer</div>
+                <div class="ep-timeline-date">Estimé : 15/04/2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panneau latéral -->
+        <div class="col-lg-4">
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-3">
+              <i class="fas fa-receipt me-2" style="color:var(--ep-gold);"></i>
+              Paiement
+            </h6>
+            <div class="d-flex justify-content-between mb-2" style="font-size:.88rem;">
+              <span class="text-muted">Montant total</span>
+              <span class="fw-bold">4 500 FCFA</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2" style="font-size:.88rem;">
+              <span class="text-muted">Montant payé</span>
+              <span class="fw-bold" style="color:#198754;">4 500 FCFA</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-ep-green">Reste à payer</span>
+              <span class="fw-bold" style="color:#198754;">0 FCFA ✓</span>
+            </div>
+            <span class="ep-badge ep-badge-paye mt-2">Payé intégralement</span>
+            <div class="text-muted mt-2" style="font-size:.78rem;">
+              <i class="fas fa-mobile-alt me-1"></i>Payé par MTN Mobile Money le 12/04/2026
+            </div>
+          </div>
+
+          <!-- Points -->
+          <div class="ep-card p-3 mb-4" style="border:1px solid rgba(201,160,32,.3);">
+            <h6 class="fw-bold text-ep-green mb-2">
+              <i class="fas fa-star me-2" style="color:var(--ep-gold);"></i>
+              Points fidélité
+            </h6>
+            <div class="d-flex align-items-center gap-2">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--ep-gold);">+45</div>
+              <div>
+                <div class="fw-bold" style="font-size:.88rem;">points gagnés</div>
+                <div class="text-muted" style="font-size:.78rem;">sur 4 500 FCFA</div>
+              </div>
+            </div>
+            <div class="ep-alert ep-alert-success mt-2" style="padding:.6rem .75rem;font-size:.78rem;">
+              <i class="fas fa-check-circle"></i>
+              <span>Points déjà crédités sur votre compte.</span>
+            </div>
+          </div>
+
+          <!-- Point de dépôt -->
+          <div class="ep-card p-3 mb-4">
+            <h6 class="fw-bold text-ep-green mb-2">
+              <i class="fas fa-map-marker-alt me-2" style="color:var(--ep-gold);"></i>
+              Point de retrait
+            </h6>
+            <div class="fw-bold" style="font-size:.9rem;">Dépôt Plateau — Centre</div>
+            <div class="text-muted" style="font-size:.82rem;">Boulevard du Général de Gaulle</div>
+            <div class="text-muted" style="font-size:.78rem;">Lun–Ven : 08h–17h</div>
+          </div>
+
+          <div class="ep-card p-3">
+            <h6 class="fw-bold text-ep-green mb-2">Actions</h6>
+            <div class="d-flex flex-column gap-2">
+              <button class="btn btn-ep-outline-green btn-sm text-start py-2" onclick="window.print()">
+                <i class="fas fa-print me-2"></i> Imprimer le reçu
+              </button>
+              <a href="../public/V2-03_contact.html" class="btn btn-ep-outline-green btn-sm text-start py-2">
+                <i class="fas fa-comment me-2"></i> Signaler un problème
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="ep-sidebar-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enregistrer un paiement — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded active" href="09_paiement.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;"><i class="fas fa-credit-card me-2" style="color:#C9A020;"></i>Enregistrer un paiement</h5>
+        <small class="text-muted">Gérez les versements des clients pour leurs commandes</small>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="11_detail_commande.html" class="btn btn-outline-secondary btn-sm"><i class="fas fa-arrow-left me-1"></i>Retour commande</a>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- Barre de recherche commande -->
+      <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+          <label class="form-label fw-bold" style="color:#1C3D2A;"><i class="fas fa-search me-2" style="color:#C9A020;"></i>Rechercher une commande</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="N° commande (EP-...), nom client ou téléphone..." value="EP-20260414-003" style="border-color:#1C3D2A;">
+            <button class="btn text-white" style="background:#1C3D2A;"><i class="fas fa-search me-1"></i>Rechercher</button>
+            <button class="btn btn-outline-secondary"><i class="fas fa-qrcode me-1"></i>Scanner</button>
+          </div>
+          <div class="mt-2" style="font-size:0.8rem;color:#888;"><i class="fas fa-info-circle me-1"></i>Vous pouvez aussi accéder au paiement directement depuis la fiche d'une commande.</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Colonne principale -->
+        <div class="col-lg-8">
+
+          <!-- Card commande -->
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between" style="background:#1C3D2A;color:#fff;">
+              <div>
+                <h6 class="mb-0"><i class="fas fa-receipt me-2" style="color:#C9A020;"></i>Commande EP-20260414-003</h6>
+                <small style="color:#aaa;font-size:0.75rem;">Créée le 14 avril 2026 à 09h32 — par Jean Koné</small>
+              </div>
+              <span class="badge" style="background:#FFC107;color:#000;font-size:0.85rem;">Prêt</span>
+            </div>
+            <div class="card-body">
+              <!-- Infos client et commande -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <div style="background:#f8f9fa;border-radius:8px;padding:1rem;">
+                    <div style="font-size:0.72rem;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:0.5rem;">Client</div>
+                    <div style="font-weight:700;font-size:1rem;color:#1C3D2A;"><i class="fas fa-user me-2" style="color:#C9A020;"></i>Koné Amadou</div>
+                    <div style="font-size:0.85rem;color:#555;margin-top:0.25rem;"><i class="fas fa-phone me-2 text-muted"></i>+225 07 23 45 67</div>
+                    <div style="font-size:0.85rem;color:#555;"><i class="fas fa-envelope me-2 text-muted"></i>a.kone@gmail.com</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div style="background:#f8f9fa;border-radius:8px;padding:1rem;">
+                    <div style="font-size:0.72rem;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:0.5rem;">Détails commande</div>
+                    <div style="font-size:0.85rem;color:#555;"><i class="fas fa-calendar me-2 text-muted"></i>Dépôt : 14 avr. 2026</div>
+                    <div style="font-size:0.85rem;color:#555;"><i class="fas fa-check-circle me-2 text-success"></i>Statut : <strong>Prêt</strong></div>
+                    <div style="font-size:0.85rem;color:#555;"><i class="fas fa-tshirt me-2 text-muted"></i>3 vêtements (2 Chemises, 1 Pantalon)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Récap financier -->
+              <div class="row g-3 mb-4">
+                <div class="col-4">
+                  <div class="text-center p-3 rounded" style="background:#e8f5e9;border:2px solid #4caf50;">
+                    <div style="font-size:0.72rem;text-transform:uppercase;color:#388e3c;font-weight:700;">Montant total</div>
+                    <div style="font-size:1.4rem;font-weight:700;color:#1b5e20;">2 800</div>
+                    <div style="font-size:0.75rem;color:#388e3c;">FCFA</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="text-center p-3 rounded" style="background:#e3f2fd;border:2px solid #2196f3;">
+                    <div style="font-size:0.72rem;text-transform:uppercase;color:#1565c0;font-weight:700;">Déjà versé</div>
+                    <div style="font-size:1.4rem;font-weight:700;color:#0d47a1;">1 000</div>
+                    <div style="font-size:0.75rem;color:#1565c0;">FCFA</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="text-center p-3 rounded" style="background:#fce4ec;border:2px solid #e91e63;">
+                    <div style="font-size:0.72rem;text-transform:uppercase;color:#c2185b;font-weight:700;">Reste à payer</div>
+                    <div style="font-size:1.4rem;font-weight:700;color:#880e4f;">1 800</div>
+                    <div style="font-size:0.75rem;color:#c2185b;">FCFA</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Barre de progression paiement -->
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1" style="font-size:0.8rem;">
+                  <span style="color:#555;">Avancement du paiement</span>
+                  <span style="font-weight:700;color:#1C3D2A;">35.7%</span>
+                </div>
+                <div class="progress" style="height:10px;border-radius:5px;">
+                  <div class="progress-bar" style="width:35.7%;background:#C9A020;" role="progressbar"></div>
+                </div>
+              </div>
+
+              <!-- Formulaire versement -->
+              <div style="background:#f0f7f3;border-radius:10px;padding:1.25rem;border:1px solid #b2dfdb;">
+                <h6 style="color:#1C3D2A;font-weight:700;margin-bottom:1rem;"><i class="fas fa-plus-circle me-2" style="color:#C9A020;"></i>Nouveau versement</h6>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label" style="font-size:0.83rem;font-weight:600;">Montant du versement (FCFA) <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <input type="number" class="form-control" id="montant-versement" placeholder="Ex : 1800" value="1800" min="1" style="border-color:#1C3D2A;">
+                      <span class="input-group-text">FCFA</span>
+                    </div>
+                    <div style="font-size:0.75rem;color:#388e3c;margin-top:3px;"><i class="fas fa-info-circle me-1"></i>Reste à payer : 1 800 FCFA</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" style="font-size:0.83rem;font-weight:600;">Mode de paiement <span class="text-danger">*</span></label>
+                    <select class="form-select" id="mode-paiement" style="border-color:#1C3D2A;" onchange="toggleReference()">
+                      <option value="">-- Choisir un mode --</option>
+                      <option value="especes" selected>Espèces</option>
+                      <option value="mtn">MTN Money</option>
+                      <option value="orange">Orange Money</option>
+                      <option value="wave">Wave</option>
+                      <option value="moov">Moov Money</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6" id="ref-transaction-group" style="display:none;">
+                    <label class="form-label" style="font-size:0.83rem;font-weight:600;">Référence transaction</label>
+                    <input type="text" class="form-control" id="ref-transaction" placeholder="Ex : TXN202604140001" style="border-color:#1C3D2A;">
+                    <div style="font-size:0.75rem;color:#888;margin-top:3px;">Numéro de confirmation fourni par l'opérateur</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" style="font-size:0.83rem;font-weight:600;">Date du versement</label>
+                    <input type="date" class="form-control" value="2026-04-14" style="border-color:#1C3D2A;">
+                    <div style="font-size:0.75rem;color:#888;margin-top:3px;">Remplie automatiquement</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" style="font-size:0.83rem;font-weight:600;">Note (optionnel)</label>
+                    <input type="text" class="form-control" placeholder="Ex : Solde total payé en espèces" style="border-color:#1C3D2A;">
+                  </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-end mt-3">
+                  <button class="btn btn-outline-secondary"><i class="fas fa-times me-1"></i>Réinitialiser</button>
+                  <button class="btn btn-success btn-lg" style="background:#1C3D2A;border:none;" onclick="enregistrerVersement()">
+                    <i class="fas fa-save me-2"></i>Enregistrer le versement
+                  </button>
+                </div>
+              </div>
+
+              <!-- Message succès (caché) -->
+              <div class="alert alert-success mt-3 d-flex align-items-center" id="success-msg" style="display:none!important;">
+                <i class="fas fa-check-circle me-3 fs-4"></i>
+                <div>
+                  <strong>Versement enregistré avec succès !</strong><br>
+                  <span style="font-size:0.88rem;">La commande EP-20260414-003 est maintenant <strong>entièrement payée</strong>.</span>
+                  <div class="mt-2">
+                    <a href="10_remise.html" class="btn btn-sm btn-success me-2"><i class="fas fa-box-open me-1"></i>Procéder à la remise</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne historique -->
+        <div class="col-lg-4">
+          <div class="card shadow-sm border-0">
+            <div class="card-header" style="background:#1C3D2A;color:#fff;">
+              <h6 class="mb-0"><i class="fas fa-history me-2" style="color:#C9A020;"></i>Historique des versements</h6>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-hover mb-0" style="font-size:0.83rem;">
+                <thead style="background:#f8f9fa;">
+                  <tr>
+                    <th style="font-size:0.75rem;color:#888;padding:0.75rem;">Date</th>
+                    <th style="font-size:0.75rem;color:#888;padding:0.75rem;">Montant</th>
+                    <th style="font-size:0.75rem;color:#888;padding:0.75rem;">Mode</th>
+                    <th style="font-size:0.75rem;color:#888;padding:0.75rem;">Employé</th>
+                  </tr>
+                </thead>
+                <tbody id="historique-tbody">
+                  <tr>
+                    <td class="py-3">
+                      <div style="font-weight:600;">14/04/2026</div>
+                      <div style="font-size:0.72rem;color:#888;">09h45</div>
+                    </td>
+                    <td>
+                      <span style="font-weight:700;color:#1C3D2A;">1 000</span>
+                      <small style="color:#888;"> FCFA</small>
+                    </td>
+                    <td>
+                      <span class="badge bg-secondary" style="font-size:0.75rem;"><i class="fas fa-money-bill me-1"></i>Espèces</span>
+                    </td>
+                    <td style="font-size:0.8rem;">Jean K.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="p-3 border-top" style="background:#f8f9fa;">
+                <div class="d-flex justify-content-between">
+                  <span style="font-size:0.83rem;color:#555;">Total versé</span>
+                  <strong style="color:#1C3D2A;">1 000 FCFA</strong>
+                </div>
+                <div class="d-flex justify-content-between mt-1">
+                  <span style="font-size:0.83rem;color:#555;">Nb versements</span>
+                  <strong style="color:#1C3D2A;">1</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Statut paiement -->
+          <div class="card shadow-sm border-0 mt-3">
+            <div class="card-body text-center p-3">
+              <div style="font-size:0.75rem;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:0.5rem;">Statut paiement</div>
+              <span class="badge" style="background:#FD7E14;font-size:1rem;padding:0.5rem 1.2rem;">Partiel</span>
+              <div class="mt-2" style="font-size:0.8rem;color:#888;">35.7% du montant total versé</div>
+            </div>
+          </div>
+
+          <!-- Actions rapides -->
+          <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header" style="background:#f8f9fa;border-bottom:1px solid #dee2e6;">
+              <h6 class="mb-0" style="font-size:0.85rem;color:#1C3D2A;"><i class="fas fa-bolt me-2" style="color:#C9A020;"></i>Actions rapides</h6>
+            </div>
+            <div class="card-body p-2">
+              <a href="11_detail_commande.html" class="btn btn-outline-secondary w-100 mb-2 text-start" style="font-size:0.83rem;">
+                <i class="fas fa-eye me-2"></i>Voir la commande complète
+              </a>
+              <a href="10_remise.html" class="btn btn-outline-secondary w-100 mb-2 text-start" style="font-size:0.83rem;">
+                <i class="fas fa-box-open me-2"></i>Remise des vêtements
+              </a>
+              <button class="btn btn-outline-secondary w-100 text-start" style="font-size:0.83rem;" onclick="window.print()">
+                <i class="fas fa-print me-2"></i>Imprimer reçu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function toggleReference() {
+      var mode = document.getElementById('mode-paiement').value;
+      var refGroup = document.getElementById('ref-transaction-group');
+      if (mode && mode !== 'especes') {
+        refGroup.style.display = 'block';
+      } else {
+        refGroup.style.display = 'none';
+      }
+    }
+
+    function enregistrerVersement() {
+      var montant = document.getElementById('montant-versement').value;
+      if (!montant || montant <= 0) {
+        alert('Veuillez saisir un montant valide.');
+        return;
+      }
+      // Ajouter une ligne dans l'historique
+      var tbody = document.getElementById('historique-tbody');
+      var newRow = '<tr><td class="py-3"><div style="font-weight:600;">14/04/2026</div><div style="font-size:0.72rem;color:#888;">maintenant</div></td><td><span style="font-weight:700;color:#1C3D2A;">' + parseInt(montant).toLocaleString() + '</span><small style="color:#888;"> FCFA</small></td><td><span class="badge bg-success" style="font-size:0.75rem;">Espèces</span></td><td style="font-size:0.8rem;">Jean K.</td></tr>';
+      tbody.innerHTML += newRow;
+      document.getElementById('success-msg').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remise des vêtements — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded active" href="10_remise.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="12_admin_vetements.html"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;"><i class="fas fa-box-open me-2" style="color:#C9A020;"></i>Remise des vêtements</h5>
+        <small class="text-muted">Commandes PRÊTES à remettre aux clients</small>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-success" style="font-size:0.85rem;padding:0.5rem 1rem;">
+          <i class="fas fa-check-circle me-1"></i>3 commandes prêtes
+        </span>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- Alerte info -->
+      <div class="alert alert-success d-flex align-items-center mb-4" style="border-left:4px solid #28a745;">
+        <i class="fas fa-check-circle me-3 fs-5"></i>
+        <div>
+          <strong>Étape finale :</strong> Ces commandes ont le statut <strong>PRÊT</strong>. Vérifiez le paiement, remettez les vêtements au client et confirmez la remise pour les clôturer.
+        </div>
+      </div>
+
+      <!-- Filtres -->
+      <div class="d-flex gap-2 mb-4 flex-wrap">
+        <button class="btn btn-sm" style="background:#1C3D2A;color:#fff;">Toutes <span class="badge bg-white ms-1" style="color:#1C3D2A;">3</span></button>
+        <button class="btn btn-sm btn-outline-success">Payé intégralement <span class="badge bg-success ms-1">1</span></button>
+        <button class="btn btn-sm btn-outline-warning">Paiement partiel <span class="badge ms-1" style="background:#FD7E14;">1</span></button>
+        <button class="btn btn-sm btn-outline-danger">Non payé <span class="badge bg-danger ms-1">1</span></button>
+      </div>
+
+      <!-- LISTE DES COMMANDES PRÊTES -->
+      <div class="row g-4 mb-4">
+
+        <!-- Commande 1 — Payée -->
+        <div class="col-lg-4">
+          <div class="card shadow-sm border-0 h-100" style="border-top:4px solid #28a745!important;border:1px solid #dee2e6;">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span style="font-weight:700;font-size:0.85rem;color:#1C3D2A;">EP-20260413-001</span>
+                <span class="badge bg-success">Prêt</span>
+              </div>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div style="width:36px;height:36px;background:#28a745;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.85rem;">DF</div>
+                <div>
+                  <div style="font-weight:700;color:#333;font-size:0.9rem;">Diallo Fatoumata</div>
+                  <div style="font-size:0.75rem;color:#888;">+225 05 34 12 78</div>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="d-flex justify-content-between" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-tshirt me-1"></i>5 pièces</span>
+                <span style="font-weight:700;color:#1C3D2A;">4 500 FCFA</span>
+              </div>
+              <div class="d-flex justify-content-between mt-1" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-calendar me-1"></i>13 avr. 2026</span>
+                <span class="badge bg-success"><i class="fas fa-check me-1"></i>Payé</span>
+              </div>
+              <hr class="my-2">
+              <div style="font-size:0.8rem;color:#555;"><i class="fas fa-box me-1"></i>Robes (2), Jupes (2), Chemisier (1)</div>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 px-3 pb-3 pt-0">
+              <button class="btn btn-success w-100" style="background:#1C3D2A;border:none;" onclick="ouvrirModal('EP-20260413-001', 'Diallo Fatoumata', true)">
+                <i class="fas fa-hand-holding me-2"></i>Remettre
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commande 2 — Partiel -->
+        <div class="col-lg-4">
+          <div class="card shadow-sm border-0 h-100" style="border-top:4px solid #fd7e14!important;border:1px solid #dee2e6;">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span style="font-weight:700;font-size:0.85rem;color:#1C3D2A;">EP-20260414-003</span>
+                <span class="badge bg-success">Prêt</span>
+              </div>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div style="width:36px;height:36px;background:#fd7e14;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.85rem;">KA</div>
+                <div>
+                  <div style="font-weight:700;color:#333;font-size:0.9rem;">Koné Amadou</div>
+                  <div style="font-size:0.75rem;color:#888;">+225 07 23 45 67</div>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="d-flex justify-content-between" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-tshirt me-1"></i>3 pièces</span>
+                <span style="font-weight:700;color:#1C3D2A;">2 800 FCFA</span>
+              </div>
+              <div class="d-flex justify-content-between mt-1" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-calendar me-1"></i>14 avr. 2026</span>
+                <span class="badge" style="background:#FD7E14;"><i class="fas fa-exclamation me-1"></i>Partiel</span>
+              </div>
+              <hr class="my-2">
+              <div style="font-size:0.8rem;color:#555;"><i class="fas fa-box me-1"></i>Chemises (2), Pantalon (1)</div>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 px-3 pb-3 pt-0">
+              <button class="btn w-100" style="background:#FD7E14;color:#fff;border:none;" onclick="ouvrirModal('EP-20260414-003', 'Koné Amadou', false)">
+                <i class="fas fa-hand-holding me-2"></i>Remettre
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commande 3 — Non payé -->
+        <div class="col-lg-4">
+          <div class="card shadow-sm border-0 h-100" style="border-top:4px solid #dc3545!important;border:1px solid #dee2e6;">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span style="font-weight:700;font-size:0.85rem;color:#1C3D2A;">EP-20260414-007</span>
+                <span class="badge bg-success">Prêt</span>
+              </div>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div style="width:36px;height:36px;background:#dc3545;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.85rem;">OA</div>
+                <div>
+                  <div style="font-weight:700;color:#333;font-size:0.9rem;">Ouattara Awa</div>
+                  <div style="font-size:0.75rem;color:#888;">+225 01 56 89 23</div>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="d-flex justify-content-between" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-tshirt me-1"></i>4 pièces</span>
+                <span style="font-weight:700;color:#1C3D2A;">3 600 FCFA</span>
+              </div>
+              <div class="d-flex justify-content-between mt-1" style="font-size:0.82rem;">
+                <span class="text-muted"><i class="fas fa-calendar me-1"></i>14 avr. 2026</span>
+                <span class="badge bg-danger"><i class="fas fa-times me-1"></i>Non payé</span>
+              </div>
+              <hr class="my-2">
+              <div style="font-size:0.8rem;color:#555;"><i class="fas fa-box me-1"></i>Robe (2), Veste (1), Chemisier (1)</div>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 px-3 pb-3 pt-0">
+              <a href="09_paiement.html" class="btn btn-outline-danger w-100 mb-1" style="font-size:0.83rem;">
+                <i class="fas fa-credit-card me-1"></i>Encaisser d'abord
+              </a>
+              <button class="btn btn-danger w-100" style="font-size:0.83rem;" onclick="ouvrirModal('EP-20260414-007', 'Ouattara Awa', false, true)">
+                <i class="fas fa-hand-holding me-2"></i>Remettre quand même
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section commandes déjà remises -->
+      <div class="card shadow-sm border-0">
+        <div class="card-header d-flex align-items-center justify-content-between" style="background:#f8f9fa;border-bottom:1px solid #dee2e6;">
+          <h6 class="mb-0" style="color:#888;"><i class="fas fa-archive me-2"></i>Remises du jour (2)</h6>
+          <button class="btn btn-sm btn-outline-secondary" style="font-size:0.78rem;">Voir tout</button>
+        </div>
+        <div class="card-body p-0">
+          <table class="table mb-0" style="font-size:0.83rem;">
+            <thead style="background:#f8f9fa;">
+              <tr>
+                <th class="ps-3">Commande</th>
+                <th>Client</th>
+                <th>Pièces</th>
+                <th>Montant</th>
+                <th>Paiement</th>
+                <th>Remis à</th>
+                <th>Par</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ps-3"><strong>EP-20260414-001</strong></td>
+                <td>Bamba Seydou</td>
+                <td>2 pièces</td>
+                <td>1 200 FCFA</td>
+                <td><span class="badge bg-success">Payé</span></td>
+                <td style="color:#888;">10h15</td>
+                <td>Awa Coulibaly</td>
+              </tr>
+              <tr>
+                <td class="ps-3"><strong>EP-20260412-004</strong></td>
+                <td>Yao Kouassi</td>
+                <td>6 pièces</td>
+                <td>5 800 FCFA</td>
+                <td><span class="badge bg-success">Payé</span></td>
+                <td style="color:#888;">11h48</td>
+                <td>Jean Koné</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL CONFIRMATION REMISE -->
+  <div class="modal fade" id="modalRemise" tabindex="-1" aria-labelledby="modalRemiseLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header" style="background:#1C3D2A;color:#fff;">
+          <h5 class="modal-title" id="modalRemiseLabel">
+            <i class="fas fa-hand-holding me-2" style="color:#C9A020;"></i>
+            Confirmation de remise — <span id="modal-num">EP-20260413-001</span>
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Récap commande -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <div style="background:#f0f7f3;border-radius:8px;padding:1rem;">
+                <div style="font-size:0.72rem;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:0.5rem;">Client</div>
+                <div style="font-weight:700;font-size:1rem;color:#1C3D2A;" id="modal-client">Diallo Fatoumata</div>
+                <div style="font-size:0.83rem;color:#555;"><i class="fas fa-phone me-1"></i>+225 05 34 12 78</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div style="background:#f0f7f3;border-radius:8px;padding:1rem;">
+                <div style="font-size:0.72rem;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:0.5rem;">Vérifications</div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <i class="fas fa-check-circle text-success"></i>
+                  <span style="font-size:0.85rem;">Statut PRÊT confirmé</span>
+                </div>
+                <div class="d-flex align-items-center gap-2" id="modal-paiement-check">
+                  <i class="fas fa-check-circle text-success"></i>
+                  <span style="font-size:0.85rem;">Paiement intégral confirmé</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerte paiement partiel -->
+          <div class="alert alert-warning d-flex align-items-start mb-3" id="modal-alerte-partiel" style="display:none!important;border-left:4px solid #FD7E14;">
+            <i class="fas fa-exclamation-triangle me-2 mt-1" style="color:#FD7E14;"></i>
+            <div>
+              <strong>Paiement incomplet !</strong> Ce client n'a pas encore réglé la totalité de sa commande.
+              Le reste à payer est de <strong id="modal-reste">1 800 FCFA</strong>.
+              En confirmant la remise, vous acceptez de remettre les vêtements malgré le solde restant.
+              <div class="mt-2">
+                <a href="09_paiement.html" class="btn btn-sm btn-warning"><i class="fas fa-credit-card me-1"></i>Encaisser maintenant</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checklist vêtements -->
+          <div style="background:#f8f9fa;border-radius:8px;padding:1rem;margin-bottom:1rem;">
+            <div style="font-size:0.83rem;font-weight:700;color:#1C3D2A;margin-bottom:0.75rem;"><i class="fas fa-clipboard-list me-2" style="color:#C9A020;"></i>Checklist des vêtements à remettre</div>
+            <div id="modal-vetements">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <input class="form-check-input" type="checkbox" id="vet-1" checked>
+                <label class="form-check-label" for="vet-1" style="font-size:0.88rem;">
+                  <span class="badge bg-secondary me-1">2</span> Robes — emballées, étiquetées
+                </label>
+              </div>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <input class="form-check-input" type="checkbox" id="vet-2" checked>
+                <label class="form-check-label" for="vet-2" style="font-size:0.88rem;">
+                  <span class="badge bg-secondary me-1">2</span> Jupes — emballées, étiquetées
+                </label>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <input class="form-check-input" type="checkbox" id="vet-3" checked>
+                <label class="form-check-label" for="vet-3" style="font-size:0.88rem;">
+                  <span class="badge bg-secondary me-1">1</span> Chemisier — emballé, étiqueté
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirmation -->
+          <div style="background:#e8f5e9;border-radius:8px;padding:1rem;border:1px solid #4caf50;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="confirm-remise" style="width:20px;height:20px;margin-top:2px;">
+              <label class="form-check-label ms-2" for="confirm-remise" style="font-size:0.9rem;font-weight:600;color:#1C3D2A;">
+                Je confirme avoir remis tous les vêtements au client et que celui-ci les a bien reçus.
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>Annuler</button>
+          <button type="button" class="btn btn-success" style="background:#1C3D2A;border:none;" id="btn-confirmer-remise" onclick="confirmerRemise()">
+            <i class="fas fa-check-circle me-2"></i>Confirmer la remise
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SUCCÈS -->
+  <div class="modal fade" id="modalSucces" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-body text-center p-5">
+          <div style="font-size:4rem;color:#28a745;margin-bottom:1rem;"><i class="fas fa-check-circle"></i></div>
+          <h4 style="color:#1C3D2A;font-weight:700;">Remise confirmée !</h4>
+          <p class="text-muted">Les vêtements ont bien été remis. La commande est maintenant <strong>clôturée</strong>.</p>
+          <div class="d-flex gap-2 justify-content-center mt-3">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fas fa-list me-1"></i>Retour à la liste</button>
+            <button class="btn btn-secondary" onclick="window.print()"><i class="fas fa-print me-1"></i>Imprimer reçu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function ouvrirModal(num, client, paye, nonPaye) {
+      document.getElementById('modal-num').textContent = num;
+      document.getElementById('modal-client').textContent = client;
+
+      var alertePartiel = document.getElementById('modal-alerte-partiel');
+      var paiementCheck = document.getElementById('modal-paiement-check');
+
+      if (!paye) {
+        alertePartiel.style.display = 'flex';
+        if (nonPaye) {
+          document.getElementById('modal-reste').textContent = '3 600 FCFA';
+          paiementCheck.innerHTML = '<i class="fas fa-times-circle text-danger"></i><span style="font-size:0.85rem;color:#dc3545;">Paiement non effectué</span>';
+        } else {
+          document.getElementById('modal-reste').textContent = '1 800 FCFA';
+          paiementCheck.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#FD7E14;"></i><span style="font-size:0.85rem;color:#FD7E14;">Paiement partiel (35.7%)</span>';
+        }
+      } else {
+        alertePartiel.style.display = 'none';
+        paiementCheck.innerHTML = '<i class="fas fa-check-circle text-success"></i><span style="font-size:0.85rem;">Paiement intégral confirmé</span>';
+      }
+
+      var modal = new bootstrap.Modal(document.getElementById('modalRemise'));
+      modal.show();
+    }
+
+    function confirmerRemise() {
+      var checked = document.getElementById('confirm-remise').checked;
+      if (!checked) {
+        alert('Veuillez cocher la case de confirmation avant de valider la remise.');
+        return;
+      }
+      bootstrap.Modal.getInstance(document.getElementById('modalRemise')).hide();
+      setTimeout(function() {
+        new bootstrap.Modal(document.getElementById('modalSucces')).show();
+      }, 300);
+    }
+  </script>
+</body>
+</html>

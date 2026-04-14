@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Types de vêtements — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .drag-row { cursor: grab; transition: background 0.2s; }
+    .drag-row:active { cursor: grabbing; background: #f0f7f3 !important; }
+    .drag-row:hover { background: #f8f9fa; }
+    .drag-handle { color: #ccc; font-size: 1.1rem; cursor: grab; }
+    .drag-handle:hover { color: #1C3D2A; }
+    .form-switch .form-check-input { width: 2.5em; height: 1.4em; }
+  </style>
+</head>
+<body style="background:#f8f9fa;">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
+    <div class="p-3 border-bottom border-secondary">
+      <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
+    </div>
+    <ul class="nav flex-column flex-grow-1 p-2 mt-2" style="font-size:0.88rem;">
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="02_dashboard.html"><i class="fas fa-home me-2"></i>Dashboard</a></li>
+      <li class="px-3 py-1" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Commandes</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="04_liste_commandes.html"><i class="fas fa-list me-2"></i>Toutes les commandes</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="03_nouvelle_commande.html"><i class="fas fa-plus-circle me-2"></i>Nouvelle commande</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Production</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="05_planification_lots.html"><i class="fas fa-calendar-alt me-2"></i>Planification lots</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="06_traitement_lavage.html"><i class="fas fa-tint me-2"></i>Traitement lavage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="07_traitement_repassage.html"><i class="fas fa-fire me-2"></i>Repassage</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="08_regroupement_client.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-users me-2"></i>Regroupement</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Livraison</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="09_paiement.html"><i class="fas fa-credit-card me-2"></i>Paiements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="10_remise.html"><i class="fas fa-box-open me-2"></i>Remises</a></li>
+      <li class="px-3 py-1 mt-2" style="font-size:0.7rem;color:#C9A020;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Administration</li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded active" href="12_admin_vetements.html" style="background:rgba(201,160,32,0.2);"><i class="fas fa-tshirt me-2"></i>Types vêtements</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="13_admin_clients.html"><i class="fas fa-user me-2"></i>Clients</a></li>
+      <li class="nav-item mb-1"><a class="nav-link text-white py-2 px-3 rounded" href="14_admin_rapports.html"><i class="fas fa-chart-bar me-2"></i>Rapports</a></li>
+    </ul>
+    <div class="p-3 border-top border-secondary mt-auto">
+      <div style="font-size:0.85rem;color:#ddd;"><i class="fas fa-user-circle me-2"></i>Jean Koné <small class="d-block text-muted">Employé</small></div>
+      <a href="01_login.html" class="btn btn-sm mt-2 w-100" style="background:#C9A020;color:#fff;"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</a>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div style="margin-left:250px;">
+
+    <!-- TOPBAR -->
+    <div style="background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;">
+      <div>
+        <h5 style="margin:0;color:#1C3D2A;font-weight:700;"><i class="fas fa-tshirt me-2" style="color:#C9A020;"></i>Types de vêtements</h5>
+        <small class="text-muted">Gérez les catégories et les tarifs du pressing</small>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download me-1"></i>Exporter</button>
+        <button class="btn btn-sm text-white" style="background:#C9A020;" data-bs-toggle="modal" data-bs-target="#modalType" onclick="modeAjout()">
+          <i class="fas fa-plus me-1"></i>Ajouter un type
+        </button>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- Alerte info drag-drop -->
+      <div class="alert alert-info d-flex align-items-center mb-4" style="border-left:4px solid #0dcaf0;font-size:0.85rem;">
+        <i class="fas fa-arrows-alt me-3"></i>
+        <div>Utilisez l'icône <strong><i class="fas fa-grip-vertical"></i></strong> pour réordonner les types par glisser-déposer. L'ordre défini ici s'applique dans le formulaire de nouvelle commande.</div>
+      </div>
+
+      <!-- Stats rapides -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <div class="card border-0 shadow-sm text-center p-3">
+            <div style="font-size:1.8rem;font-weight:700;color:#1C3D2A;">6</div>
+            <div style="font-size:0.8rem;color:#888;">Types actifs</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-0 shadow-sm text-center p-3">
+            <div style="font-size:1.8rem;font-weight:700;color:#C9A020;">400 FCFA</div>
+            <div style="font-size:0.8rem;color:#888;">Prix minimum</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-0 shadow-sm text-center p-3">
+            <div style="font-size:1.8rem;font-weight:700;color:#C9A020;">2 000 FCFA</div>
+            <div style="font-size:0.8rem;color:#888;">Prix maximum</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-0 shadow-sm text-center p-3">
+            <div style="font-size:1.8rem;font-weight:700;color:#1C3D2A;">816 FCFA</div>
+            <div style="font-size:0.8rem;color:#888;">Prix moyen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLEAU -->
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+          <table class="table mb-0" style="font-size:0.88rem;" id="table-vetements">
+            <thead style="background:#1C3D2A;color:#fff;">
+              <tr>
+                <th style="width:50px;padding:0.9rem;" class="text-center">Ordre</th>
+                <th style="padding:0.9rem;">Nom du type</th>
+                <th style="padding:0.9rem;" class="text-end">Prix défaut (FCFA)</th>
+                <th style="padding:0.9rem;" class="text-center">Nb commandes</th>
+                <th style="padding:0.9rem;" class="text-center">Actif</th>
+                <th style="padding:0.9rem;" class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-vetements">
+
+              <!-- Ligne 1 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">1</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-tshirt" style="color:#1C3D2A;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Chemise</div>
+                      <div style="font-size:0.73rem;color:#888;">Lavage + repassage standard</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">500</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">247</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" onclick="modeModif(1)" data-bs-toggle="modal" data-bs-target="#modalType" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Chemise')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 2 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">2</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-male" style="color:#1C3D2A;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Pantalon</div>
+                      <div style="font-size:0.73rem;color:#888;">Lavage + repassage standard</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">700</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">189</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" onclick="modeModif(2)" data-bs-toggle="modal" data-bs-target="#modalType" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Pantalon')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 3 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">3</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-female" style="color:#1C3D2A;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Robe</div>
+                      <div style="font-size:0.73rem;color:#888;">Lavage doux + repassage</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">900</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">134</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#modalType" onclick="modeModif(3)" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Robe')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 4 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">4</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-user-tie" style="color:#1C3D2A;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Veste</div>
+                      <div style="font-size:0.73rem;color:#888;">Soin particulier requis</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">1 200</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">87</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#modalType" onclick="modeModif(4)" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Veste')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 5 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">5</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#fff3e0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-star" style="color:#C9A020;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Costume</div>
+                      <div style="font-size:0.73rem;color:#888;">Veste + pantalon assortis</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">2 000</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">52</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#modalType" onclick="modeModif(5)" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Costume')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 6 -->
+              <tr class="drag-row" draggable="true">
+                <td class="text-center align-middle pe-2">
+                  <i class="fas fa-grip-vertical drag-handle"></i>
+                  <span class="text-muted ms-1" style="font-size:0.8rem;">6</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:36px;height:36px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                      <i class="fas fa-bed" style="color:#1565c0;"></i>
+                    </div>
+                    <div>
+                      <div style="font-weight:700;">Linge de maison</div>
+                      <div style="font-size:0.73rem;color:#888;">Draps, serviettes, nappes</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end align-middle">
+                  <span style="font-weight:700;font-size:1rem;color:#1C3D2A;">400</span>
+                  <small class="text-muted"> FCFA</small>
+                </td>
+                <td class="text-center align-middle">
+                  <span class="badge bg-secondary">210</span>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" checked style="cursor:pointer;">
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#modalType" onclick="modeModif(6)" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="confirmerSuppression('Linge de maison')" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer" style="background:#f8f9fa;border-top:1px solid #dee2e6;">
+          <div class="d-flex justify-content-between align-items-center" style="font-size:0.83rem;color:#888;">
+            <span><i class="fas fa-info-circle me-1"></i>6 types de vêtements configurés — Glissez-déposez pour réordonner</span>
+            <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-save me-1"></i>Sauvegarder l'ordre</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL AJOUTER/MODIFIER UN TYPE -->
+  <div class="modal fade" id="modalType" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header" style="background:#1C3D2A;color:#fff;">
+          <h5 class="modal-title" id="modalTypeLabel">
+            <i class="fas fa-plus-circle me-2" style="color:#C9A020;"></i>
+            <span id="modal-type-titre">Ajouter un type de vêtement</span>
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="font-size:0.88rem;">Nom du type <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="input-nom" placeholder="Ex : Boubou, Djellaba, Complet wax..." style="border-color:#1C3D2A;">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="font-size:0.88rem;">Prix par défaut (FCFA) <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="input-prix" placeholder="Ex : 600" min="100" step="50" style="border-color:#1C3D2A;">
+              <span class="input-group-text">FCFA</span>
+            </div>
+            <div style="font-size:0.75rem;color:#888;margin-top:3px;">Ce prix sera proposé par défaut lors de la création d'une commande</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="font-size:0.88rem;">Ordre d'affichage</label>
+            <input type="number" class="form-control" id="input-ordre" placeholder="Ex : 7" min="1" style="border-color:#1C3D2A;">
+            <div style="font-size:0.75rem;color:#888;margin-top:3px;">Peut aussi être défini par glisser-déposer dans le tableau</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="font-size:0.88rem;">Description (optionnel)</label>
+            <input type="text" class="form-control" id="input-description" placeholder="Ex : Soin particulier, lavage à sec..." style="border-color:#1C3D2A;">
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <label class="form-label fw-bold mb-0" style="font-size:0.88rem;">Actif</label>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox" id="input-actif" checked style="cursor:pointer;width:2.5em;height:1.4em;">
+            </div>
+            <small class="text-muted">Type disponible dans les nouvelles commandes</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>Annuler</button>
+          <button type="button" class="btn text-white" style="background:#1C3D2A;border:none;" onclick="sauvegarderType()">
+            <i class="fas fa-save me-2"></i><span id="btn-modal-label">Ajouter le type</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SUPPRESSION -->
+  <div class="modal fade" id="modalSuppression" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-body text-center p-4">
+          <div style="font-size:3rem;color:#dc3545;margin-bottom:0.75rem;"><i class="fas fa-exclamation-triangle"></i></div>
+          <h6 style="font-weight:700;color:#1C3D2A;">Supprimer ce type ?</h6>
+          <p class="text-muted" style="font-size:0.85rem;" id="msg-suppression">Voulez-vous vraiment supprimer "Chemise" ? Cette action est irréversible.</p>
+          <div class="d-flex gap-2 justify-content-center mt-3">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash me-1"></i>Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var typeData = {
+      1: { nom: 'Chemise', prix: 500, ordre: 1, description: 'Lavage + repassage standard', actif: true },
+      2: { nom: 'Pantalon', prix: 700, ordre: 2, description: 'Lavage + repassage standard', actif: true },
+      3: { nom: 'Robe', prix: 900, ordre: 3, description: 'Lavage doux + repassage', actif: true },
+      4: { nom: 'Veste', prix: 1200, ordre: 4, description: 'Soin particulier requis', actif: true },
+      5: { nom: 'Costume', prix: 2000, ordre: 5, description: 'Veste + pantalon assortis', actif: true },
+      6: { nom: 'Linge de maison', prix: 400, ordre: 6, description: 'Draps, serviettes, nappes', actif: true }
+    };
+
+    function modeAjout() {
+      document.getElementById('modal-type-titre').textContent = 'Ajouter un type de vêtement';
+      document.getElementById('btn-modal-label').textContent = 'Ajouter le type';
+      document.getElementById('input-nom').value = '';
+      document.getElementById('input-prix').value = '';
+      document.getElementById('input-ordre').value = '7';
+      document.getElementById('input-description').value = '';
+      document.getElementById('input-actif').checked = true;
+    }
+
+    function modeModif(id) {
+      var d = typeData[id];
+      document.getElementById('modal-type-titre').textContent = 'Modifier — ' + d.nom;
+      document.getElementById('btn-modal-label').textContent = 'Enregistrer les modifications';
+      document.getElementById('input-nom').value = d.nom;
+      document.getElementById('input-prix').value = d.prix;
+      document.getElementById('input-ordre').value = d.ordre;
+      document.getElementById('input-description').value = d.description;
+      document.getElementById('input-actif').checked = d.actif;
+    }
+
+    function sauvegarderType() {
+      bootstrap.Modal.getInstance(document.getElementById('modalType')).hide();
+    }
+
+    function confirmerSuppression(nom) {
+      document.getElementById('msg-suppression').textContent = 'Voulez-vous vraiment supprimer "' + nom + '" ? Cette action est irréversible.';
+      new bootstrap.Modal(document.getElementById('modalSuppression')).show();
+    }
+  </script>
+</body>
+</html>

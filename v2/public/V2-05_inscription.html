@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — Espace Client — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ep-auth-layout">
+
+  <!-- Panneau visuel gauche -->
+  <div class="ep-auth-visual">
+    <div class="text-center mb-5" style="position:relative;z-index:2;">
+      <a href="V2-01_accueil.html" class="text-decoration-none d-block text-center">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="64" style="display:block;margin:0 auto;">
+      </a>
+    </div>
+
+    <div style="position:relative;z-index:2;width:100%;max-width:360px;">
+      <h2 class="fw-bold mb-3" style="font-size:1.6rem;">Rejoignez <span style="color:var(--ep-gold);">5 000+</span><br>clients satisfaits</h2>
+      <p style="color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:2rem;">
+        Créez votre compte gratuitement et profitez de tous les avantages de l'espace client.
+      </p>
+
+      <!-- Avantages -->
+      <div class="d-flex flex-column gap-3 mb-4">
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle" style="color:var(--ep-gold);width:20px;"></i>
+          <span style="font-size:.88rem;color:rgba(255,255,255,.85);">Suivi commandes en temps réel</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle" style="color:var(--ep-gold);width:20px;"></i>
+          <span style="font-size:.88rem;color:rgba(255,255,255,.85);">Programme fidélité automatique</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle" style="color:var(--ep-gold);width:20px;"></i>
+          <span style="font-size:.88rem;color:rgba(255,255,255,.85);">Historique complet de vos commandes</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle" style="color:var(--ep-gold);width:20px;"></i>
+          <span style="font-size:.88rem;color:rgba(255,255,255,.85);">Notifications de statut</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle" style="color:var(--ep-gold);width:20px;"></i>
+          <span style="font-size:.88rem;color:rgba(255,255,255,.85);">Inscription 100% gratuite</span>
+        </div>
+      </div>
+
+      <!-- Programme fidélité mini -->
+      <div style="background:rgba(201,160,32,.15);border:1px solid rgba(201,160,32,.3);border-radius:var(--ep-radius-lg);padding:1.25rem;">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <i class="fas fa-gift" style="color:var(--ep-gold);"></i>
+          <span class="fw-bold" style="color:var(--ep-gold);">Bonus inscription</span>
+        </div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.75);margin-bottom:0;">
+          Recevez <strong style="color:var(--ep-gold);">50 points</strong> de bienvenue
+          dès votre première commande, soit <strong style="color:var(--ep-gold);">250 FCFA</strong> de remise offerts !
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire inscription -->
+  <div class="ep-auth-form" style="overflow-y:auto;">
+    <div class="ep-auth-form-inner">
+      <div class="mb-4">
+        <a href="V2-01_accueil.html" class="text-muted text-decoration-none" style="font-size:.85rem;">
+          <i class="fas fa-arrow-left me-1"></i> Retour au site
+        </a>
+      </div>
+
+      <h2 class="fw-bold text-ep-green mb-1">Créer mon compte</h2>
+      <p class="text-muted mb-4">Gratuit, sans engagement. Créez votre espace en moins de 2 minutes.</p>
+
+      <form class="ep-needs-validation" novalidate>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label class="ep-form-label">Prénom <span class="text-danger">*</span></label>
+            <input type="text" class="form-control ep-form-control" placeholder="Votre prénom" required>
+            <div class="invalid-feedback">Prénom requis.</div>
+          </div>
+          <div class="col-sm-6">
+            <label class="ep-form-label">Nom <span class="text-danger">*</span></label>
+            <input type="text" class="form-control ep-form-control" placeholder="Votre nom" required>
+            <div class="invalid-feedback">Nom requis.</div>
+          </div>
+          <div class="col-12">
+            <label class="ep-form-label">Téléphone <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text" style="border:2px solid var(--ep-border);border-right:none;background:#f8f9fa;font-size:.85rem;">🇨🇮 +225</span>
+              <input type="tel" class="form-control ep-form-control" style="border-left:none !important;"
+                placeholder="07 12 34 56 78" required pattern="[0-9 ]{8,12}">
+            </div>
+            <div class="form-text text-muted" style="font-size:.78rem;">Utilisé pour vous retrouver lors des dépôts en boutique.</div>
+            <div class="invalid-feedback">Numéro de téléphone requis.</div>
+          </div>
+          <div class="col-12">
+            <label class="ep-form-label">Email <small class="text-muted fw-normal">(optionnel)</small></label>
+            <input type="email" class="form-control ep-form-control" placeholder="votre@email.com">
+            <div class="form-text text-muted" style="font-size:.78rem;">Pour recevoir vos notifications par email.</div>
+          </div>
+          <div class="col-12">
+            <label class="ep-form-label">Mot de passe <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input type="password" id="ep-password" class="form-control ep-form-control" style="border-right:none;"
+                placeholder="Minimum 8 caractères" required minlength="8">
+              <button type="button" class="input-group-text" style="border:2px solid var(--ep-border);border-left:none;background:#f8f9fa;cursor:pointer;"
+                onclick="const i=document.getElementById('ep-password');i.type=i.type==='password'?'text':'password';this.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <!-- Force mot de passe -->
+            <div class="mt-2">
+              <div class="ep-progress">
+                <div id="ep-pw-strength" class="ep-progress-bar" style="width:0%;transition:width .3s,background .3s;"></div>
+              </div>
+              <div class="text-muted" style="font-size:.72rem;margin-top:.25rem;">
+                Force : utilisez majuscules, chiffres et symboles
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="ep-form-label">Confirmer le mot de passe <span class="text-danger">*</span></label>
+            <input type="password" id="ep-password-confirm" class="form-control ep-form-control"
+              placeholder="Répétez votre mot de passe" required>
+            <div class="invalid-feedback">Les mots de passe ne correspondent pas.</div>
+          </div>
+
+          <!-- Dépôt préféré -->
+          <div class="col-12">
+            <label class="ep-form-label">Point de dépôt habituel <small class="text-muted fw-normal">(optionnel)</small></label>
+            <select class="form-select ep-form-control">
+              <option value="">Sélectionnez votre dépôt le plus proche</option>
+              <option>Dépôt Principal — Plateau, Abidjan</option>
+              <option>Dépôt Cocody — Riviera 2</option>
+              <option>Dépôt Yopougon — Carrefour Marché</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cgu" required>
+              <label class="form-check-label text-muted" for="cgu" style="font-size:.85rem;">
+                J'accepte les <a href="#" class="text-ep-green">Conditions d'utilisation</a>
+                et la <a href="#" class="text-ep-green">Politique de confidentialité</a>.
+                <span class="text-danger">*</span>
+              </label>
+              <div class="invalid-feedback">Vous devez accepter les conditions.</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="newsletter" checked>
+              <label class="form-check-label text-muted" for="newsletter" style="font-size:.85rem;">
+                Recevoir les promotions et actualités d'Élégance Pressing
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <a href="../espace-client/V2-06_dashboard.html" class="btn btn-ep-primary w-100 py-2">
+              <i class="fas fa-user-plus me-2"></i> Créer mon compte gratuitement
+            </a>
+          </div>
+        </div>
+      </form>
+
+      <p class="text-center text-muted mt-3" style="font-size:.88rem;">
+        Déjà un compte ?
+        <a href="V2-04_connexion.html" class="text-ep-green fw-bold text-decoration-none">Se connecter</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

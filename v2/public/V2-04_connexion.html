@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Espace Client — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="ep-auth-layout">
+
+  <!-- Panneau visuel gauche -->
+  <div class="ep-auth-visual">
+    <!-- Logo -->
+    <div class="text-center mb-5" style="position:relative;z-index:2;">
+      <a href="V2-01_accueil.html" class="text-decoration-none d-block text-center">
+        <img src="../assets/img/logo.png" alt="Élégance Pressing" height="64" style="display:block;margin:0 auto;">
+      </a>
+    </div>
+
+    <!-- Illustration / stats -->
+    <div style="position:relative;z-index:2;width:100%;max-width:360px;">
+      <h2 class="fw-bold mb-3" style="font-size:1.6rem;">Votre pressing<br>à portée de main</h2>
+      <p style="color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:2rem;">
+        Suivez vos commandes en temps réel, gérez vos paiements et profitez de votre programme fidélité.
+      </p>
+
+      <!-- Cards avantages -->
+      <div class="d-flex flex-column gap-3">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--ep-radius);padding:1rem;display:flex;gap:.75rem;align-items:center;">
+          <div style="background:rgba(201,160,32,.2);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-eye" style="color:var(--ep-gold);"></i>
+          </div>
+          <div>
+            <div class="fw-bold" style="font-size:.88rem;">Suivi en temps réel</div>
+            <div style="font-size:.78rem;color:rgba(255,255,255,.6);">Statut de vos vêtements à tout moment</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--ep-radius);padding:1rem;display:flex;gap:.75rem;align-items:center;">
+          <div style="background:rgba(201,160,32,.2);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-star" style="color:var(--ep-gold);"></i>
+          </div>
+          <div>
+            <div class="fw-bold" style="font-size:.88rem;">Points fidélité</div>
+            <div style="font-size:.78rem;color:rgba(255,255,255,.6);">Cumulez et utilisez vos points</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--ep-radius);padding:1rem;display:flex;gap:.75rem;align-items:center;">
+          <div style="background:rgba(201,160,32,.2);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fas fa-receipt" style="color:var(--ep-gold);"></i>
+          </div>
+          <div>
+            <div class="fw-bold" style="font-size:.88rem;">Historique complet</div>
+            <div style="font-size:.78rem;color:rgba(255,255,255,.6);">Toutes vos commandes et paiements</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Témoignage -->
+      <div class="mt-4 p-3" style="background:rgba(255,255,255,.06);border-radius:var(--ep-radius);border-left:3px solid var(--ep-gold);">
+        <p style="font-size:.82rem;color:rgba(255,255,255,.8);font-style:italic;margin-bottom:.5rem;">
+          "L'espace client m'a changé la vie ! Je sais exactement quand mes vêtements sont prêts."
+        </p>
+        <div style="font-size:.75rem;color:var(--ep-gold);">— Fatoumata K., Cliente fidèle</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire connexion droite -->
+  <div class="ep-auth-form">
+    <div class="ep-auth-form-inner">
+      <div class="mb-4">
+        <a href="V2-01_accueil.html" class="text-muted text-decoration-none" style="font-size:.85rem;">
+          <i class="fas fa-arrow-left me-1"></i> Retour au site
+        </a>
+      </div>
+
+      <h2 class="fw-bold text-ep-green mb-1">Bon retour !</h2>
+      <p class="text-muted mb-4">Connectez-vous à votre espace client.</p>
+
+      <form class="ep-needs-validation" novalidate>
+        <div class="mb-3">
+          <label class="ep-form-label">Téléphone ou Email <span class="text-danger">*</span></label>
+          <div class="input-group">
+            <span class="input-group-text" style="border:2px solid var(--ep-border);border-right:none;background:#f8f9fa;">
+              <i class="fas fa-user text-muted"></i>
+            </span>
+            <input type="text" class="form-control" style="border:2px solid var(--ep-border);border-left:none;padding:.65rem 1rem;"
+              placeholder="+225 07 XX XX XX ou email@mail.com" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="ep-form-label mb-0">Mot de passe <span class="text-danger">*</span></label>
+            <a href="#" style="font-size:.82rem;color:var(--ep-green);">Mot de passe oublié ?</a>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text" style="border:2px solid var(--ep-border);border-right:none;background:#f8f9fa;">
+              <i class="fas fa-lock text-muted"></i>
+            </span>
+            <input type="password" id="ep-pw-login" class="form-control" style="border:2px solid var(--ep-border);border-left:none;border-right:none;padding:.65rem 1rem;"
+              placeholder="Votre mot de passe" required>
+            <button type="button" class="input-group-text" style="border:2px solid var(--ep-border);border-left:none;background:#f8f9fa;cursor:pointer;"
+              onclick="const i=document.getElementById('ep-pw-login');i.type=i.type==='password'?'text':'password';this.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="rememberMe">
+          <label class="form-check-label text-muted" for="rememberMe" style="font-size:.88rem;">
+            Se souvenir de moi pendant 30 jours
+          </label>
+        </div>
+        <a href="../espace-client/V2-06_dashboard.html" class="btn btn-ep-primary w-100 py-2 mb-3">
+          <i class="fas fa-sign-in-alt me-2"></i> Se connecter
+        </a>
+
+        <!-- Divider -->
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="flex-grow-1" style="height:1px;background:var(--ep-border);"></div>
+          <span class="text-muted" style="font-size:.8rem;">ou</span>
+          <div class="flex-grow-1" style="height:1px;background:var(--ep-border);"></div>
+        </div>
+
+        <!-- Connexion numéro de commande -->
+        <div class="p-3 mb-3" style="background:var(--ep-cream);border-radius:var(--ep-radius);border:1px solid var(--ep-cream-dark);">
+          <div class="fw-bold text-ep-green mb-2" style="font-size:.88rem;">
+            <i class="fas fa-search me-2" style="color:var(--ep-gold);"></i>
+            Suivre une commande sans compte
+          </div>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Numéro de commande ex: EP-20260414-001">
+            <button class="btn btn-ep-primary btn-sm" type="button">Suivre</button>
+          </div>
+        </div>
+      </form>
+
+      <p class="text-center text-muted" style="font-size:.88rem;">
+        Pas encore de compte ?
+        <a href="V2-05_inscription.html" class="text-ep-green fw-bold text-decoration-none">Créer un compte gratuit</a>
+      </p>
+
+      <p class="text-center mt-4" style="font-size:.75rem;color:var(--ep-text-muted);">
+        En vous connectant, vous acceptez nos
+        <a href="#" class="text-ep-green">Conditions d'utilisation</a> et notre
+        <a href="#" class="text-ep-green">Politique de confidentialité</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
