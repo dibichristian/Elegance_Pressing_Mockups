@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidélité — Admin Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif; }
+
+    .ep-client-layout { display: flex; min-height: 100vh; }
+    .ep-admin-sidebar {
+      background: var(--ep-green); color: var(--ep-white);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0;
+      width: 260px; height: 100vh; z-index: 100;
+      overflow-y: auto; transition: var(--ep-transition);
+    }
+    .ep-sidebar-brand-wrap { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; gap: .85rem; }
+    .ep-brand-name { font-size: 1rem; font-weight: 800; color: var(--ep-white); line-height: 1.2; }
+    .ep-sidebar-nav { padding: 1rem 0; flex: 1; }
+    .ep-sidebar-nav .ep-nav-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .72rem 1.5rem; color: rgba(255,255,255,.8);
+      text-decoration: none; font-weight: 500; font-size: .9rem;
+      transition: var(--ep-transition); border-left: 3px solid transparent;
+    }
+    .ep-sidebar-nav .ep-nav-item:hover { background: rgba(255,255,255,.07); color: var(--ep-white); border-left-color: rgba(201,160,32,.5); }
+    .ep-sidebar-nav .ep-nav-item.active { background: rgba(255,255,255,.1); color: var(--ep-white); border-left-color: var(--ep-gold); }
+    .ep-sidebar-nav .ep-nav-item i { width: 18px; text-align: center; }
+    .ep-sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid rgba(255,255,255,.1); }
+    .ep-user-info { font-size: .82rem; color: rgba(255,255,255,.65); margin-bottom: .75rem; }
+    .ep-logout-btn { display: flex; align-items: center; color: rgba(255,255,255,.65); text-decoration: none; font-size: .85rem; transition: var(--ep-transition); }
+    .ep-logout-btn:hover { color: var(--ep-gold); }
+
+    .ep-client-main { margin-left: 260px; width: calc(100% - 260px); background: #f4f6f8; min-height: 100vh; }
+    .ep-client-topbar {
+      background: var(--ep-white); padding: .85rem 1.75rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,.08);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .ep-page-title { font-size: 1.1rem; font-weight: 700; color: var(--ep-green); margin: 0; }
+    .ep-client-content { padding: 2rem 1.75rem; }
+
+    /* Niveau cards */
+    .ep-level-card {
+      border-radius: var(--ep-radius-lg);
+      padding: 1.75rem;
+      height: 100%;
+    }
+    .ep-level-card.bronze {
+      background: linear-gradient(135deg, #6b3e26 0%, #8b5a2b 100%);
+      color: #fff;
+    }
+    .ep-level-card.argent {
+      background: linear-gradient(135deg, #555 0%, #888 100%);
+      color: #fff;
+    }
+    .ep-level-card.or {
+      background: linear-gradient(135deg, #b08500 0%, var(--ep-gold) 100%);
+      color: #fff;
+    }
+    .ep-level-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
+      padding: .3rem .9rem; border-radius: 50px;
+      font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 1rem;
+    }
+    .ep-level-pts { font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: .25rem; }
+    .ep-level-pts-label { font-size: .82rem; opacity: .8; margin-bottom: 1.25rem; }
+    .ep-level-avantage {
+      background: rgba(255,255,255,.15);
+      border-radius: var(--ep-radius);
+      padding: .75rem 1rem;
+      font-size: .85rem;
+    }
+    .ep-level-avantage i { margin-right: .5rem; }
+
+    /* Form labels */
+    .ep-form-label-sm { font-weight: 600; color: var(--ep-green); font-size: .85rem; margin-bottom: .35rem; display: block; }
+    .ep-input-admin {
+      border: 2px solid var(--ep-border); border-radius: var(--ep-radius);
+      padding: .6rem 1rem; font-size: .9rem; width: 100%;
+      transition: var(--ep-transition); font-family: inherit;
+    }
+    .ep-input-admin:focus { outline: none; border-color: var(--ep-green); box-shadow: 0 0 0 3px rgba(28,61,42,.1); }
+
+    .badge-bronze { background: rgba(139,90,43,.12); color: #8b5a2b; padding: .25rem .65rem; border-radius: 50px; font-size: .72rem; font-weight: 700; }
+    .badge-argent { background: rgba(108,117,125,.15); color: #495057; padding: .25rem .65rem; border-radius: 50px; font-size: .72rem; font-weight: 700; }
+    .badge-or     { background: rgba(201,160,32,.15); color: #b08500; padding: .25rem .65rem; border-radius: 50px; font-size: .72rem; font-weight: 700; }
+
+    .ep-admin-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ep-gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .82rem; color: var(--ep-white); cursor: pointer; }
+
+    .rank-badge {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 800; flex-shrink: 0;
+    }
+    .rank-1 { background: var(--ep-gold); color: #fff; }
+    .rank-2 { background: #888; color: #fff; }
+    .rank-3 { background: #8b5a2b; color: #fff; }
+    .rank-other { background: #e9ecef; color: #495057; }
+
+    @media (max-width: 991.98px) {
+      .ep-admin-sidebar { transform: translateX(-100%); }
+      .ep-admin-sidebar.open { transform: translateX(0); }
+      .ep-client-main { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar -->
+  <aside class="ep-admin-sidebar">
+    <div class="ep-sidebar-brand-wrap">
+      <img src="../assets/img/logo.png" alt="Logo" style="height:36px">
+      <div>
+        <div class="ep-brand-name">Élégance Pressing</div>
+        <div style="font-size:.65rem;color:#C9A020;letter-spacing:.1em;text-transform:uppercase">Admin V2</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <a href="VA-02_dashboard.html" class="ep-nav-item"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="VA-03_clients.html" class="ep-nav-item"><i class="fas fa-users"></i> Clients</a>
+      <a href="VA-04_messages.html" class="ep-nav-item"><i class="fas fa-envelope"></i> Messages <span class="badge bg-danger ms-auto">3</span></a>
+      <a href="VA-05_fidelite.html" class="ep-nav-item active"><i class="fas fa-star"></i> Fidélité</a>
+      <a href="VA-06_contenu.html" class="ep-nav-item"><i class="fas fa-pen-to-square"></i> Contenu du site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <div class="ep-user-info"><i class="fas fa-user-shield me-2"></i>Administrateur</div>
+      <a href="VA-01_login.html" class="ep-logout-btn"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;" onclick="document.querySelector('.ep-admin-sidebar').classList.toggle('open')">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <h1 class="ep-page-title"><i class="fas fa-star me-2" style="color:var(--ep-gold);"></i>Programme Fidélité</h1>
+      </div>
+      <div class="ep-admin-avatar" title="Administrateur">AD</div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- Section 1 — Paramètres -->
+      <div class="ep-card p-4 mb-4">
+        <h6 class="fw-bold text-ep-green mb-4">
+          <i class="fas fa-sliders me-2" style="color:var(--ep-gold);"></i>
+          Paramètres du programme
+        </h6>
+        <form>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="ep-form-label-sm" for="pts-visite">
+                <i class="fas fa-shopping-bag me-1"></i> Points par visite / commande
+              </label>
+              <input type="number" id="pts-visite" class="ep-input-admin" value="10" min="1" max="1000">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);margin-top:.3rem;">Points crédités à chaque commande</div>
+            </div>
+            <div class="col-md-4">
+              <label class="ep-form-label-sm" for="val-point">
+                <i class="fas fa-coins me-1"></i> Valeur d'un point (FCFA)
+              </label>
+              <input type="number" id="val-point" class="ep-input-admin" value="5" min="1" max="100">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);margin-top:.3rem;">1 point = 5 FCFA de remise</div>
+            </div>
+            <div class="col-md-4">
+              <label class="ep-form-label-sm" for="duree-val">
+                <i class="fas fa-calendar-alt me-1"></i> Durée de validité (jours)
+              </label>
+              <input type="number" id="duree-val" class="ep-input-admin" value="365" min="30" max="730">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);margin-top:.3rem;">Expiration des points non utilisés</div>
+            </div>
+          </div>
+          <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn btn-ep-primary btn-sm px-4">
+              <i class="fas fa-save me-2"></i> Sauvegarder les paramètres
+            </button>
+            <button type="button" class="btn btn-ep-outline-green btn-sm px-4">
+              <i class="fas fa-undo me-1"></i> Réinitialiser
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Section 2 — Niveaux -->
+      <div class="mb-4">
+        <h6 class="fw-bold text-ep-green mb-3">
+          <i class="fas fa-trophy me-2" style="color:var(--ep-gold);"></i>
+          Niveaux de fidélité
+        </h6>
+        <div class="row g-3">
+          <!-- Bronze -->
+          <div class="col-md-4">
+            <div class="ep-level-card bronze">
+              <div class="ep-level-badge"><i class="fas fa-circle"></i> Bronze</div>
+              <div class="ep-level-pts">0 – 99</div>
+              <div class="ep-level-pts-label">points requis</div>
+              <div class="ep-level-avantage">
+                <i class="fas fa-tag"></i>
+                <strong>Avantage :</strong> –5% sur la prochaine commande
+              </div>
+              <div class="mt-3 d-flex gap-2">
+                <span style="font-size:.78rem;opacity:.8;"><i class="fas fa-users me-1"></i> 68 clients</span>
+              </div>
+            </div>
+          </div>
+          <!-- Argent -->
+          <div class="col-md-4">
+            <div class="ep-level-card argent">
+              <div class="ep-level-badge"><i class="fas fa-medal"></i> Argent</div>
+              <div class="ep-level-pts">100 – 299</div>
+              <div class="ep-level-pts-label">points requis</div>
+              <div class="ep-level-avantage">
+                <i class="fas fa-tags"></i>
+                <strong>Avantages :</strong> –10% + prise en charge prioritaire
+              </div>
+              <div class="mt-3 d-flex gap-2">
+                <span style="font-size:.78rem;opacity:.8;"><i class="fas fa-users me-1"></i> 42 clients</span>
+              </div>
+            </div>
+          </div>
+          <!-- Or -->
+          <div class="col-md-4">
+            <div class="ep-level-card or">
+              <div class="ep-level-badge"><i class="fas fa-star"></i> Or</div>
+              <div class="ep-level-pts">300+</div>
+              <div class="ep-level-pts-label">points requis</div>
+              <div class="ep-level-avantage">
+                <i class="fas fa-crown"></i>
+                <strong>Avantages :</strong> –15% + service express offert
+              </div>
+              <div class="mt-3 d-flex gap-2">
+                <span style="font-size:.78rem;opacity:.8;"><i class="fas fa-users me-1"></i> 18 clients</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3 — Classement Top 10 -->
+      <div class="ep-table-wrapper">
+        <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+          <h6 class="fw-bold text-ep-green mb-0">
+            <i class="fas fa-ranking-star me-2" style="color:var(--ep-gold);"></i>
+            Classement — Top 10 clients (points)
+          </h6>
+        </div>
+        <div class="table-responsive">
+          <table class="ep-table">
+            <thead>
+              <tr>
+                <th>Rang</th>
+                <th>Nom</th>
+                <th>Niveau</th>
+                <th>Points</th>
+                <th>Dernière visite</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="rank-badge rank-1">1</div></td>
+                <td class="fw-bold">Fatoumata Koné</td>
+                <td><span class="badge-or"><i class="fas fa-star me-1"></i>Or</span></td>
+                <td class="fw-bold text-ep-gold">430 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">14/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-2">2</div></td>
+                <td class="fw-bold">Touré Fatoumata</td>
+                <td><span class="badge-or"><i class="fas fa-star me-1"></i>Or</span></td>
+                <td class="fw-bold text-ep-gold">380 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">12/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-3">3</div></td>
+                <td class="fw-bold">N'Guessan Pierre</td>
+                <td><span class="badge-or"><i class="fas fa-star me-1"></i>Or</span></td>
+                <td class="fw-bold text-ep-gold">310 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">10/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">4</div></td>
+                <td class="fw-bold">Koné Ibrahim</td>
+                <td><span class="badge-argent"><i class="fas fa-medal me-1"></i>Argent</span></td>
+                <td class="fw-bold" style="color:#495057;">210 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">08/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">5</div></td>
+                <td class="fw-bold">Coulibaly Awa</td>
+                <td><span class="badge-argent"><i class="fas fa-medal me-1"></i>Argent</span></td>
+                <td class="fw-bold" style="color:#495057;">155 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">07/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">6</div></td>
+                <td class="fw-bold">Diallo Seydou</td>
+                <td><span class="badge-bronze"><i class="fas fa-circle me-1"></i>Bronze</span></td>
+                <td class="fw-bold" style="color:#8b5a2b;">75 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">05/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">7</div></td>
+                <td class="fw-bold">Ouattara Mariam</td>
+                <td><span class="badge-bronze"><i class="fas fa-circle me-1"></i>Bronze</span></td>
+                <td class="fw-bold" style="color:#8b5a2b;">60 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">01/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">8</div></td>
+                <td class="fw-bold">Sylla Mariame</td>
+                <td><span class="badge-bronze"><i class="fas fa-circle me-1"></i>Bronze</span></td>
+                <td class="fw-bold" style="color:#8b5a2b;">45 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">28/03/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">9</div></td>
+                <td class="fw-bold">Bamba Moussa</td>
+                <td><span class="badge-bronze"><i class="fas fa-circle me-1"></i>Bronze</span></td>
+                <td class="fw-bold" style="color:#8b5a2b;">20 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">22/03/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+              <tr>
+                <td><div class="rank-badge rank-other">10</div></td>
+                <td class="fw-bold">Aminata Bamba</td>
+                <td><span class="badge-bronze"><i class="fas fa-circle me-1"></i>Bronze</span></td>
+                <td class="fw-bold" style="color:#8b5a2b;">0 pts</td>
+                <td class="text-muted" style="font-size:.82rem;">14/04/2026</td>
+                <td><button class="btn btn-sm btn-ep-outline-green py-1 px-2" data-bs-toggle="modal" data-bs-target="#modalAjustPts" style="font-size:.75rem;"><i class="fas fa-edit me-1"></i>Ajuster</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Modal Ajuster points -->
+<div class="modal fade" id="modalAjustPts" tabindex="-1" aria-labelledby="modalAjustPtsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
+    <div class="modal-content" style="border-radius:var(--ep-radius-lg);overflow:hidden;">
+      <div class="modal-header" style="background:linear-gradient(135deg,var(--ep-green) 0%,var(--ep-green-light) 100%);border:none;padding:1.25rem 1.5rem;">
+        <h5 class="modal-title text-white fw-bold" id="modalAjustPtsLabel">
+          <i class="fas fa-star me-2" style="color:var(--ep-gold);"></i>
+          Ajuster les points — Fatoumata Koné
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="mb-3">
+          <div style="font-size:.78rem;color:var(--ep-text-muted);margin-bottom:.2rem;">Solde actuel</div>
+          <div class="fw-bold" style="font-size:1.4rem;color:var(--ep-gold);">430 points</div>
+        </div>
+        <div class="mb-3">
+          <label class="ep-form-label-sm" for="ajust-pts">Ajustement (ex: +50 ou -30)</label>
+          <input type="number" id="ajust-pts" class="form-control" placeholder="Ex: 50 ou -20" style="border:2px solid var(--ep-border);border-radius:var(--ep-radius);">
+          <div style="font-size:.75rem;color:var(--ep-text-muted);margin-top:.25rem;">Saisir un nombre positif (ajout) ou négatif (déduction)</div>
+        </div>
+        <div class="mb-3">
+          <label class="ep-form-label-sm" for="ajust-motif">Motif de l'ajustement</label>
+          <textarea id="ajust-motif" class="form-control" rows="3" placeholder="Ex: Correction manuelle suite à erreur système…" style="border:2px solid var(--ep-border);border-radius:var(--ep-radius);font-family:inherit;font-size:.88rem;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-ep-primary btn-sm px-4">
+          <i class="fas fa-save me-1"></i> Confirmer l'ajustement
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -10,6 +10,22 @@
 </head>
 <body style="background:#f8f9fa;">
 
+  <!-- Bouton flottant retour aux maquettes -->
+  <a href="../index.html" id="back-to-index" title="Retour aux maquettes"
+     style="position:fixed;top:12px;right:12px;left:auto;z-index:9999;
+            display:flex;align-items:center;gap:6px;
+            background:rgba(28,61,42,0.92);color:#C9A020;
+            padding:6px 12px 6px 10px;border-radius:50px;
+            font-size:0.75rem;font-weight:600;text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.3);
+            backdrop-filter:blur(4px);
+            transition:all 0.2s ease;border:1px solid rgba(201,160,32,0.3);"
+     onmouseover="this.style.background='rgba(28,61,42,1)';this.style.transform='translateY(-1px)'"
+     onmouseout="this.style.background='rgba(28,61,42,0.92)';this.style.transform='translateY(0)'">
+    <i class="fas fa-th-large" style="font-size:0.8rem;"></i>
+    <span>Maquettes</span>
+  </a>
+
   <!-- SIDEBAR -->
   <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
     <div class="p-3 border-bottom border-secondary">
@@ -209,70 +225,70 @@
                 </div>
               </div>
 
-              <!-- Tableau checklist -->
-              <div class="table-responsive mb-3">
-                <table class="table table-bordered align-middle" style="font-size:0.88rem;">
-                  <thead style="background:#1C3D2A;color:#fff;">
-                    <tr>
-                      <th style="width:35%;">Type vêtement</th>
-                      <th class="text-center" style="width:20%;">Qté commandée</th>
-                      <th class="text-center" style="width:25%;">Qté présente</th>
-                      <th class="text-center" style="width:20%;">Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex align-items-center gap-2">
-                          <i class="fas fa-tshirt text-secondary"></i>
-                          <div>
-                            <div style="font-weight:600;">Chemise</div>
-                            <div style="font-size:0.75rem;color:#888;">500 FCFA / pièce</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <span class="badge bg-secondary fs-6" style="font-size:1rem!important;padding:0.4rem 0.8rem;">2</span>
-                      </td>
-                      <td class="text-center">
-                        <input type="number" class="form-control form-control-sm text-center qty-input" id="qty-1" value="2" min="0" max="5" style="width:70px;margin:auto;border-color:#1C3D2A;" onchange="checkQty(1, 2)">
-                      </td>
-                      <td class="text-center" id="status-1">
-                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex align-items-center gap-2">
-                          <i class="fas fa-male text-secondary"></i>
-                          <div>
-                            <div style="font-weight:600;">Pantalon</div>
-                            <div style="font-size:0.75rem;color:#888;">700 FCFA / pièce</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <span class="badge bg-secondary" style="font-size:1rem!important;padding:0.4rem 0.8rem;">1</span>
-                      </td>
-                      <td class="text-center">
-                        <input type="number" class="form-control form-control-sm text-center qty-input" id="qty-2" value="1" min="0" max="5" style="width:70px;margin:auto;border-color:#1C3D2A;" onchange="checkQty(2, 1)">
-                      </td>
-                      <td class="text-center" id="status-2">
-                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot style="background:#f8f9fa;">
-                    <tr>
-                      <td><strong>Total</strong></td>
-                      <td class="text-center"><strong>3 pièces</strong></td>
-                      <td class="text-center" id="total-present"><strong>3 pièces</strong></td>
-                      <td class="text-center" id="total-status">
-                        <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Complet</span>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
+              <!-- Checklist article par article -->
+              <div class="mb-3">
+                <div style="font-size:0.78rem;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">
+                  Cochez chaque article vérifié physiquement
+                </div>
+
+                <!-- Article 1 -->
+                <div class="d-flex align-items-center justify-content-between p-2 mb-2 rounded" id="article-row-1"
+                     style="background:#f8f9fa;border:1px solid #e0e0e0;font-size:0.85rem;">
+                  <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <input type="checkbox" class="form-check-input article-check" id="chk-1"
+                           data-code="CHM-001" onchange="updateValiderBtn()">
+                    <span class="badge" style="background:#1C3D2A;font-size:0.75rem;">CHM-001</span>
+                    <span style="font-weight:600;">Chemise</span>
+                    <span class="badge bg-light text-dark border" style="font-size:0.72rem;">Blanc</span>
+                    <span style="font-size:0.78rem;color:#888;">Lacoste</span>
+                    <span style="font-size:0.75rem;color:#aaa;font-style:italic;">Tache col</span>
+                  </div>
+                  <span id="chk-status-1" style="font-size:0.75rem;color:#aaa;">
+                    <i class="fas fa-circle-notch"></i> En attente
+                  </span>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="d-flex align-items-center justify-content-between p-2 mb-2 rounded" id="article-row-2"
+                     style="background:#f8f9fa;border:1px solid #e0e0e0;font-size:0.85rem;">
+                  <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <input type="checkbox" class="form-check-input article-check" id="chk-2"
+                           data-code="CHM-002" onchange="updateValiderBtn()">
+                    <span class="badge" style="background:#1C3D2A;font-size:0.75rem;">CHM-002</span>
+                    <span style="font-weight:600;">Chemise</span>
+                    <span class="badge bg-light text-dark border" style="font-size:0.72rem;">Bleu ciel</span>
+                    <span style="font-size:0.78rem;color:#888;">—</span>
+                    <span style="font-size:0.75rem;color:#aaa;font-style:italic;">—</span>
+                  </div>
+                  <span id="chk-status-2" style="font-size:0.75rem;color:#aaa;">
+                    <i class="fas fa-circle-notch"></i> En attente
+                  </span>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="d-flex align-items-center justify-content-between p-2 mb-2 rounded" id="article-row-3"
+                     style="background:#f8f9fa;border:1px solid #e0e0e0;font-size:0.85rem;">
+                  <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <input type="checkbox" class="form-check-input article-check" id="chk-3"
+                           data-code="PNT-001" onchange="updateValiderBtn()">
+                    <span class="badge" style="background:#1C3D2A;font-size:0.75rem;">PNT-001</span>
+                    <span style="font-weight:600;">Pantalon</span>
+                    <span class="badge bg-light text-dark border" style="font-size:0.72rem;">Noir</span>
+                    <span style="font-size:0.78rem;color:#888;">Hugo Boss</span>
+                    <span style="font-size:0.75rem;color:#aaa;font-style:italic;">Délicat</span>
+                  </div>
+                  <span id="chk-status-3" style="font-size:0.75rem;color:#aaa;">
+                    <i class="fas fa-circle-notch"></i> En attente
+                  </span>
+                </div>
+
+                <!-- Compteur progression -->
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <div class="progress flex-grow-1" style="height:6px;border-radius:3px;">
+                    <div class="progress-bar" id="checklist-progress" style="width:0%;background:#1C3D2A;border-radius:3px;transition:width 0.3s;"></div>
+                  </div>
+                  <small id="checklist-count" style="color:#888;white-space:nowrap;">0 / 3 cochés</small>
+                </div>
               </div>
 
               <!-- Récap financier -->
@@ -308,7 +324,9 @@
                 <button class="btn btn-outline-secondary">
                   <i class="fas fa-times me-1"></i>Annuler
                 </button>
-                <button class="btn btn-success btn-lg" id="btn-valider" style="background:#1C3D2A;border:none;padding:0.6rem 1.5rem;" onclick="validerRegroupement()">
+                <button class="btn btn-success btn-lg" id="btn-valider"
+                        style="background:#1C3D2A;border:none;padding:0.6rem 1.5rem;opacity:0.5;cursor:not-allowed;"
+                        disabled onclick="validerRegroupement()">
                   <i class="fas fa-check-circle me-2"></i>Valider — Marquer comme <strong>PRÊT</strong>
                 </button>
               </div>
@@ -338,39 +356,84 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Vérification des quantités
-    function checkQty(line, expected) {
-      var val = parseInt(document.getElementById('qty-' + line).value);
-      var statusEl = document.getElementById('status-' + line);
-      if (val === expected) {
-        statusEl.innerHTML = '<span class="badge bg-success"><i class="fas fa-check me-1"></i>OK</span>';
+    // Nombre total d'articles pour ce client
+    var TOTAL_ARTICLES = 3;
+
+    /**
+     * Met à jour l'état visuel d'un article coché/décoché et
+     * recalcule la barre de progression + l'état du bouton Valider.
+     */
+    function updateValiderBtn() {
+      var checkboxes = document.querySelectorAll('.article-check');
+      var coches = 0;
+
+      checkboxes.forEach(function(chk) {
+        var idx  = chk.id.replace('chk-', '');
+        var row  = document.getElementById('article-row-' + idx);
+        var stat = document.getElementById('chk-status-' + idx);
+
+        if (chk.checked) {
+          coches++;
+          row.style.background  = '#f0fff4';
+          row.style.borderColor = '#28a745';
+          stat.innerHTML = '<span style="color:#28a745;font-weight:600;"><i class="fas fa-check-circle me-1"></i>Vérifié</span>';
+        } else {
+          row.style.background  = '#f8f9fa';
+          row.style.borderColor = '#e0e0e0';
+          stat.innerHTML = '<span style="color:#aaa;"><i class="fas fa-circle-notch"></i> En attente</span>';
+        }
+      });
+
+      // Barre de progression
+      var pct = Math.round((coches / TOTAL_ARTICLES) * 100);
+      document.getElementById('checklist-progress').style.width = pct + '%';
+      document.getElementById('checklist-count').textContent = coches + ' / ' + TOTAL_ARTICLES + ' cochés';
+
+      // Bouton Valider : actif seulement si tous cochés
+      var btn = document.getElementById('btn-valider');
+      if (coches === TOTAL_ARTICLES) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor  = 'pointer';
       } else {
-        statusEl.innerHTML = '<span class="badge bg-danger"><i class="fas fa-times me-1"></i>Manque</span>';
-        document.getElementById('alert-qty').style.display = 'flex';
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor  = 'not-allowed';
       }
-      updateTotal();
     }
 
-    function updateTotal() {
-      var q1 = parseInt(document.getElementById('qty-1').value) || 0;
-      var q2 = parseInt(document.getElementById('qty-2').value) || 0;
-      var total = q1 + q2;
-      document.getElementById('total-present').innerHTML = '<strong>' + total + ' pièces</strong>';
-      if (total === 3) {
-        document.getElementById('total-status').innerHTML = '<span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Complet</span>';
-        document.getElementById('alert-qty').style.display = 'none';
-      } else {
-        document.getElementById('total-status').innerHTML = '<span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i>Incomplet</span>';
-        document.getElementById('alert-qty').style.display = 'flex';
-      }
-    }
-
+    /**
+     * Valide le regroupement si toutes les cases sont cochées.
+     * Sinon, affiche une alerte listant les codes manquants.
+     */
     function validerRegroupement() {
+      var checkboxes = document.querySelectorAll('.article-check');
+      var manquants  = [];
+
+      checkboxes.forEach(function(chk) {
+        if (!chk.checked) {
+          manquants.push(chk.getAttribute('data-code'));
+        }
+      });
+
+      if (manquants.length > 0) {
+        alert('Validation impossible !\nArticles non cochés : ' + manquants.join(', ') +
+              '\nVeuillez vérifier physiquement chaque pièce avant de valider.');
+        return;
+      }
+
+      // Tout est coché : validation OK
       document.getElementById('confirm-msg').style.display = 'flex';
-      document.getElementById('btn-valider').disabled = true;
-      document.getElementById('btn-valider').innerHTML = '<i class="fas fa-check me-2"></i>Validé !';
+      var btn = document.getElementById('btn-valider');
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      btn.innerHTML = '<i class="fas fa-check me-2"></i>Validé !';
     }
 
+    /**
+     * Sélectionne visuellement un client dans la liste gauche.
+     * @param {number} id - Identifiant du client (1 à 4)
+     */
     function selectClient(id) {
       for (var i = 1; i <= 4; i++) {
         var el = document.getElementById('client-' + i);

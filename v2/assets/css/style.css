@@ -493,8 +493,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ----- Client Layout ----- */
 .ep-client-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  display: flex;
   min-height: 100vh;
 }
 
@@ -587,6 +586,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Client Main */
 .ep-client-main {
   margin-left: 260px;
+  width: calc(100% - 260px);
   background: #f4f6f8;
   min-height: 100vh;
 }
@@ -865,13 +865,13 @@ h1, h2, h3, h4, h5, h6 {
   .ep-auth-visual { display: none; }
   .ep-service-block { grid-template-columns: 1fr; }
   .ep-service-block.reverse { direction: ltr; }
-  .ep-client-layout { grid-template-columns: 1fr; }
+  .ep-client-layout { display: flex; }
   .ep-sidebar {
     transform: translateX(-100%);
     width: 260px;
   }
   .ep-sidebar.open { transform: translateX(0); }
-  .ep-client-main { margin-left: 0; }
+  .ep-client-main { margin-left: 0; width: 100%; }
 }
 
 @media (max-width: 767.98px) {

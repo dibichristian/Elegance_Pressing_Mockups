@@ -10,6 +10,22 @@
 </head>
 <body style="background:#f8f9fa;">
 
+  <!-- Bouton flottant retour aux maquettes -->
+  <a href="../index.html" id="back-to-index" title="Retour aux maquettes"
+     style="position:fixed;top:12px;right:12px;left:auto;z-index:9999;
+            display:flex;align-items:center;gap:6px;
+            background:rgba(28,61,42,0.92);color:#C9A020;
+            padding:6px 12px 6px 10px;border-radius:50px;
+            font-size:0.75rem;font-weight:600;text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.3);
+            backdrop-filter:blur(4px);
+            transition:all 0.2s ease;border:1px solid rgba(201,160,32,0.3);"
+     onmouseover="this.style.background='rgba(28,61,42,1)';this.style.transform='translateY(-1px)'"
+     onmouseout="this.style.background='rgba(28,61,42,0.92)';this.style.transform='translateY(0)'">
+    <i class="fas fa-th-large" style="font-size:0.8rem;"></i>
+    <span>Maquettes</span>
+  </a>
+
   <!-- SIDEBAR -->
   <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
     <div class="p-3 border-bottom border-secondary">
@@ -157,22 +173,25 @@
                 <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles en repassage</div>
                 <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
                   <div>
-                    <span style="color:#555;">Aminata Koné</span>
-                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#CHM-001</span>
+                    <small style="color:#888;display:block;">Aminata Koné</small>
+                    <span class="badge ms-0 mt-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">3 Chemises</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
                   <div>
-                    <span style="color:#555;">Ibrahim Diallo</span>
-                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#CHM-002</span>
+                    <small style="color:#888;display:block;">Ibrahim Diallo</small>
+                    <span class="badge ms-0 mt-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">2 Chemises</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center py-1">
                   <div>
-                    <span style="color:#555;">Moussa Ouattara</span>
-                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#CHM-003</span>
+                    <small style="color:#888;display:block;">Moussa Ouattara</small>
+                    <span class="badge ms-0 mt-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">3 Chemises</span>
                 </div>
@@ -229,15 +248,17 @@
                 <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles à repasser</div>
                 <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
                   <div>
-                    <span style="color:#555;">Fatoumata Traoré</span>
-                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#PNT-001</span>
+                    <small style="color:#888;display:block;">Fatoumata Traoré</small>
+                    <span class="badge ms-0 mt-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">4 Pantalons</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center py-1">
                   <div>
-                    <span style="color:#555;">Seydou Bamba</span>
-                    <span class="badge ms-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#PNT-002</span>
+                    <small style="color:#888;display:block;">Seydou Bamba</small>
+                    <span class="badge ms-0 mt-1" style="background:#0DCAF0;color:#000;font-size:0.65rem;">Lavé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">2 Pantalons</span>
                 </div>
@@ -293,22 +314,25 @@
                 <div style="font-weight:600;color:#555;margin-bottom:0.5rem;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">Articles repassés</div>
                 <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
                   <div>
-                    <span style="color:#555;">Nadia Coulibaly</span>
-                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#RBE-001</span>
+                    <small style="color:#888;display:block;">Nadia Coulibaly</small>
+                    <span class="badge ms-0 mt-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">2 Robes</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid #eee;">
                   <div>
-                    <span style="color:#555;">Mariam Sanogo</span>
-                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#RBE-002</span>
+                    <small style="color:#888;display:block;">Mariam Sanogo</small>
+                    <span class="badge ms-0 mt-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">2 Robes</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center py-1">
                   <div>
-                    <span style="color:#555;">Koffi Assoumou</span>
-                    <span class="badge ms-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
+                    <span class="badge" style="background:#1C3D2A;font-size:0.72rem;">#VST-001</span>
+                    <small style="color:#888;display:block;">Koffi Assoumou</small>
+                    <span class="badge ms-0 mt-1" style="background:#FFC107;color:#000;font-size:0.65rem;">Repassé</span>
                   </div>
                   <span style="font-weight:600;color:#1C3D2A;">3 Vestes</span>
                 </div>

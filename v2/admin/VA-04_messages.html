@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages — Admin Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif; }
+
+    .ep-client-layout { display: flex; min-height: 100vh; }
+    .ep-admin-sidebar {
+      background: var(--ep-green); color: var(--ep-white);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0;
+      width: 260px; height: 100vh; z-index: 100;
+      overflow-y: auto; transition: var(--ep-transition);
+    }
+    .ep-sidebar-brand-wrap { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; gap: .85rem; }
+    .ep-brand-name { font-size: 1rem; font-weight: 800; color: var(--ep-white); line-height: 1.2; }
+    .ep-sidebar-nav { padding: 1rem 0; flex: 1; }
+    .ep-sidebar-nav .ep-nav-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .72rem 1.5rem; color: rgba(255,255,255,.8);
+      text-decoration: none; font-weight: 500; font-size: .9rem;
+      transition: var(--ep-transition); border-left: 3px solid transparent;
+    }
+    .ep-sidebar-nav .ep-nav-item:hover { background: rgba(255,255,255,.07); color: var(--ep-white); border-left-color: rgba(201,160,32,.5); }
+    .ep-sidebar-nav .ep-nav-item.active { background: rgba(255,255,255,.1); color: var(--ep-white); border-left-color: var(--ep-gold); }
+    .ep-sidebar-nav .ep-nav-item i { width: 18px; text-align: center; }
+    .ep-sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid rgba(255,255,255,.1); }
+    .ep-user-info { font-size: .82rem; color: rgba(255,255,255,.65); margin-bottom: .75rem; }
+    .ep-logout-btn { display: flex; align-items: center; color: rgba(255,255,255,.65); text-decoration: none; font-size: .85rem; transition: var(--ep-transition); }
+    .ep-logout-btn:hover { color: var(--ep-gold); }
+
+    .ep-client-main { margin-left: 260px; width: calc(100% - 260px); background: #f4f6f8; min-height: 100vh; }
+    .ep-client-topbar {
+      background: var(--ep-white); padding: .85rem 1.75rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,.08);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .ep-page-title { font-size: 1.1rem; font-weight: 700; color: var(--ep-green); margin: 0; }
+    .ep-client-content { padding: 2rem 1.75rem; }
+
+    .badge-nouveau { background: rgba(220,53,69,.12); color: #dc3545; padding: .28rem .7rem; border-radius: 50px; font-size: .72rem; font-weight: 700; }
+    .badge-lu      { background: rgba(13,110,253,.12); color: #0d6efd; padding: .28rem .7rem; border-radius: 50px; font-size: .72rem; font-weight: 600; }
+    .badge-traite  { background: rgba(25,135,84,.12); color: #198754; padding: .28rem .7rem; border-radius: 50px; font-size: .72rem; font-weight: 600; }
+
+    .ep-admin-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ep-gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .82rem; color: var(--ep-white); cursor: pointer; }
+
+    .msg-row-nouveau td { background: rgba(220,53,69,.03); }
+    .msg-row-nouveau td:first-child { border-left: 3px solid #dc3545; }
+
+    @media (max-width: 991.98px) {
+      .ep-admin-sidebar { transform: translateX(-100%); }
+      .ep-admin-sidebar.open { transform: translateX(0); }
+      .ep-client-main { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar -->
+  <aside class="ep-admin-sidebar">
+    <div class="ep-sidebar-brand-wrap">
+      <img src="../assets/img/logo.png" alt="Logo" style="height:36px">
+      <div>
+        <div class="ep-brand-name">Élégance Pressing</div>
+        <div style="font-size:.65rem;color:#C9A020;letter-spacing:.1em;text-transform:uppercase">Admin V2</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <a href="VA-02_dashboard.html" class="ep-nav-item"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="VA-03_clients.html" class="ep-nav-item"><i class="fas fa-users"></i> Clients</a>
+      <a href="VA-04_messages.html" class="ep-nav-item active"><i class="fas fa-envelope"></i> Messages <span class="badge bg-danger ms-auto">3</span></a>
+      <a href="VA-05_fidelite.html" class="ep-nav-item"><i class="fas fa-star"></i> Fidélité</a>
+      <a href="VA-06_contenu.html" class="ep-nav-item"><i class="fas fa-pen-to-square"></i> Contenu du site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <div class="ep-user-info"><i class="fas fa-user-shield me-2"></i>Administrateur</div>
+      <a href="VA-01_login.html" class="ep-logout-btn"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;" onclick="document.querySelector('.ep-admin-sidebar').classList.toggle('open')">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <h1 class="ep-page-title"><i class="fas fa-envelope me-2" style="color:var(--ep-gold);"></i>Messages &amp; demandes</h1>
+      </div>
+      <div class="ep-admin-avatar" title="Administrateur">AD</div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- Stats rapides -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="ep-card p-3 text-center">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--ep-text-dark);">8</div>
+            <div style="font-size:.78rem;color:var(--ep-text-muted);">Total messages</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ep-card p-3 text-center">
+            <div style="font-size:1.8rem;font-weight:800;color:#dc3545;">3</div>
+            <div style="font-size:.78rem;color:var(--ep-text-muted);">Nouveaux</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ep-card p-3 text-center">
+            <div style="font-size:1.8rem;font-weight:800;color:#0d6efd;">2</div>
+            <div style="font-size:.78rem;color:var(--ep-text-muted);">Lus</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ep-card p-3 text-center">
+            <div style="font-size:1.8rem;font-weight:800;color:#198754;">3</div>
+            <div style="font-size:.78rem;color:var(--ep-text-muted);">Traités</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtres -->
+      <div class="ep-card p-3 mb-4">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-4">
+            <div style="position:relative;">
+              <i class="fas fa-search" style="position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:var(--ep-text-muted);font-size:.85rem;"></i>
+              <input type="text" class="form-control ps-4" placeholder="Rechercher par nom, email, objet…" style="border:2px solid var(--ep-border);border-radius:var(--ep-radius);font-size:.88rem;">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" style="border:2px solid var(--ep-border);border-radius:var(--ep-radius);font-size:.88rem;">
+              <option>Tous les statuts</option>
+              <option>Nouveau</option>
+              <option>Lu</option>
+              <option>Traité</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-ep-primary btn-sm w-100"><i class="fas fa-filter me-1"></i> Filtrer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tableau des messages -->
+      <div class="ep-table-wrapper">
+        <div class="table-responsive">
+          <table class="ep-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Objet</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="msg-row-nouveau">
+                <td class="text-muted" style="font-size:.8rem;">001</td>
+                <td class="fw-bold">Coulibaly Adjoua</td>
+                <td style="font-size:.82rem;">adjoua.c@gmail.com</td>
+                <td style="font-size:.82rem;">+225 07 34 12 90</td>
+                <td style="font-size:.85rem;">Délai de livraison</td>
+                <td class="text-muted" style="font-size:.82rem;">15/04/2026 09:14</td>
+                <td><span class="badge-nouveau">Nouveau</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-success py-1 px-2 me-1" style="font-size:.72rem;" title="Marquer traité"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr class="msg-row-nouveau">
+                <td class="text-muted" style="font-size:.8rem;">002</td>
+                <td class="fw-bold">Méité Jean-Baptiste</td>
+                <td style="font-size:.82rem;">jbmeite@hotmail.com</td>
+                <td style="font-size:.82rem;">+225 05 67 23 45</td>
+                <td style="font-size:.85rem;">Tarif nettoyage costume</td>
+                <td class="text-muted" style="font-size:.82rem;">14/04/2026 15:32</td>
+                <td><span class="badge-nouveau">Nouveau</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-success py-1 px-2 me-1" style="font-size:.72rem;" title="Marquer traité"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr class="msg-row-nouveau">
+                <td class="text-muted" style="font-size:.8rem;">003</td>
+                <td class="fw-bold">Koné Mariame</td>
+                <td style="font-size:.82rem;">mkone@yahoo.fr</td>
+                <td style="font-size:.82rem;">+225 01 88 55 27</td>
+                <td style="font-size:.85rem;">Rendez-vous récupération</td>
+                <td class="text-muted" style="font-size:.82rem;">14/04/2026 11:07</td>
+                <td><span class="badge-nouveau">Nouveau</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-success py-1 px-2 me-1" style="font-size:.72rem;" title="Marquer traité"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted" style="font-size:.8rem;">004</td>
+                <td class="fw-bold">Bah Ramatou</td>
+                <td style="font-size:.82rem;">rbah@gmail.com</td>
+                <td style="font-size:.82rem;">+225 07 45 98 03</td>
+                <td style="font-size:.85rem;">Réclamation vêtement</td>
+                <td class="text-muted" style="font-size:.82rem;">13/04/2026 14:22</td>
+                <td><span class="badge-lu">Lu</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-success py-1 px-2 me-1" style="font-size:.72rem;" title="Marquer traité"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted" style="font-size:.8rem;">005</td>
+                <td class="fw-bold">Diallo Boubacar</td>
+                <td style="font-size:.82rem;">bdiallo@ci.org</td>
+                <td style="font-size:.82rem;">+225 05 11 44 88</td>
+                <td style="font-size:.85rem;">Demande de partenariat</td>
+                <td class="text-muted" style="font-size:.82rem;">12/04/2026 08:55</td>
+                <td><span class="badge-lu">Lu</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-success py-1 px-2 me-1" style="font-size:.72rem;" title="Marquer traité"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted" style="font-size:.8rem;">006</td>
+                <td class="fw-bold">Ouédraogo Alice</td>
+                <td style="font-size:.82rem;">alice.ouedraogo@gmail.com</td>
+                <td style="font-size:.82rem;">+225 07 23 67 14</td>
+                <td style="font-size:.85rem;">Informations horaires</td>
+                <td class="text-muted" style="font-size:.82rem;">10/04/2026 16:40</td>
+                <td><span class="badge-traite">Traité</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-secondary py-1 px-2 me-1" style="font-size:.72rem;" disabled title="Déjà traité"><i class="fas fa-check-double"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted" style="font-size:.8rem;">007</td>
+                <td class="fw-bold">Sanogo Paul</td>
+                <td style="font-size:.82rem;">psanogo@outlook.com</td>
+                <td style="font-size:.82rem;">+225 01 56 78 32</td>
+                <td style="font-size:.85rem;">Prix lavage couverture</td>
+                <td class="text-muted" style="font-size:.82rem;">08/04/2026 10:15</td>
+                <td><span class="badge-traite">Traité</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-secondary py-1 px-2 me-1" style="font-size:.72rem;" disabled><i class="fas fa-check-double"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted" style="font-size:.8rem;">008</td>
+                <td class="fw-bold">Touré Salamata</td>
+                <td style="font-size:.82rem;">stoure@gmail.com</td>
+                <td style="font-size:.82rem;">+225 07 90 12 56</td>
+                <td style="font-size:.85rem;">Felicitations service</td>
+                <td class="text-muted" style="font-size:.82rem;">05/04/2026 09:00</td>
+                <td><span class="badge-traite">Traité</span></td>
+                <td>
+                  <button class="btn btn-sm btn-ep-primary py-1 px-2 me-1" data-bs-toggle="modal" data-bs-target="#modalMsg" style="font-size:.72rem;" title="Voir"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-outline-secondary py-1 px-2 me-1" style="font-size:.72rem;" disabled><i class="fas fa-check-double"></i></button>
+                  <button class="btn btn-sm btn-outline-danger py-1 px-2" style="font-size:.72rem;" title="Supprimer"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Modal Détail Message -->
+<div class="modal fade" id="modalMsg" tabindex="-1" aria-labelledby="modalMsgLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="border-radius:var(--ep-radius-lg);overflow:hidden;">
+      <div class="modal-header" style="background:linear-gradient(135deg,var(--ep-green) 0%,var(--ep-green-light) 100%);border:none;padding:1.25rem 1.75rem;">
+        <div>
+          <h5 class="modal-title text-white fw-bold mb-0" id="modalMsgLabel">
+            <i class="fas fa-envelope me-2" style="color:var(--ep-gold);"></i>
+            Délai de livraison
+          </h5>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.2rem;">Message #001 — reçu le 15/04/2026 à 09:14</div>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body p-4">
+        <!-- Infos expéditeur -->
+        <div class="p-3 mb-4" style="background:#f8f9fa;border-radius:var(--ep-radius);border:1px solid var(--ep-border);">
+          <div class="row g-2">
+            <div class="col-md-4">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Expéditeur</div>
+              <div class="fw-bold mt-1">Coulibaly Adjoua</div>
+            </div>
+            <div class="col-md-4">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Email</div>
+              <div class="fw-bold mt-1" style="font-size:.88rem;">adjoua.c@gmail.com</div>
+            </div>
+            <div class="col-md-4">
+              <div style="font-size:.75rem;color:var(--ep-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Téléphone</div>
+              <div class="fw-bold mt-1">+225 07 34 12 90</div>
+            </div>
+          </div>
+        </div>
+        <!-- Corps du message -->
+        <div>
+          <div style="font-size:.82rem;font-weight:700;color:var(--ep-green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">
+            <i class="fas fa-comment-alt me-1" style="color:var(--ep-gold);"></i> Message
+          </div>
+          <div style="background:rgba(28,61,42,.04);border-radius:var(--ep-radius);padding:1.25rem;border-left:3px solid var(--ep-gold);line-height:1.7;font-size:.92rem;color:var(--ep-text-dark);">
+            Bonjour,<br><br>
+            J'ai déposé mes vêtements il y a 5 jours et je n'ai pas encore reçu de notification.<br>
+            Pourriez-vous m'indiquer quel est le délai habituel de traitement pour une chemise et deux pantalons ?<br><br>
+            Par avance merci pour votre retour.<br><br>
+            Cordialement,<br>
+            Adjoua Coulibaly
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">
+          <i class="fas fa-times me-1"></i> Fermer
+        </button>
+        <button type="button" class="btn btn-ep-outline-green btn-sm">
+          <i class="fas fa-check-double me-1"></i> Marquer comme traité
+        </button>
+        <a href="mailto:adjoua.c@gmail.com?subject=Re: Délai de livraison — Élégance Pressing" class="btn btn-ep-primary btn-sm">
+          <i class="fas fa-reply me-1"></i> Répondre
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

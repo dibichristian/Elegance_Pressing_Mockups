@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — Élégance Pressing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif; }
+
+    /* ── Sidebar Admin ── */
+    .ep-client-layout { display: flex; min-height: 100vh; }
+    .ep-admin-sidebar {
+      background: var(--ep-green);
+      color: var(--ep-white);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0;
+      width: 260px;
+      height: 100vh;
+      z-index: 100;
+      overflow-y: auto;
+      transition: var(--ep-transition);
+    }
+    .ep-sidebar-brand-wrap {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+    }
+    .ep-brand-name { font-size: 1rem; font-weight: 800; color: var(--ep-white); line-height: 1.2; }
+    .ep-sidebar-nav { padding: 1rem 0; flex: 1; }
+    .ep-sidebar-nav .ep-nav-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .72rem 1.5rem;
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .9rem;
+      transition: var(--ep-transition);
+      border-left: 3px solid transparent;
+    }
+    .ep-sidebar-nav .ep-nav-item:hover {
+      background: rgba(255,255,255,.07);
+      color: var(--ep-white);
+      border-left-color: rgba(201,160,32,.5);
+    }
+    .ep-sidebar-nav .ep-nav-item.active {
+      background: rgba(255,255,255,.1);
+      color: var(--ep-white);
+      border-left-color: var(--ep-gold);
+    }
+    .ep-sidebar-nav .ep-nav-item i { width: 18px; text-align: center; }
+    .ep-sidebar-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .ep-user-info {
+      font-size: .82rem;
+      color: rgba(255,255,255,.65);
+      margin-bottom: .75rem;
+    }
+    .ep-logout-btn {
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: var(--ep-transition);
+    }
+    .ep-logout-btn:hover { color: var(--ep-gold); }
+
+    /* ── Main ── */
+    .ep-client-main { margin-left: 260px; width: calc(100% - 260px); background: #f4f6f8; min-height: 100vh; }
+    .ep-client-topbar {
+      background: var(--ep-white);
+      padding: .85rem 1.75rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0; z-index: 50;
+    }
+    .ep-page-title { font-size: 1.1rem; font-weight: 700; color: var(--ep-green); margin: 0; }
+    .ep-client-content { padding: 2rem 1.75rem; }
+
+    /* KPI rouge */
+    .ep-kpi-icon.red   { background: rgba(220,53,69,.1); color: #dc3545; }
+    .ep-kpi-icon.gray  { background: rgba(108,117,125,.1); color: #6c757d; }
+
+    /* Badge statut */
+    .badge-actif    { background: rgba(25,135,84,.12); color: #198754; padding: .3rem .75rem; border-radius: 50px; font-size: .75rem; font-weight: 600; }
+    .badge-inactif  { background: rgba(108,117,125,.12); color: #6c757d; padding: .3rem .75rem; border-radius: 50px; font-size: .75rem; font-weight: 600; }
+    .badge-nouveau  { background: rgba(220,53,69,.12); color: #dc3545; padding: .3rem .75rem; border-radius: 50px; font-size: .75rem; font-weight: 600; }
+    .badge-lu       { background: rgba(13,110,253,.12); color: #0d6efd; padding: .3rem .75rem; border-radius: 50px; font-size: .75rem; font-weight: 600; }
+    .badge-traite   { background: rgba(25,135,84,.12); color: #198754; padding: .3rem .75rem; border-radius: 50px; font-size: .75rem; font-weight: 600; }
+
+    .ep-admin-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--ep-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .82rem;
+      color: var(--ep-white);
+      cursor: pointer;
+    }
+
+    @media (max-width: 991.98px) {
+      .ep-admin-sidebar { transform: translateX(-100%); }
+      .ep-admin-sidebar.open { transform: translateX(0); }
+      .ep-client-main { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ep-client-layout">
+
+  <!-- Sidebar Admin -->
+  <aside class="ep-admin-sidebar">
+    <div class="ep-sidebar-brand-wrap">
+      <img src="../assets/img/logo.png" alt="Logo" style="height:36px">
+      <div>
+        <div class="ep-brand-name">Élégance Pressing</div>
+        <div style="font-size:.65rem;color:#C9A020;letter-spacing:.1em;text-transform:uppercase">Admin V2</div>
+      </div>
+    </div>
+    <nav class="ep-sidebar-nav">
+      <a href="VA-02_dashboard.html" class="ep-nav-item active"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="VA-03_clients.html" class="ep-nav-item"><i class="fas fa-users"></i> Clients</a>
+      <a href="VA-04_messages.html" class="ep-nav-item"><i class="fas fa-envelope"></i> Messages <span class="badge bg-danger ms-auto">3</span></a>
+      <a href="VA-05_fidelite.html" class="ep-nav-item"><i class="fas fa-star"></i> Fidélité</a>
+      <a href="VA-06_contenu.html" class="ep-nav-item"><i class="fas fa-pen-to-square"></i> Contenu du site</a>
+    </nav>
+    <div class="ep-sidebar-footer">
+      <div class="ep-user-info"><i class="fas fa-user-shield me-2"></i>Administrateur</div>
+      <a href="VA-01_login.html" class="ep-logout-btn"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ep-client-main">
+
+    <!-- Topbar -->
+    <div class="ep-client-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm d-lg-none" style="background:none;border:none;font-size:1.2rem;" onclick="document.querySelector('.ep-admin-sidebar').classList.toggle('open')">
+          <i class="fas fa-bars text-ep-green"></i>
+        </button>
+        <div>
+          <h1 class="ep-page-title">Tableau de bord</h1>
+          <div style="font-size:.75rem;color:var(--ep-text-muted);">Mardi 15 avril 2026</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span style="font-size:.82rem;color:var(--ep-text-muted);">Bonjour, Admin</span>
+        <div class="ep-admin-avatar" title="Administrateur">AD</div>
+      </div>
+    </div>
+
+    <div class="ep-client-content">
+
+      <!-- KPI Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="ep-kpi">
+            <div class="ep-kpi-icon green"><i class="fas fa-users"></i></div>
+            <div>
+              <div class="ep-kpi-value">128</div>
+              <div class="ep-kpi-label">Clients inscrits</div>
+              <div class="ep-kpi-delta up"><i class="fas fa-arrow-up me-1"></i>+6 ce mois</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="ep-kpi">
+            <div class="ep-kpi-icon red"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="ep-kpi-value">3</div>
+              <div class="ep-kpi-label">Messages non lus</div>
+              <div class="ep-kpi-delta down"><i class="fas fa-circle me-1"></i>À traiter</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="ep-kpi">
+            <div class="ep-kpi-icon gold"><i class="fas fa-star"></i></div>
+            <div>
+              <div class="ep-kpi-value">4 520</div>
+              <div class="ep-kpi-label">Points distribués</div>
+              <div class="ep-kpi-delta up"><i class="fas fa-arrow-up me-1"></i>+340 cette sem.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="ep-kpi">
+            <div class="ep-kpi-icon gray"><i class="fas fa-chart-bar"></i></div>
+            <div>
+              <div class="ep-kpi-value" style="font-size:1.2rem;">N/A</div>
+              <div class="ep-kpi-label">Revenus (V1)</div>
+              <div class="ep-kpi-delta" style="color:var(--ep-text-muted);">V1 non connectée</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+
+        <!-- Dernières inscriptions -->
+        <div class="col-lg-7">
+          <div class="ep-table-wrapper">
+            <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+              <h6 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-user-plus me-2" style="color:var(--ep-gold);"></i>
+                Dernières inscriptions
+              </h6>
+              <a href="VA-03_clients.html" class="btn btn-sm btn-ep-outline-green py-1 px-3" style="font-size:.8rem;">
+                Voir tout <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="ep-table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Inscription</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold">Aminata Bamba</td>
+                    <td style="font-size:.82rem;">aminata.bamba@gmail.com</td>
+                    <td style="font-size:.82rem;">+225 07 45 12 36</td>
+                    <td class="text-muted" style="font-size:.82rem;">14/04/2026</td>
+                    <td><span class="badge-actif">Actif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Koné Ibrahim</td>
+                    <td style="font-size:.82rem;">ibrahim.kone@yahoo.fr</td>
+                    <td style="font-size:.82rem;">+225 05 78 23 91</td>
+                    <td class="text-muted" style="font-size:.82rem;">12/04/2026</td>
+                    <td><span class="badge-actif">Actif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Ouattara Mariam</td>
+                    <td style="font-size:.82rem;">mariam.o@outlook.com</td>
+                    <td style="font-size:.82rem;">+225 01 34 67 89</td>
+                    <td class="text-muted" style="font-size:.82rem;">10/04/2026</td>
+                    <td><span class="badge-inactif">Inactif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Diallo Seydou</td>
+                    <td style="font-size:.82rem;">sdiallo@gmail.com</td>
+                    <td style="font-size:.82rem;">+225 07 11 55 20</td>
+                    <td class="text-muted" style="font-size:.82rem;">08/04/2026</td>
+                    <td><span class="badge-actif">Actif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Touré Fatoumata</td>
+                    <td style="font-size:.82rem;">ftoure@gmail.com</td>
+                    <td style="font-size:.82rem;">+225 05 99 44 12</td>
+                    <td class="text-muted" style="font-size:.82rem;">05/04/2026</td>
+                    <td><span class="badge-actif">Actif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Derniers messages -->
+        <div class="col-lg-5">
+          <div class="ep-table-wrapper">
+            <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+              <h6 class="fw-bold text-ep-green mb-0">
+                <i class="fas fa-envelope me-2" style="color:var(--ep-gold);"></i>
+                Derniers messages
+              </h6>
+              <a href="VA-04_messages.html" class="btn btn-sm btn-ep-outline-green py-1 px-3" style="font-size:.8rem;">
+                Voir tout <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="ep-table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Objet</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold" style="font-size:.82rem;">Coulibaly A.</td>
+                    <td style="font-size:.82rem;">Délai de livraison</td>
+                    <td class="text-muted" style="font-size:.82rem;">15/04/2026</td>
+                    <td><span class="badge-nouveau">Nouveau</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold" style="font-size:.82rem;">Méité J.</td>
+                    <td style="font-size:.82rem;">Tarif costume</td>
+                    <td class="text-muted" style="font-size:.82rem;">14/04/2026</td>
+                    <td><span class="badge-nouveau">Nouveau</span></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold" style="font-size:.82rem;">Bah R.</td>
+                    <td style="font-size:.82rem;">Réclamation</td>
+                    <td class="text-muted" style="font-size:.82rem;">13/04/2026</td>
+                    <td><span class="badge-lu">Lu</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphique inscriptions -->
+      <div class="ep-card p-4">
+        <h6 class="fw-bold text-ep-green mb-3">
+          <i class="fas fa-chart-bar me-2" style="color:var(--ep-gold);"></i>
+          Inscriptions — 7 derniers jours
+        </h6>
+        <canvas id="chartInscriptions" height="80"></canvas>
+      </div>
+
+    </div><!-- /ep-client-content -->
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Graphique inscriptions 7 jours
+  const ctx = document.getElementById('chartInscriptions').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['09/04', '10/04', '11/04', '12/04', '13/04', '14/04', '15/04'],
+      datasets: [{
+        label: 'Nouvelles inscriptions',
+        data: [2, 1, 3, 4, 1, 2, 3],
+        backgroundColor: 'rgba(28,61,42,.7)',
+        borderColor: '#1C3D2A',
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y} inscription${ctx.parsed.y > 1 ? 's' : ''}`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1, color: '#6c757d', font: { size: 11 } },
+          grid: { color: 'rgba(0,0,0,.05)' }
+        },
+        x: {
+          ticks: { color: '#6c757d', font: { size: 11 } },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -10,6 +10,22 @@
 </head>
 <body style="background:#f8f9fa;">
 
+  <!-- Bouton flottant retour aux maquettes -->
+  <a href="../index.html" id="back-to-index" title="Retour aux maquettes"
+     style="position:fixed;top:12px;right:12px;left:auto;z-index:9999;
+            display:flex;align-items:center;gap:6px;
+            background:rgba(28,61,42,0.92);color:#C9A020;
+            padding:6px 12px 6px 10px;border-radius:50px;
+            font-size:0.75rem;font-weight:600;text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.3);
+            backdrop-filter:blur(4px);
+            transition:all 0.2s ease;border:1px solid rgba(201,160,32,0.3);"
+     onmouseover="this.style.background='rgba(28,61,42,1)';this.style.transform='translateY(-1px)'"
+     onmouseout="this.style.background='rgba(28,61,42,0.92)';this.style.transform='translateY(0)'">
+    <i class="fas fa-th-large" style="font-size:0.8rem;"></i>
+    <span>Maquettes</span>
+  </a>
+
   <!-- SIDEBAR -->
   <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
     <div class="p-3 border-bottom border-secondary">
@@ -150,6 +166,9 @@
                       <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Type de vêtement</th>
                       <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Quantité</th>
                       <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Prix unitaire (FCFA)</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Couleur</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Marque</th>
+                      <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Note</th>
                       <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;">Sous-total</th>
                       <th style="padding:0.75rem 1rem;color:#888;font-weight:600;border:none;font-size:0.78rem;text-transform:uppercase;"></th>
                     </tr>
@@ -175,6 +194,15 @@
                       </td>
                       <td style="padding:0.65rem 1rem;vertical-align:middle;">
                         <input type="number" class="form-control form-control-sm" value="500" min="0" style="width:100px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Blanc" style="min-width:90px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Lacoste" style="min-width:100px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Tache col" style="min-width:110px;">
                       </td>
                       <td style="padding:0.65rem 1rem;vertical-align:middle;">
                         <span class="subtotal fw-bold" style="color:#1C3D2A;">500</span> FCFA
@@ -205,6 +233,15 @@
                       </td>
                       <td style="padding:0.65rem 1rem;vertical-align:middle;">
                         <input type="number" class="form-control form-control-sm" value="700" min="0" style="width:100px;" onchange="updateSubtotal(this)">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Bleu marine" style="min-width:90px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Hugo Boss" style="min-width:100px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Délicat" style="min-width:110px;">
                       </td>
                       <td style="padding:0.65rem 1rem;vertical-align:middle;">
                         <span class="subtotal fw-bold" style="color:#1C3D2A;">1 400</span> FCFA
@@ -238,6 +275,15 @@
                       </td>
                       <td style="padding:0.65rem 1rem;vertical-align:middle;">
                         <input type="number" id="newPrix" class="form-control form-control-sm" value="500" min="0" style="width:100px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" id="newCouleur" class="form-control form-control-sm" placeholder="Couleur" style="min-width:90px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" id="newMarque" class="form-control form-control-sm" placeholder="Marque" style="min-width:100px;">
+                      </td>
+                      <td style="padding:0.65rem 1rem;vertical-align:middle;">
+                        <input type="text" id="newNote" class="form-control form-control-sm" placeholder="Note" style="min-width:110px;">
                       </td>
                       <td colspan="2" style="padding:0.65rem 1rem;vertical-align:middle;">
                         <button type="button" class="btn btn-sm" style="background:#C9A020;color:#fff;font-weight:600;border-radius:6px;" onclick="ajouterLigne()">
@@ -373,9 +419,12 @@
 
     // Ajoute une ligne vêtement
     function ajouterLigne() {
-      const type = document.getElementById('newType').value;
-      const qte = parseInt(document.getElementById('newQte').value) || 1;
-      const prix = parseInt(document.getElementById('newPrix').value) || 0;
+      const type    = document.getElementById('newType').value;
+      const qte     = parseInt(document.getElementById('newQte').value) || 1;
+      const prix    = parseInt(document.getElementById('newPrix').value) || 0;
+      const couleur = document.getElementById('newCouleur').value;
+      const marque  = document.getElementById('newMarque').value;
+      const note    = document.getElementById('newNote').value;
       const subtotal = qte * prix;
 
       const tr = document.createElement('tr');
@@ -394,12 +443,18 @@
         </td>
         <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="number" class="form-control form-control-sm" value="${qte}" min="1" style="width:70px;" onchange="updateSubtotal(this)"></td>
         <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="number" class="form-control form-control-sm" value="${prix}" min="0" style="width:100px;" onchange="updateSubtotal(this)"></td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="text" class="form-control form-control-sm" value="${couleur}" placeholder="Couleur" style="min-width:90px;"></td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="text" class="form-control form-control-sm" value="${marque}" placeholder="Marque" style="min-width:100px;"></td>
+        <td style="padding:0.65rem 1rem;vertical-align:middle;"><input type="text" class="form-control form-control-sm" value="${note}" placeholder="Note" style="min-width:110px;"></td>
         <td style="padding:0.65rem 1rem;vertical-align:middle;"><span class="subtotal fw-bold" style="color:#1C3D2A;">${subtotal.toLocaleString('fr-FR')}</span> FCFA</td>
         <td style="padding:0.65rem 1rem;vertical-align:middle;"><button type="button" class="btn btn-sm btn-outline-danger" onclick="supprimerLigne(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       document.getElementById('tbodyVetements').appendChild(tr);
       recalcTotal();
       document.getElementById('newQte').value = 1;
+      document.getElementById('newCouleur').value = '';
+      document.getElementById('newMarque').value  = '';
+      document.getElementById('newNote').value    = '';
     }
 
     // Supprime une ligne

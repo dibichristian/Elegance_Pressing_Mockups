@@ -42,6 +42,22 @@
 </head>
 <body style="background:#f8f9fa;">
 
+  <!-- Bouton flottant retour aux maquettes -->
+  <a href="../index.html" id="back-to-index" title="Retour aux maquettes"
+     style="position:fixed;top:12px;right:12px;left:auto;z-index:9999;
+            display:flex;align-items:center;gap:6px;
+            background:rgba(28,61,42,0.92);color:#C9A020;
+            padding:6px 12px 6px 10px;border-radius:50px;
+            font-size:0.75rem;font-weight:600;text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.3);
+            backdrop-filter:blur(4px);
+            transition:all 0.2s ease;border:1px solid rgba(201,160,32,0.3);"
+     onmouseover="this.style.background='rgba(28,61,42,1)';this.style.transform='translateY(-1px)'"
+     onmouseout="this.style.background='rgba(28,61,42,0.92)';this.style.transform='translateY(0)'">
+    <i class="fas fa-th-large" style="font-size:0.8rem;"></i>
+    <span>Maquettes</span>
+  </a>
+
   <!-- SIDEBAR -->
   <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
     <div class="p-3 border-bottom border-secondary">
