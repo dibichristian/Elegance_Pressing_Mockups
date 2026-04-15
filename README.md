@@ -5,7 +5,7 @@ Déployées via **GitHub Pages** pour la présentation client.
 
 ## Voir la présentation
 
-> **[Ouvrir les maquettes →](https://votre-username.github.io/elegance-pressing-mockups/)**
+> **[Ouvrir les maquettes →](https://dibichristian.github.io/Elegance_Pressing_Mockups/)**
 
 ## Structure
 
