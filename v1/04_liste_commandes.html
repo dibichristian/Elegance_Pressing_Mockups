@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -9,24 +9,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body style="background:#f8f9fa;">
-
-  <!-- Bouton flottant retour aux maquettes -->
-  <a href="../index.html" id="back-to-index" title="Retour aux maquettes"
-     style="position:fixed;top:12px;right:12px;left:auto;z-index:9999;
-            display:flex;align-items:center;gap:6px;
-            background:rgba(28,61,42,0.92);color:#C9A020;
-            padding:6px 12px 6px 10px;border-radius:50px;
-            font-size:0.75rem;font-weight:600;text-decoration:none;
-            box-shadow:0 2px 8px rgba(0,0,0,0.3);
-            backdrop-filter:blur(4px);
-            transition:all 0.2s ease;border:1px solid rgba(201,160,32,0.3);"
-     onmouseover="this.style.background='rgba(28,61,42,1)';this.style.transform='translateY(-1px)'"
-     onmouseout="this.style.background='rgba(28,61,42,0.92)';this.style.transform='translateY(0)'">
-    <i class="fas fa-th-large" style="font-size:0.8rem;"></i>
-    <span>Maquettes</span>
-  </a>
-
-  <!-- SIDEBAR -->
+<!-- SIDEBAR -->
   <nav id="sidebar" class="sidebar d-flex flex-column" style="width:250px;min-height:100vh;background:#1C3D2A;color:#fff;position:fixed;left:0;top:0;z-index:100;padding:0;">
     <div class="p-3 border-bottom border-secondary">
       <img src="assets/img/logo.png" alt="Élégance Pressing" height="52" style="display:block;">
@@ -96,11 +79,9 @@
               <label class="form-label" style="font-size:0.8rem;font-weight:600;color:#555;">Dépôt</label>
               <select class="form-select form-select-sm">
                 <option value="">Tous les dépôts</option>
-                <option value="cocody">Cocody</option>
-                <option value="plateau">Plateau</option>
-                <option value="yopougon">Yopougon</option>
-                <option value="marcory">Marcory</option>
-                <option value="abobo">Abobo</option>
+                <option value="bingerville">Bingerville (Principal)</option>
+                <option value="angre-mandela">Angré — Carrefour Mandela</option>
+                <option value="angre-chu">Angré — CHU</option>
               </select>
             </div>
             <div class="col-md-2">
@@ -160,7 +141,7 @@
                     <div style="font-weight:600;color:#333;">Aminata Koné</div>
                     <small style="color:#aaa;">+225 07 12 34 56</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Cocody</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Bingerville</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">14/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">17/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge bg-success">Prêt</span></td>
@@ -189,7 +170,7 @@
                     <div style="font-weight:600;color:#333;">Ibrahim Diallo</div>
                     <small style="color:#aaa;">+225 05 67 89 01</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Plateau</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré Mandela</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">14/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">17/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#FD7E14">En repassage</span></td>
@@ -212,7 +193,7 @@
                     <div style="font-weight:600;color:#333;">Fatoumata Traoré</div>
                     <small style="color:#aaa;">+225 01 23 45 67</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Yopougon</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré CHU</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">13/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">16/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#007BFF">En lavage</span></td>
@@ -235,7 +216,7 @@
                     <div style="font-weight:600;color:#333;">Moussa Ouattara</div>
                     <small style="color:#aaa;">+225 07 98 76 54</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Marcory</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré Mandela</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">13/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">16/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#FFC107;color:#000">Repassé</span></td>
@@ -258,7 +239,7 @@
                     <div style="font-weight:600;color:#333;">Seydou Bamba</div>
                     <small style="color:#aaa;">+225 05 11 22 33</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Cocody</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Bingerville</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">12/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">15/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#17A2B8">Reçu</span></td>
@@ -281,7 +262,7 @@
                     <div style="font-weight:600;color:#333;">Nadia Coulibaly</div>
                     <small style="color:#aaa;">+225 07 55 44 33</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Plateau</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré Mandela</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">11/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="color:#dc3545;font-weight:600;font-size:0.88rem;"><i class="fas fa-exclamation-triangle me-1"></i>11/04/2026</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#007BFF">En lavage</span></td>
@@ -304,7 +285,7 @@
                     <div style="font-weight:600;color:#333;">Mariam Sanogo</div>
                     <small style="color:#aaa;">+225 05 34 56 78</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Yopougon</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré CHU</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">10/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">13/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge bg-secondary">Retiré</span></td>
@@ -326,7 +307,7 @@
                     <div style="font-weight:600;color:#333;">Koffi Assoumou</div>
                     <small style="color:#aaa;">+225 01 87 65 43</small>
                   </td>
-                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Abobo</span></td>
+                  <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="font-size:0.82rem;color:#555;"><i class="fas fa-map-marker-alt me-1" style="color:#C9A020;"></i>Angré CHU</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;color:#555;font-size:0.88rem;">09/04/2026</td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span style="color:#dc3545;font-weight:600;font-size:0.88rem;"><i class="fas fa-exclamation-triangle me-1"></i>09/04/2026</span></td>
                   <td style="padding:0.75rem 1rem;vertical-align:middle;"><span class="badge" style="background:#0DCAF0;color:#000">Lavé</span></td>
